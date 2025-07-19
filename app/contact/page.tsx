@@ -5,7 +5,7 @@ import CalendlyWidget from "../components/CalendlyWidget";
 
 export const metadata = {
   title: "Contact Abdulrahman Gaoba | Full Stack Developer & UI/UX Designer",
-  description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة, عبد الرحمن قوبع) for full-stack development and UI/UX design projects. Available for freelance work, consulting, and collaboration opportunities.",
+  description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع) for full-stack development and UI/UX design projects. Available for freelance work, consulting, and collaboration opportunities.",
   keywords: [
     // English Keywords
     "Contact Abdulrahman Gaoba",
@@ -23,9 +23,9 @@ export const metadata = {
     "Abdulrahman Gaoba Email",
     "Abdulrahman Gaoba LinkedIn",
     // Arabic Keywords
-    "عبد الرحمن قابوعة",
     "عبد الرحمن قوبع",
-    "تواصل مع عبد الرحمن قابوعة",
+    "عبد الرحمن قوبع",
+    "تواصل مع عبد الرحمن قوبع",
     "توظيف مطور واجهات",
     "مطور React للتوظيف",
     "مطور Next.js",
@@ -33,15 +33,15 @@ export const metadata = {
     "مطور مستقل",
     "خدمات تطوير الويب",
     "استشارات مشاريع",
-    "بريد عبد الرحمن قابوعة",
-    "لينكد إن عبد الرحمن قابوعة",
+    "بريد عبد الرحمن قوبع",
+    "لينكد إن عبد الرحمن قوبع",
     "توظيف مطور مواقع",
     "خدمات برمجة احترافية",
     "مطور يمني للتوظيف"
   ].join(", "),
   openGraph: {
     title: "Contact Abdulrahman Gaoba | Full Stack Developer & UI/UX Designer",
-    description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة) for full-stack development and UI/UX design projects. Available for freelance work and collaboration.",
+    description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) for full-stack development and UI/UX design projects. Available for freelance work and collaboration.",
     url: "https://abdulrahmangooba.dev/contact",
     siteName: "Abdulrahman Gaoba Portfolio",
     images: [
@@ -58,7 +58,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Contact Abdulrahman Gaoba | Full Stack Developer & UI/UX Designer",
-    description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة) for full-stack development and UI/UX design projects.",
+    description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) for full-stack development and UI/UX design projects.",
     images: ["/myimage.jpeg"],
     creator: "@A_Gaoba",
   },

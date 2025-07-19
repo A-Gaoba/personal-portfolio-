@@ -10,7 +10,7 @@ import DeveloperBackground from "../components/DeveloperBackground"
 export const metadata: Metadata = {
   title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
   description:
-    "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence (4.8/5 GPA) to founding Naqla Tech, serving 1000+ users and generating $50K+ revenue.",
+    "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence (4.8/5 GPA) to founding Naqla Tech, serving 1000+ users and generating $50K+ revenue.",
   keywords: [
     // English Keywords
     "About Abdulrahman Gaoba",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "Yemeni Developer",
     "Freelance Developer",
     // Arabic Keywords
-    "عبد الرحمن قابوعة",
+    "عبد الرحمن قوبع",
     "عبد الرحمن قوبع",
     "قصة مطور برمجيات",
     "مؤسس شركة ناقلة تك",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
   ].join(", "),
   openGraph: {
     title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
-    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence to founding Naqla Tech.",
+    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence to founding Naqla Tech.",
     url: "https://abdulrahmangooba.dev/about",
     siteName: "Abdulrahman Gaoba Portfolio",
     images: [
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
-    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة), a passionate Full Stack Developer and startup founder.",
+    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder.",
     images: ["/myimage.jpeg"],
     creator: "@A_Gaoba",
   },

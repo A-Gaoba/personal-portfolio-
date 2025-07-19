@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | Abdulrahman Gaoba"
   },
   description:
-    "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies. Founder of Naqla Tech, creator of innovative web solutions with 5+ years experience.",
+    "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies. Founder of Naqla Tech, creator of innovative web solutions with 5+ years experience.",
   icons: {
     icon: [
       { url: "/portfolio-icon.svg", type: "image/svg+xml" },

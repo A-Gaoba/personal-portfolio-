@@ -12,7 +12,7 @@ import DeveloperBackground from "./components/DeveloperBackground"
 
 export const metadata: Metadata = {
   title: "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer | Portfolio",
-  description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies. Founder of Naqla Tech with 5+ years experience in creating innovative web solutions.",
+  description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies. Founder of Naqla Tech with 5+ years experience in creating innovative web solutions.",
   keywords: [
     // English Keywords
     "Abdulrahman Gaoba",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "MongoDB",
     "AWS",
     // Arabic Keywords
-    "عبد الرحمن قابوعة",
+    "عبد الرحمن قوبع",
     "عبد الرحمن قوبع",
     "مطور واجهات",
     "مبرمج مواقع",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
   ].join(", "),
   openGraph: {
     title: "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer | Portfolio",
-    description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies.",
+    description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies.",
     url: "https://abdulrahmangooba.dev",
     siteName: "Abdulrahman Gaoba Portfolio",
     images: [
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer | Portfolio",
-    description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies.",
+    description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies.",
     images: ["/myimage.jpeg"],
     creator: "@A_Gaoba",
     site: "@A_Gaoba",

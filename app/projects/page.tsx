@@ -4,7 +4,7 @@ import JsonLd from "@/app/components/JsonLd"
 
 export const metadata = {
   title: "Projects Portfolio | Abdulrahman Gaoba - Full Stack Developer",
-  description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة, عبد الرحمن قوبع) portfolio of web development projects including Naqla Tech, Yemeni Cultural Directory, Junzi Tech Solutions, and 15+ other successful projects with proven results.",
+  description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع) portfolio of web development projects including Naqla Tech, Yemeni Cultural Directory, Junzi Tech Solutions, and 15+ other successful projects with proven results.",
   keywords: [
     // English Keywords
     "Abdulrahman Gaoba Projects",
@@ -23,9 +23,9 @@ export const metadata = {
     "Full Stack Projects",
     "UI/UX Design Projects",
     // Arabic Keywords
-    "عبد الرحمن قابوعة",
     "عبد الرحمن قوبع",
-    "مشاريع عبد الرحمن قابوعة",
+    "عبد الرحمن قوبع",
+    "مشاريع عبد الرحمن قوبع",
     "أعمال مطور واجهات",
     "مشاريع تطوير مواقع",
     "مشاريع React",
@@ -42,7 +42,7 @@ export const metadata = {
   ].join(", "),
   openGraph: {
     title: "Projects Portfolio | Abdulrahman Gaoba - Full Stack Developer",
-    description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة) portfolio of web development projects including Naqla Tech, Yemeni Cultural Directory, Junzi Tech Solutions, and 15+ other successful projects.",
+    description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) portfolio of web development projects including Naqla Tech, Yemeni Cultural Directory, Junzi Tech Solutions, and 15+ other successful projects.",
     url: "https://abdulrahmangooba.dev/projects",
     siteName: "Abdulrahman Gaoba Portfolio",
     images: [
@@ -59,7 +59,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Projects Portfolio | Abdulrahman Gaoba - Full Stack Developer",
-    description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة) portfolio of web development projects with proven results.",
+    description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) portfolio of web development projects with proven results.",
     images: ["/projectsImages/naqla.png"],
     creator: "@A_Gaoba",
   },
