@@ -97,6 +97,7 @@ gaobaportfolio/
    ```env
    NEXT_PUBLIC_SITE_URL=https://your-domain.com
    NEXT_PUBLIC_GA_ID=your-google-analytics-id
+   # Vercel Analytics works automatically when deployed to Vercel
    ```
 
 4. **Run the development server**

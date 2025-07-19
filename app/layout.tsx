@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter, Poppins, JetBrains_Mono } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider" // Ensure ThemeProvider is imported
 import JsonLd from "./components/JsonLd"
@@ -300,6 +301,7 @@ export default function RootLayout({
           <Footer />
         </ThemeProvider>
         <JsonLd data={jsonLd} />
+        <Analytics />
       </body>
     </html>
   )
