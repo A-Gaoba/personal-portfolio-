@@ -8,11 +8,16 @@ import ScrollProgress from "../components/ScrollProgress"
 import DeveloperBackground from "../components/DeveloperBackground"
 
 export const metadata: Metadata = {
-  title: "About Abdulrahman Gaoba | Full Stack Software Engineer Journey & Story",
+  title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
   description:
-    "Learn about Abdulrahman Gaoba's journey from academic excellence (4.8/5 GPA) to startup founder. Discover the story behind Naqla Tech, technical expertise, and passion for creating impactful web solutions.",
+    "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence (4.8/5 GPA) to founding Naqla Tech, serving 1000+ users and generating $50K+ revenue.",
   keywords: [
+    // English Keywords
     "About Abdulrahman Gaoba",
+    "abdulraman gaoba",
+    "abdulrahamn gooba",
+    "abdulrahman gaoba",
+    "a-gaboa",
     "Software Engineer Story",
     "Startup Founder Journey",
     "Naqla Tech Founder",
@@ -20,15 +25,44 @@ export const metadata: Metadata = {
     "Software Engineering Career",
     "React Developer Story",
     "Next.js Expert Background",
+    "Yemeni Developer",
+    "Freelance Developer",
+    // Arabic Keywords
+    "عبد الرحمن قابوعة",
+    "عبد الرحمن قوبع",
+    "قصة مطور برمجيات",
+    "مؤسس شركة ناقلة تك",
+    "خلفية مطور Full Stack",
+    "مطور يمني",
+    "مطور React",
+    "مطور Next.js",
+    "مؤسس شركة تقنية",
+    "مطور برمجيات",
+    "قصة نجاح مطور",
+    "مطور مواقع إلكترونية"
   ].join(", "),
   openGraph: {
-    type: "website",
-    locale: "en_US",
+    title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
+    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence to founding Naqla Tech.",
     url: "https://abdulrahmangooba.dev/about",
-    title: "About Abdulrahman Gaoba | Full Stack Software Engineer Journey & Story",
-    description:
-      "Learn about Abdulrahman Gaoba's journey from academic excellence to startup founder. Discover the story behind technical expertise and passion for web development.",
     siteName: "Abdulrahman Gaoba Portfolio",
+    images: [
+      {
+        url: "/myimage.jpeg",
+        width: 800,
+        height: 800,
+        alt: "Abdulrahman Gaoba - Full Stack Developer & Startup Founder",
+      },
+    ],
+    locale: "en_US",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
+    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قابوعة), a passionate Full Stack Developer and startup founder.",
+    images: ["/myimage.jpeg"],
+    creator: "@A_Gaoba",
   },
   alternates: {
     canonical: "https://abdulrahmangooba.dev/about",
