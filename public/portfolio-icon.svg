@@ -1,0 +1,54 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="16" cy="16" r="15" fill="url(#gradient-bg)" stroke="url(#gradient-stroke)" stroke-width="2"/>
+  
+  <!-- Code Brackets -->
+  <path d="M10 8L6 16L10 24" stroke="url(#gradient-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 8L26 16L22 24" stroke="url(#gradient-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Code Lines -->
+  <path d="M14 12L18 16L14 20" stroke="url(#gradient-secondary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Circuit Nodes -->
+  <circle cx="8" cy="12" r="1.5" fill="url(#gradient-accent)"/>
+  <circle cx="8" cy="20" r="1.5" fill="url(#gradient-accent)"/>
+  <circle cx="24" cy="12" r="1.5" fill="url(#gradient-accent)"/>
+  <circle cx="24" cy="20" r="1.5" fill="url(#gradient-accent)"/>
+  
+  <!-- Center Dot -->
+  <circle cx="16" cy="16" r="2" fill="url(#gradient-center)"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#2d2d2d"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61afef"/>
+      <stop offset="100%" stop-color="#98c379"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61afef"/>
+      <stop offset="50%" stop-color="#98c379"/>
+      <stop offset="100%" stop-color="#c678dd"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-secondary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#98c379"/>
+      <stop offset="100%" stop-color="#56b6c2"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d19a66"/>
+      <stop offset="100%" stop-color="#e06c75"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-center" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61afef"/>
+      <stop offset="100%" stop-color="#98c379"/>
+    </linearGradient>
+  </defs>
+</svg> 

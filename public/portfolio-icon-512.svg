@@ -1,0 +1,69 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient-bg)" stroke="url(#gradient-stroke)" stroke-width="16"/>
+  
+  <!-- Code Brackets -->
+  <path d="M160 128L96 256L160 384" stroke="url(#gradient-primary)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M352 128L416 256L352 384" stroke="url(#gradient-primary)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Code Lines -->
+  <path d="M224 192L288 256L224 320" stroke="url(#gradient-secondary)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Circuit Nodes -->
+  <circle cx="128" cy="192" r="12" fill="url(#gradient-accent)"/>
+  <circle cx="128" cy="320" r="12" fill="url(#gradient-accent)"/>
+  <circle cx="384" cy="192" r="12" fill="url(#gradient-accent)"/>
+  <circle cx="384" cy="320" r="12" fill="url(#gradient-accent)"/>
+  
+  <!-- Center Dot -->
+  <circle cx="256" cy="256" r="20" fill="url(#gradient-center)"/>
+  
+  <!-- Additional Code Elements -->
+  <path d="M192 160L208 176L192 192" stroke="url(#gradient-tertiary)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M320 160L304 176L320 192" stroke="url(#gradient-tertiary)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Binary Dots -->
+  <circle cx="160" cy="96" r="4" fill="url(#gradient-accent)"/>
+  <circle cx="352" cy="96" r="4" fill="url(#gradient-accent)"/>
+  <circle cx="160" cy="416" r="4" fill="url(#gradient-accent)"/>
+  <circle cx="352" cy="416" r="4" fill="url(#gradient-accent)"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#2d2d2d"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61afef"/>
+      <stop offset="100%" stop-color="#98c379"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61afef"/>
+      <stop offset="50%" stop-color="#98c379"/>
+      <stop offset="100%" stop-color="#c678dd"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-secondary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#98c379"/>
+      <stop offset="100%" stop-color="#56b6c2"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d19a66"/>
+      <stop offset="100%" stop-color="#e06c75"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-center" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#61afef"/>
+      <stop offset="100%" stop-color="#98c379"/>
+    </linearGradient>
+    
+    <linearGradient id="gradient-tertiary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#56b6c2"/>
+      <stop offset="100%" stop-color="#c678dd"/>
+    </linearGradient>
+  </defs>
+</svg> 
