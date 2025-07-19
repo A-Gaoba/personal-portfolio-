@@ -108,7 +108,7 @@ const ContactPage = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
             Let's Build Something
-            <span className="text-gradient-syntax"> Amazing</span>
+            <span className="text-syntax-green"> Amazing</span>
           </h2>
           <p className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto">
             Have a project in mind or just want to say hello? Feel free to reach out!

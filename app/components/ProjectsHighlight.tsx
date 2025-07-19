@@ -14,7 +14,7 @@ export default function ProjectsHighlight() {
       subtitle: "Revolutionary Logistics Management System",
       description:
         "Comprehensive logistics platform serving 1000+ users with real-time tracking and AI optimization. Built with React, Next.js, and modern technologies.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/projectsImages/naqla.png",
       technologies: ["React", "Next.js", "Node.js", "MongoDB", "Socket.io"],
       metrics: ["1000+ Users", "$50K+ Revenue", "40% Efficiency Gain"],
       liveUrl: "https://naqlatech.com",
@@ -27,7 +27,7 @@ export default function ProjectsHighlight() {
       subtitle: "Next-Generation Video Streaming",
       description:
         "Scalable video streaming platform with advanced features and modern user experience. Optimized for performance and accessibility.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/projectsImages/gaobavid.png",
       technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
       metrics: ["60% Faster Loading", "10K+ Viewers", "98% Mobile Score"],
       liveUrl: "https://gaobavid.com",
@@ -40,7 +40,7 @@ export default function ProjectsHighlight() {
       subtitle: "Comprehensive Travel Planning",
       description:
         "Intuitive travel platform with integrated booking and cultural insights. Features multi-language support and accessibility compliance.",
-      image: "/placeholder.svg?height=400&width=600",
+      image: "/projectsImages/toru.png",
       technologies: ["React", "Next.js", "Tailwind CSS", "Mapbox"],
       metrics: ["50% More Engagement", "98% Accessibility", "5 Languages"],
       liveUrl: "https://torussia.travel",

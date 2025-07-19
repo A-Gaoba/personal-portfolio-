@@ -128,7 +128,7 @@ export default function AboutHighlight() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <Image
-                  src="/placeholder.svg?height=320&width=320"
+                  src="/myimage.jpeg"
                   alt="Abdulrahman Gaoba - Full Stack Software Engineer"
                   width={320}
                   height={320}

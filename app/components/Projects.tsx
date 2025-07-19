@@ -611,7 +611,7 @@ const projects: Project[] = [
       "A comprehensive e-commerce management dashboard with real-time analytics, inventory management, and customer insights. Built with React and modern data visualization libraries for optimal performance and user experience.",
     longDescription:
       "This e-commerce dashboard was designed for medium to large-scale online businesses requiring sophisticated analytics and management tools. The platform provides real-time sales tracking, inventory management, customer behavior analysis, and automated reporting. The interface is designed for efficiency, allowing managers to quickly access critical business metrics and make data-driven decisions.",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/projectsImages/richy.png",
     technologies: ["React", "Next.js", "TypeScript", "Chart.js", "Prisma", "PostgreSQL", "Redis"],
     category: "Business Application",
     year: "2023",
