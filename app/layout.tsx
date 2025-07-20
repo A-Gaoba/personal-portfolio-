@@ -161,93 +161,67 @@ export default function RootLayout({
     {
       "@context": "https://schema.org",
       "@type": "Person",
-      "@id": "https://abdulrahmangooba.dev/#person",
+      "@id": "https://gaoba.vercel.app/#person",
       name: "Abdulrahman Gaoba",
       alternateName: [
-        "abdulraman gaoba",
-        "abdulrahamn gooba",
         "abdulrahman gaoba",
         "a-gaboa",
-        "عبد الرحمن قوبع",
         "عبد الرحمن قوبع"
       ],
-      url: "https://abdulrahmangooba.dev",
+      url: "https://gaoba.vercel.app/",
       sameAs: [
         "https://github.com/A-Gaoba",
-        "https://linkedin.com/in/a-gaoba",
-        "https://x.com/A_Gaoba",
-        "https://www.facebook.com/abdulrahman.gaoba/",
-        "https://www.instagram.com/a_gaoba",
-        "https://dev.to/a_gaoba"
+        "https://www.linkedin.com/a-gaoba",
+        "https://twitter.com/A_Gaoba"
       ],
-      worksFor: {
-        "@type": "Organization",
-        name: "Freelance",
-        url: "https://abdulrahmangooba.dev"
-      },
-      founder: {
-        "@type": "Organization",
-        name: "Naqla Tech",
-        url: "https://www.naqla-tech.com/"
-      },
-      alumniOf: {
-        "@type": "EducationalOrganization",
-        name: "Software Engineering Graduate",
-        url: "https://abdulrahmangooba.dev"
+      email: "abdulrahmangooba@gmail.com",
+      telephone: "+7 (917) 482-84-74",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Moscow",
+        addressCountry: "Russia"
       },
       jobTitle: "Full Stack Developer & UI/UX Designer",
-      description: "Abdulrahman Gaoba (عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer with 5+ years of experience specializing in React, Next.js, Node.js, and modern web technologies. Founder of Naqla Tech and creator of innovative web solutions.",
-      image: "https://abdulrahmangooba.dev/myimage.jpeg",
+      description: "Honors Software Engineering graduate (GPA 4.8) with strong full-stack skills and over a year of experience creating responsive, user-centered web applications. Skilled in building seamless front-end interfaces and robust back-end systems to deliver high-quality, scalable solutions.",
+      image: "https://gaoba.vercel.app/myimage.jpeg",
       knowsAbout: [
-        "React.js",
-        "Next.js",
-        "Node.js",
-        "TypeScript",
-        "JavaScript",
-        "MongoDB",
-        "AWS",
-        "UI/UX Design",
-        "Web Development",
-        "Full Stack Development",
-        "Tailwind CSS",
-        "Git",
-        "REST APIs",
-        "GraphQL",
-        "مطور واجهات",
-        "مبرمج مواقع",
-        "تصميم واجهات المستخدم",
-        "تطوير مواقع إلكترونية"
+        "JavaScript", "TypeScript", "HTML5", "CSS3", "ReactJS", "Tailwind CSS", "Redux", "Node.js", "Express.js", "MongoDB", "PostgreSQL", "REST", "Webpack", "Prisma", "Gulp", "Jira", "Trello", "Jest", "Cypress", "OOP", "MVC", "SPA", "SDLC", "Responsive Design", "Scrum"
       ],
       hasOccupation: {
         "@type": "Occupation",
-        name: "Full Stack Developer",
+        name: "Frontend Developer",
         occupationLocation: {
           "@type": "Country",
-          name: "Yemen"
+          name: "Russia"
         }
       },
-      makesOffer: {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Web Development Services",
-          description: "Full-stack web development, UI/UX design, and technical consulting",
-          alternateName: [
-            "خدمات تطوير الويب",
-            "تصميم واجهات المستخدم",
-            "برمجة مواقع إلكترونية"
-          ]
+      alumniOf: [
+        {
+          "@type": "EducationalOrganization",
+          name: "Ufa University of Science and Technology",
+          sameAs: "https://www.ugatu.su/"
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "Saint Petersburg Mining University",
+          sameAs: "https://spmi.ru/"
+        },
+        {
+          "@type": "EducationalOrganization",
+          name: "University of Sana'a",
+          sameAs: "https://su.edu.ye/"
         }
+      ],
+      worksFor: {
+        "@type": "Organization",
+        name: "CereSoftware",
+        url: "https://www.ceresoftware.co/"
       },
-      knowsLanguage: ["English", "Arabic"],
       nationality: {
         "@type": "Country",
         name: "Yemen"
       },
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "Yemen"
-      }
+      knowsLanguage: ["Arabic", "English", "Russian"]
     },
     {
       "@context": "https://schema.org",

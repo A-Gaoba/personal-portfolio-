@@ -17,16 +17,16 @@ export default function Contact() {
       icon: Phone,
       title: "Call Me",
       description: "Available for quick discussions",
-      action: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      action: "+7 (917) 482-84-74",
+      link: "tel:+79174828474",
       color: "text-syntax-blue",
     },
     {
       icon: MapPin,
       title: "Location",
-      description: "Based in [Your City, Country]",
-      action: "[Your City, Country]",
-      link: "#", // Replace with a map link if desired
+      description: "Based in Moscow, Russia",
+      action: "Moscow, Russia",
+      link: "https://goo.gl/maps/2Qw6Qw6Qw6Qw6Qw6A", // Example map link, replace if needed
       color: "text-syntax-purple",
     },
     {

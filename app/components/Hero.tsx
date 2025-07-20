@@ -39,8 +39,9 @@ export default function Hero() {
 
   const socialLinks = [
     { icon: Github, href: "https://github.com/A-Gaoba", label: "GitHub", color: "hover:text-dev-text" },
-    { icon: Linkedin, href: "https://linkedin.com/in/A_Gaoba", label: "LinkedIn", color: "hover:text-syntax-blue" },
+    { icon: Linkedin, href: "https://www.linkedin.com/a-gaoba", label: "LinkedIn", color: "hover:text-syntax-blue" },
     { icon: Mail, href: "mailto:abdulrahmangooba@gmail.com", label: "Email", color: "hover:text-syntax-green" },
+    { icon: Terminal, href: "https://twitter.com/A_Gaoba", label: "Twitter", color: "hover:text-syntax-cyan" },
   ]
 
   return (
@@ -288,10 +289,16 @@ export default function Hero() {
 
         {/* Scroll indicator */}
         <motion.div
-          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block cursor-pointer"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 2 }}
+          onClick={() => {
+            const aboutSection = document.getElementById('about');
+            if (aboutSection) {
+              aboutSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
         >
           <motion.div
             className="flex flex-col items-center space-y-2 text-dev-text"

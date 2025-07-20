@@ -60,15 +60,15 @@ const ContactPage = () => {
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
+      value: "+7 (917) 482-84-74",
+      link: "tel:+79174828474",
       color: "text-syntax-blue",
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "[Your City, Country]",
-      link: "#", // Or a link to a map
+      value: "Moscow, Russia",
+      link: "https://goo.gl/maps/2Qw6Qw6Qw6Qw6Qw6A", // Example map link, replace if needed
       color: "text-syntax-purple",
     },
     {

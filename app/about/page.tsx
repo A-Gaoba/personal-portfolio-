@@ -110,7 +110,7 @@ export default function AboutPage() {
             <div className="space-y-6">
               <div className="inline-flex items-center px-6 py-3 bg-dark-bg-secondary/80 backdrop-blur-xl border border-emerald-200/50 rounded-full">
                 <MapPin className="w-5 h-5 text-emerald-600 mr-2" />
-                <span className="text-dev-text font-semibold">Based in [Your Location]</span>
+                <span className="text-dev-text font-semibold">Based in Moscow, Russia</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-dev-text leading-tight">
@@ -123,11 +123,7 @@ export default function AboutPage() {
 
               <div className="space-y-4 text-lg text-dev-text-muted leading-relaxed">
                 <p>
-                  My journey in software engineering began with a simple belief: technology should solve real problems
-                  and create meaningful impact. With a{" "}
-                  <span className="font-semibold text-syntax-green">4.8/5 GPA</span> in Software Engineering and
-                  experience as a <span className="font-semibold text-syntax-blue">startup founder</span>, I bring both
-                  academic rigor and entrepreneurial insight to every project.
+                  Honors Software Engineering graduate (GPA 4.8) with strong full-stack skills and over a year of experience creating responsive, user-centered web applications. Skilled in building seamless front-end interfaces and robust back-end systems to deliver high-quality, scalable solutions.
                 </p>
 
                 <p>

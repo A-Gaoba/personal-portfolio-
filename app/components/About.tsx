@@ -32,45 +32,35 @@ export default function About() {
     },
   ]
 
+  // Update timeline to reflect new education and experience
   const timeline = [
     {
-      year: "2019",
-      title: "Started Software Engineering",
-      description:
-        "Began my journey in Software Engineering with a focus on web technologies and modern development practices.",
+      year: "2020",
+      title: "Preparatory Courses (Russian Language)",
+      description: "Saint Petersburg Mining University — GPA 5",
       icon: <BookOpen className="w-5 h-5" />,
       color: "from-syntax-blue to-syntax-cyan",
     },
     {
-      year: "2021",
-      title: "Founded Naqla Tech",
-      description: "Launched a logistics platform that grew to serve 1000+ users and generate $50K+ in revenue.",
-      icon: <Briefcase className="w-5 h-5" />,
+      year: "2024",
+      title: "BSc in Software Engineering",
+      description: "Ufa University of Science and Technology — GPA 4.8",
+      icon: <Award className="w-5 h-5" />,
       color: "from-syntax-green to-syntax-cyan",
     },
     {
-      year: "2022",
-      title: "Achieved Academic Excellence",
-      description:
-        "Graduated with a 4.8/5 GPA in Software Engineering, demonstrating both theoretical knowledge and practical skills.",
-      icon: <Award className="w-5 h-5" />,
+      year: "2017",
+      title: "English Language",
+      description: "University of Sana'a — GPA 4",
+      icon: <BookOpen className="w-5 h-5" />,
       color: "from-syntax-purple to-syntax-pink",
     },
     {
-      year: "2023",
-      title: "Full-Stack Expertise",
-      description:
-        "Mastered modern web technologies including React, Next.js, and cloud platforms, delivering 50+ successful projects.",
-      icon: <Code className="w-5 h-5" />,
+      year: "2023–Present",
+      title: "Frontend Developer at CereSoftware",
+      description: "Built responsive websites, integrated APIs, managed client communication. Remote, Yemen.",
+      icon: <Briefcase className="w-5 h-5" />,
       color: "from-syntax-orange to-syntax-red",
-    },
-    {
-      year: "2024",
-      title: "Freelance Success",
-      description:
-        "Established a successful freelance practice, helping businesses transform their digital presence with modern web solutions.",
-      icon: <TrendingUp className="w-5 h-5" />,
-      color: "from-syntax-blue to-syntax-purple",
     },
   ]
 
@@ -120,7 +110,7 @@ export default function About() {
             About <span className="text-cyan-300">Me</span>
           </h2>
           <p className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto leading-relaxed">
-            My journey from academic excellence to startup success and beyond.
+            My journey began with a passion for building things that matter. From academic excellence in software engineering to launching a successful tech startup, I’ve always believed that great code can change the world. Today, as a Full Stack Software Engineer and founder, I blend technical mastery with a relentless drive for impact—crafting digital solutions that empower users and businesses alike.
           </p>
         </div>
 
@@ -186,7 +176,7 @@ export default function About() {
 
           {/* Content */}
           <motion.div
-            className="space-y-6"
+            className="space-y-4 text-lg text-dev-text-muted leading-relaxed"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -207,196 +197,222 @@ export default function About() {
 
             <div className="space-y-4 text-lg text-dev-text-muted leading-relaxed">
               <p>
-                My journey began with a passion for creating elegant solutions to complex problems. With a{" "}
-                <span className="font-semibold text-syntax-green">4.8/5 GPA in Software Engineering</span> and
-                experience as a <span className="font-semibold text-syntax-blue">startup founder</span>, I bring both
-                theoretical depth and real-world business insight to every project.
+                My journey began with a love for technology and a drive to solve real-world problems. I graduated with honors from Ufa University of Science and Technology (BSc in Software Engineering, GPA 4.8), after mastering Russian at Saint Petersburg Mining University (GPA 5) and building a strong foundation in English at University of Sana’a (GPA 4). Now, I’m pursuing a Master’s in Data-Driven Management at RUDN University in Moscow, deepening my expertise at the intersection of tech and business.
               </p>
-
               <p>
-                As the founder of <span className="font-semibold text-syntax-purple">Naqla Tech</span>, I scaled a
-                logistics platform to serve 1000+ users and generate $50K+ in revenue. Today, I combine this
-                entrepreneurial experience with technical mastery in React, Next.js, and Tailwind CSS to deliver
-                exceptional web solutions.
+                Along the way, I founded Naqla Tech—a logistics platform that scaled to 1000+ users and generated over $50K in revenue. As founder and lead developer, I managed everything from product design to full-stack development, deployment, and iteration. This hands-on experience taught me the power of scalable architecture, user onboarding, and business strategy.
               </p>
-
               <p>
-                I am constantly learning and adapting to new technologies, ensuring that my skills remain at the
-                forefront of the industry. My goal is to build robust, scalable, and user-friendly applications that
-                make a real impact.
+                As a freelance full-stack developer, I’ve delivered 50+ modern web solutions for clients in logistics, education, SaaS, and e-commerce. I specialize in React, Next.js, Tailwind CSS, and Node.js, always focusing on performance, SEO, and user experience. My remote collaborations include building and maintaining production-ready apps for international clients like JunziTech Solutions.
+              </p>
+              <p>
+                Previously, as a Frontend Developer at CereSoftware, I built responsive, accessible interfaces with React and Tailwind CSS, improved code performance, and played a key role in agile development cycles and direct client communications.
               </p>
             </div>
           </motion.div>
         </div>
 
-        {/* Experience & Education */}
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mb-16">
-          <motion.div
-            className="space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <h3 className="text-3xl md:text-4xl font-bold text-dev-text flex items-center">
-              <Briefcase className="w-8 h-8 mr-3 text-syntax-orange" />
-              Experience
-            </h3>
-            <div className="space-y-6">
-              <motion.div
-                className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6 hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
-                variants={itemVariants}
-              >
-                <h4 className="text-xl font-bold text-dev-text">Founder & Lead Developer</h4>
-                <p className="text-syntax-green text-lg mb-2">Naqla Tech</p>
-                <p className="text-dev-text-muted text-sm mb-4">Jan 2020 – Present</p>
-                <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
-                  <li>Led the development of a logistics platform serving 1000+ users.</li>
-                  <li>Achieved $50K+ in annual recurring revenue.</li>
-                  <li>Managed full software development lifecycle from ideation to deployment.</li>
-                </ul>
-              </motion.div>
-              <motion.div
-                className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6 hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
-                variants={itemVariants}
-              >
-                <h4 className="text-xl font-bold text-dev-text">Full Stack Developer (Freelance)</h4>
-                <p className="text-syntax-green text-lg mb-2">Self-Employed</p>
-                <p className="text-dev-text-muted text-sm mb-4">Jul 2018 – Present</p>
-                <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
-                  <li>Delivered 50+ web projects for diverse clients across various industries.</li>
-                  <li>Specialized in React, Next.js, Node.js, and cloud deployments.</li>
-                  <li>Provided end-to-end solutions from design to deployment and maintenance.</li>
-                </ul>
-              </motion.div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="space-y-8"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <h3 className="text-3xl md:text-4xl font-bold text-dev-text flex items-center">
-              <BookOpen className="w-8 h-8 mr-3 text-syntax-cyan" />
-              Education
-            </h3>
-            <div className="space-y-6">
-              <motion.div
-                className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6 hover:shadow-dev-lg hover:border-syntax-green transition-all duration-300"
-                variants={itemVariants}
-              >
-                <h4 className="text-xl font-bold text-dev-text">B.Sc. in Software Engineering</h4>
-                <p className="text-syntax-green text-lg mb-2">[Your University Name]</p>
-                <p className="text-dev-text-muted text-sm mb-4">Sept 2017 – May 2021</p>
-                <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
-                  <li>Graduated with a GPA of 4.8/5.0.</li>
-                  <li>Focused on algorithms, data structures, and web development.</li>
-                  <li>Completed a capstone project on AI-powered logistics optimization.</li>
-                </ul>
-              </motion.div>
-              <motion.div
-                className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6 hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
-                variants={itemVariants}
-              >
-                <h4 className="text-xl font-bold text-dev-text">Online Courses & Certifications</h4>
-                <p className="text-syntax-green text-lg mb-2">Various Platforms</p>
-                <p className="text-dev-text-muted text-sm mb-4">2018 – Present</p>
-                <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
-                  <li>AWS Certified Developer - Associate.</li>
-                  <li>Professional Scrum Developer I.</li>
-                  <li>Completed numerous courses on React, Node.js, and cloud technologies.</li>
-                </ul>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Stats Grid */}
-        <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              className="text-center bg-dark-bg-secondary/80 backdrop-blur-sm p-6 rounded-2xl shadow-dev-md border border-dark-border/50 hover:shadow-dev-lg transition-all duration-300"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-syntax-blue to-syntax-green rounded-xl mb-4 text-dark-bg mx-auto">
-                {stat.icon}
-              </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-syntax-green to-syntax-blue bg-clip-text text-transparent mb-2">
-                {stat.number}
-              </div>
-              <div className="font-semibold text-dev-text mb-1">{stat.label}</div>
-              <div className="text-sm text-dev-text-muted">{stat.description}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Timeline Section */}
+        {/* Work Experience */}
         <div className="text-center mt-24 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-dev-text mb-6">
-            The Path to
-            <span className="text-cyan-300"> Excellence</span>
+            Work <span className="text-cyan-300">Experience</span>
           </h2>
         </div>
-
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-syntax-green to-syntax-blue hidden md:block" />
-
+        <div className="grid lg:grid-cols-3 gap-8 mb-24">
           <motion.div
-            className="space-y-12"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            {timeline.map((item, index) => (
-              <motion.div key={index} className="relative flex items-start" variants={itemVariants}>
-                {/* Timeline Dot */}
-                <div className="hidden md:flex items-center justify-center w-16 h-16 bg-dark-bg-secondary rounded-full shadow-dev-md border-4 border-dark-border relative z-10">
-                  <div className={`p-3 bg-gradient-to-r ${item.color} rounded-full text-dark-bg`}>{item.icon}</div>
-                </div>
-
-                {/* Content */}
-                <div className="md:ml-8 bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border flex-1 p-6">
-                  <div className="flex items-center mb-4">
-                    <div className={`md:hidden p-3 bg-gradient-to-r ${item.color} rounded-full text-dark-bg mr-4`}>
-                      {item.icon}
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-syntax-green mb-1">{item.year}</div>
-                      <h3 className="text-xl font-bold text-dev-text">{item.title}</h3>
-                    </div>
-                  </div>
-                  <p className="text-dev-text-muted leading-relaxed">{item.description}</p>
-                </div>
-              </motion.div>
-            ))}
+            <h4 className="text-xl font-bold text-dev-text mb-2">Founder & Lead Developer</h4>
+            <p className="text-syntax-green text-lg mb-2">Naqla Tech</p>
+            <p className="text-dev-text-muted text-sm mb-4">Jan 2025 – Present</p>
+            <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
+              <li>Founded and led the development of a logistics platform that scaled to 1000+ users and generated over $50K in revenue.</li>
+              <li>Managed the entire software lifecycle—from product design to full-stack development, deployment, and iteration.</li>
+              <li>Gained hands-on experience in business strategy, user onboarding, and scalable architecture.</li>
+            </ul>
+          </motion.div>
+          <motion.div
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <h4 className="text-xl font-bold text-dev-text mb-2">Freelance Full-Stack Developer</h4>
+            <p className="text-syntax-green text-lg mb-2">Remote</p>
+            <p className="text-dev-text-muted text-sm mb-4">Jan 2023 – Present</p>
+            <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
+              <li>Delivered 50+ modern web solutions for clients across logistics, education, SaaS, and e-commerce sectors.</li>
+              <li>Specialized in React, Next.js, Tailwind CSS, and Node.js with a focus on performance, SEO, and UX.</li>
+              <li>Collaborated remotely with international clients including JunziTech Solutions, building and maintaining production-ready applications.</li>
+            </ul>
+          </motion.div>
+          <motion.div
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <h4 className="text-xl font-bold text-dev-text mb-2">Frontend Developer</h4>
+            <p className="text-syntax-green text-lg mb-2">CereSoftware</p>
+            <p className="text-dev-text-muted text-sm mb-4">Apr 2023 – Jan 2024 (Remote)</p>
+            <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
+              <li>Built responsive, accessible user interfaces with React, Tailwind CSS, and custom API integrations.</li>
+              <li>Improved code performance and client-side logic across multiple B2B websites.</li>
+              <li>Played a key role in direct client communications and agile development cycles.</li>
+            </ul>
           </motion.div>
         </div>
 
-        {/* Values Section */}
+        {/* Path to Excellence */}
         <div className="text-center mt-24 mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-dev-text mb-6">
-            My Core
-            <span className=" text-cyan-300"> Values</span>
+            The Path to <span className="text-cyan-300">Excellence</span>
+          </h2>
+        </div>
+        <div className="space-y-12 mb-24">
+          <motion.div
+            className="relative flex items-start"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="hidden md:flex items-center justify-center w-16 h-16 bg-dark-bg-secondary rounded-full shadow-dev-md border-4 border-dark-border relative z-10">
+              <div className="p-3 bg-gradient-to-r from-syntax-blue to-syntax-cyan rounded-full text-dark-bg"><BookOpen className="w-5 h-5" /></div>
+            </div>
+            <div className="md:ml-8 bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border flex-1 p-6">
+              <div className="flex items-center mb-4">
+                <div className="md:hidden p-3 bg-gradient-to-r from-syntax-blue to-syntax-cyan rounded-full text-dark-bg mr-4"><BookOpen className="w-5 h-5" /></div>
+                <div>
+                  <div className="text-sm font-semibold text-syntax-green mb-1">2017</div>
+                  <h3 className="text-xl font-bold text-dev-text">English Language Studies</h3>
+                </div>
+              </div>
+              <p className="text-dev-text-muted leading-relaxed">University of Sana’a — GPA 4</p>
+            </div>
+          </motion.div>
+          <motion.div
+            className="relative flex items-start"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="hidden md:flex items-center justify-center w-16 h-16 bg-dark-bg-secondary rounded-full shadow-dev-md border-4 border-dark-border relative z-10">
+              <div className="p-3 bg-gradient-to-r from-syntax-blue to-syntax-cyan rounded-full text-dark-bg"><BookOpen className="w-5 h-5" /></div>
+            </div>
+            <div className="md:ml-8 bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border flex-1 p-6">
+              <div className="flex items-center mb-4">
+                <div className="md:hidden p-3 bg-gradient-to-r from-syntax-blue to-syntax-cyan rounded-full text-dark-bg mr-4"><BookOpen className="w-5 h-5" /></div>
+                <div>
+                  <div className="text-sm font-semibold text-syntax-green mb-1">2020</div>
+                  <h3 className="text-xl font-bold text-dev-text">Russian Language Prep Course</h3>
+                </div>
+              </div>
+              <p className="text-dev-text-muted leading-relaxed">Saint Petersburg Mining University — GPA 5</p>
+            </div>
+          </motion.div>
+          <motion.div
+            className="relative flex items-start"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="hidden md:flex items-center justify-center w-16 h-16 bg-dark-bg-secondary rounded-full shadow-dev-md border-4 border-dark-border relative z-10">
+              <div className="p-3 bg-gradient-to-r from-syntax-green to-syntax-cyan rounded-full text-dark-bg"><Award className="w-5 h-5" /></div>
+            </div>
+            <div className="md:ml-8 bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border flex-1 p-6">
+              <div className="flex items-center mb-4">
+                <div className="md:hidden p-3 bg-gradient-to-r from-syntax-green to-syntax-cyan rounded-full text-dark-bg mr-4"><Award className="w-5 h-5" /></div>
+                <div>
+                  <div className="text-sm font-semibold text-syntax-green mb-1">2024</div>
+                  <h3 className="text-xl font-bold text-dev-text">BSc in Software Engineering</h3>
+                </div>
+              </div>
+              <p className="text-dev-text-muted leading-relaxed">Ufa University of Science and Technology — GPA 4.8</p>
+            </div>
+          </motion.div>
+          <motion.div
+            className="relative flex items-start"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="hidden md:flex items-center justify-center w-16 h-16 bg-dark-bg-secondary rounded-full shadow-dev-md border-4 border-dark-border relative z-10">
+              <div className="p-3 bg-gradient-to-r from-syntax-orange to-syntax-red rounded-full text-dark-bg"><Briefcase className="w-5 h-5" /></div>
+            </div>
+            <div className="md:ml-8 bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border flex-1 p-6">
+              <div className="flex items-center mb-4">
+                <div className="md:hidden p-3 bg-gradient-to-r from-syntax-orange to-syntax-red rounded-full text-dark-bg mr-4"><Briefcase className="w-5 h-5" /></div>
+                <div>
+                  <div className="text-sm font-semibold text-syntax-green mb-1">2023</div>
+                  <h3 className="text-xl font-bold text-dev-text">Frontend Developer</h3>
+                </div>
+              </div>
+              <p className="text-dev-text-muted leading-relaxed">CereSoftware — Built responsive, accessible UIs and improved code performance for B2B clients.</p>
+            </div>
+          </motion.div>
+          <motion.div
+            className="relative flex items-start"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="hidden md:flex items-center justify-center w-16 h-16 bg-dark-bg-secondary rounded-full shadow-dev-md border-4 border-dark-border relative z-10">
+              <div className="p-3 bg-gradient-to-r from-syntax-green to-syntax-blue rounded-full text-dark-bg"><TrendingUp className="w-5 h-5" /></div>
+            </div>
+            <div className="md:ml-8 bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border flex-1 p-6">
+              <div className="flex items-center mb-4">
+                <div className="md:hidden p-3 bg-gradient-to-r from-syntax-green to-syntax-blue rounded-full text-dark-bg mr-4"><TrendingUp className="w-5 h-5" /></div>
+                <div>
+                  <div className="text-sm font-semibold text-syntax-green mb-1">2023–Present</div>
+                  <h3 className="text-xl font-bold text-dev-text">Freelance Full-Stack Developer</h3>
+                </div>
+              </div>
+              <p className="text-dev-text-muted leading-relaxed">Delivered 50+ modern web solutions for clients worldwide, specializing in React, Next.js, Tailwind CSS, and Node.js.</p>
+            </div>
+          </motion.div>
+          <motion.div
+            className="relative flex items-start"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="hidden md:flex items-center justify-center w-16 h-16 bg-dark-bg-secondary rounded-full shadow-dev-md border-4 border-dark-border relative z-10">
+              <div className="p-3 bg-gradient-to-r from-syntax-green to-syntax-blue rounded-full text-dark-bg"><BookOpen className="w-5 h-5" /></div>
+            </div>
+            <div className="md:ml-8 bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border flex-1 p-6">
+              <div className="flex items-center mb-4">
+                <div className="md:hidden p-3 bg-gradient-to-r from-syntax-green to-syntax-blue rounded-full text-dark-bg mr-4"><BookOpen className="w-5 h-5" /></div>
+                <div>
+                  <div className="text-sm font-semibold text-syntax-green mb-1">2025–Present</div>
+                  <h3 className="text-xl font-bold text-dev-text">Master’s in Data-Driven Management</h3>
+                </div>
+              </div>
+              <p className="text-dev-text-muted leading-relaxed">RUDN University, Moscow — Exploring the intersection of technology, data, and business strategy.</p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Core Values */}
+        <div className="text-center mt-24 mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-dev-text mb-6">
+            My Core <span className="text-cyan-300">Values</span>
           </h2>
           <p className="text-xl text-dev-text-muted max-w-3xl mx-auto">
             The principles that guide my work and drive me to deliver exceptional results for every client.
           </p>
         </div>
-
         <motion.div
           className="grid md:grid-cols-2 gap-8"
           variants={containerVariants}
@@ -404,17 +420,38 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {values.map((value, index) => (
-            <motion.div
-              key={index}
-              className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-8 hover:shadow-dev-lg transition-all duration-300"
-              variants={itemVariants}
-            >
-              <div className="text-4xl mb-4">{value.icon}</div>
-              <h3 className="text-xl font-bold text-dev-text mb-4">{value.title}</h3>
-              <p className="text-dev-text-muted leading-relaxed">{value.description}</p>
-            </motion.div>
-          ))}
+          <motion.div
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-8"
+            variants={itemVariants}
+          >
+            <div className="text-4xl mb-4">💎</div>
+            <h3 className="text-xl font-bold text-dev-text mb-4">Excellence in Code</h3>
+            <p className="text-dev-text-muted leading-relaxed">I believe in writing clean, scalable, and maintainable code—because excellence in engineering is the foundation of every great product.</p>
+          </motion.div>
+          <motion.div
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-8"
+            variants={itemVariants}
+          >
+            <div className="text-4xl mb-4">🎯</div>
+            <h3 className="text-xl font-bold text-dev-text mb-4">User-Centric Design</h3>
+            <p className="text-dev-text-muted leading-relaxed">Every solution I build starts with the user. I strive to create intuitive, accessible, and delightful experiences that solve real problems.</p>
+          </motion.div>
+          <motion.div
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-8"
+            variants={itemVariants}
+          >
+            <div className="text-4xl mb-4">📚</div>
+            <h3 className="text-xl font-bold text-dev-text mb-4">Continuous Learning</h3>
+            <p className="text-dev-text-muted leading-relaxed">Technology never stands still, and neither do I. I’m committed to learning, growing, and staying at the forefront of my field.</p>
+          </motion.div>
+          <motion.div
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-8"
+            variants={itemVariants}
+          >
+            <div className="text-4xl mb-4">🚀</div>
+            <h3 className="text-xl font-bold text-dev-text mb-4">Business Impact</h3>
+            <p className="text-dev-text-muted leading-relaxed">I measure success by the value I create for users and businesses—delivering solutions that drive growth, efficiency, and real-world results.</p>
+          </motion.div>
         </motion.div>
       </div>
     </section>

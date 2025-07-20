@@ -182,10 +182,7 @@ export default function AboutHighlight() {
 
               <div className="space-y-4 text-lg text-dev-text-muted leading-relaxed">
                 <p>
-                  My journey began with a passion for creating elegant solutions to complex problems. With a{" "}
-                  <span className="font-semibold text-syntax-green">4.8/5 GPA in Software Engineering</span> and
-                  experience as a <span className="font-semibold text-syntax-blue">startup founder</span>, I bring both
-                  theoretical depth and real-world business insight to every project.
+                  Honors Software Engineering graduate (GPA 4.8) with strong full-stack skills and over a year of experience creating responsive, user-centered web applications. Skilled in building seamless front-end interfaces and robust back-end systems to deliver high-quality, scalable solutions.
                 </p>
 
                 <p>
