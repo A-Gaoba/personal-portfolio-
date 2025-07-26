@@ -4,11 +4,12 @@ import type React from "react"
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, CheckCircle2, XCircle, Calendar, MessageCircle } from "lucide-react"
+import { Mail, Phone, MapPin, CheckCircle2, XCircle, Calendar, MessageCircle, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import CalendlyWidget from "@/app/components/CalendlyWidget"
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -18,6 +19,7 @@ const ContactPage = () => {
   })
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
+  const [showCalendly, setShowCalendly] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.id]: e.target.value })
@@ -29,9 +31,6 @@ const ContactPage = () => {
     setErrorMessage("")
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-
       // Basic validation
       if (!formData.name || !formData.email || !formData.message) {
         throw new Error("All fields are required.")
@@ -40,7 +39,24 @@ const ContactPage = () => {
         throw new Error("Please enter a valid email address.")
       }
 
-      console.log("Form submitted:", formData)
+      // Send data to Formspree
+      const response = await fetch("https://formspree.io/f/xnnzdron", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+        }),
+      })
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`)
+      }
+
       setStatus("success")
       setFormData({ name: "", email: "", message: "" }) // Clear form
     } catch (error: any) {
@@ -68,21 +84,22 @@ const ContactPage = () => {
       icon: MapPin,
       label: "Location",
       value: "Moscow, Russia",
-      link: "https://goo.gl/maps/2Qw6Qw6Qw6Qw6Qw6A", // Example map link, replace if needed
+      link: "https://maps.google.com/?q=Moscow,Russia",
       color: "text-syntax-purple",
     },
     {
       icon: Calendar,
       label: "Schedule a Meeting",
       value: "Book on Calendly",
-      link: "https://calendly.com/your-link",
+      link: "#",
       color: "text-syntax-orange",
+      onClick: () => setShowCalendly(true),
     },
     {
       icon: MessageCircle,
-      label: "Live Chat",
-      value: "Start Chat",
-      link: "#", // Replace with live chat integration
+      label: "WhatsApp",
+      value: "Chat on WhatsApp",
+      link: "https://wa.me/79174828474",
       color: "text-syntax-cyan",
     },
   ]
@@ -125,7 +142,7 @@ const ContactPage = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <h3 className="text-2xl font-bold text-dev-text mb-6">Send Me a Message</h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} action="https://formspree.io/f/xnnzdron" method="POST" className="space-y-6">
               <div>
                 <Label htmlFor="name" className="text-dev-text-muted font-semibold mb-2 block">
                   Your Name
@@ -222,12 +239,21 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <p className="text-dev-text-muted text-sm">{item.label}</p>
-                    <a
-                      href={item.link}
-                      className="text-lg font-semibold text-dev-text hover:text-syntax-green transition-colors duration-200"
-                    >
-                      {item.value}
-                    </a>
+                    {item.onClick ? (
+                      <button
+                        onClick={item.onClick}
+                        className="text-lg font-semibold text-dev-text hover:text-syntax-green transition-colors duration-200 cursor-pointer"
+                      >
+                        {item.value}
+                      </button>
+                    ) : (
+                      <a
+                        href={item.link}
+                        className="text-lg font-semibold text-dev-text hover:text-syntax-green transition-colors duration-200"
+                      >
+                        {item.value}
+                      </a>
+                    )}
                   </div>
                 </motion.div>
               ))}
@@ -293,6 +319,34 @@ const ContactPage = () => {
           </motion.div>
         </div>
       </div>
+
+      {/* Calendly Modal */}
+      {showCalendly && (
+        <div
+          className="fixed inset-0 bg-dark-bg z-50 flex items-center justify-center p-4"
+          onClick={() => setShowCalendly(false)}
+        >
+          <div
+            className="bg-dark-bg-secondary rounded-2xl shadow-dev-lg border border-dark-border w-full max-w-4xl max-h-[90vh] overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between p-6 border-b border-dark-border bg-dark-bg-tertiary">
+              <h3 className="text-2xl font-bold text-dev-text">Schedule a Meeting</h3>
+              <button
+                onClick={() => setShowCalendly(false)}
+                className="p-2 hover:bg-dark-bg-secondary rounded-lg transition-colors duration-200"
+                aria-label="Close modal"
+                title="Close modal"
+              >
+                <X className="w-6 h-6 text-dev-text-muted" />
+              </button>
+            </div>
+            <div className="p-6 bg-dark-bg-secondary">
+              <CalendlyWidget />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   )
 }

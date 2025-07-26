@@ -515,11 +515,10 @@ export default function Services() {
               <motion.button
                 key={index}
                 onClick={() => setActiveProcess(index)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-                  activeProcess === index
+                className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeProcess === index
                     ? `bg-gradient-to-r ${step.color} text-dark-bg shadow-glow-primary`
                     : "bg-dark-bg-secondary/80 backdrop-blur-sm text-dev-text-muted hover:bg-dark-bg-tertiary border border-dark-border"
-                }`}
+                  }`}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -682,15 +681,22 @@ export default function Services() {
             Let's discuss how I can help bring your vision to life with modern web technologies and proven development
             practices.
           </p>
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={() => {
+              const contactSection = document.getElementById('contact')
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' })
+              } else {
+                window.location.href = '/contact'
+              }
+            }}
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
             Get Started Today
             <ArrowRight className="w-5 h-5 ml-2" />
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

@@ -89,9 +89,8 @@ const TestimonialCard = ({ testimonial }: { testimonial: (typeof testimonials)[0
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className={`w-4 h-4 ${
-                  i < testimonial.rating ? "text-syntax-orange fill-syntax-orange" : "text-dev-text-subtle"
-                }`}
+                className={`w-4 h-4 ${i < testimonial.rating ? "text-syntax-orange fill-syntax-orange" : "text-dev-text-subtle"
+                  }`}
                 fillOpacity={i < testimonial.rating ? 1 : 0.2}
               />
             ))}
@@ -264,15 +263,22 @@ export default function Testimonials() {
             Let's discuss how I can help bring your vision to life with modern web technologies and proven development
             practices.
           </p>
-          <motion.a
-            href="#contact"
+          <motion.button
+            onClick={() => {
+              const contactSection = document.getElementById('contact')
+              if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' })
+              } else {
+                window.location.href = '/contact'
+              }
+            }}
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-syntax-purple to-syntax-orange text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-orange hover:to-syntax-pink transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
             Get Started Today
             <ArrowRight className="w-5 h-5 ml-2" />
-          </motion.a>
+          </motion.button>
         </motion.div>
       </div>
     </section>

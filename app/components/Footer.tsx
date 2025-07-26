@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Github, Linkedin, Twitter, Mail, MapPin, Phone } from "lucide-react"
+import { Github, Linkedin, Twitter, Mail, MapPin, Phone, MessageCircle } from "lucide-react"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -13,7 +13,7 @@ const Footer = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
   }
 
   return (
@@ -122,15 +122,33 @@ const Footer = () => {
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-syntax-blue mr-3" />
                 <a
-                  href="tel:+15551234567"
+                  href="tel:+79174828474"
                   className="text-dev-text-muted hover:text-syntax-blue transition-colors duration-200"
                 >
-                  +1 (555) 123-4567
+                  +7 (917) 482-84-74
                 </a>
               </li>
               <li className="flex items-center">
                 <MapPin className="w-5 h-5 text-syntax-purple mr-3" />
-                <span className="text-dev-text-muted">[Your City, Country]</span>
+                <a
+                  href="https://maps.google.com/?q=Moscow,Russia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-dev-text-muted hover:text-syntax-purple transition-colors duration-200"
+                >
+                  Moscow, Russia
+                </a>
+              </li>
+              <li className="flex items-center">
+                <MessageCircle className="w-5 h-5 text-syntax-cyan mr-3" />
+                <a
+                  href="https://wa.me/79174828474"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-dev-text-muted hover:text-syntax-cyan transition-colors duration-200"
+                >
+                  Chat on WhatsApp
+                </a>
               </li>
             </ul>
           </motion.div>
