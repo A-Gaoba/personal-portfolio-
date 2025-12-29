@@ -186,10 +186,7 @@ export default function AboutHighlight() {
                 </p>
 
                 <p>
-                  As the founder of <span className="font-semibold text-syntax-purple">Naqla Tech</span>, I scaled a
-                  logistics platform to serve 1000+ users and generate $50K+ in revenue. Today, I combine this
-                  entrepreneurial experience with technical mastery in React, Next.js, and Tailwind CSS to deliver
-                  exceptional web solutions.
+                  As the founder of <span className="font-semibold text-syntax-purple">Naqla Tech</span>, I have built a technology startup that delivers complete digital solutions — including full-stack web applications, mobile apps, backend systems, bots, and AI automation tools. At Naqla Tech, we focus on transforming complex business needs into elegant, functional digital products using modern technologies such as React, Next.js, Tailwind CSS, and scalable backend architectures. Our work covers everything from custom app development to intelligent automation workflows that enhance business processes.
                 </p>
               </div>
             </div>

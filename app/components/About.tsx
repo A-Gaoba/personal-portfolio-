@@ -200,7 +200,7 @@ export default function About() {
                 My journey began with a love for technology and a drive to solve real-world problems. I graduated with honors from Ufa University of Science and Technology (BSc in Software Engineering, GPA 4.8), after mastering Russian at Saint Petersburg Mining University (GPA 5) and building a strong foundation in English at University of Sana’a (GPA 4). Now, I’m pursuing a Master’s in Data-Driven Management at RUDN University in Moscow, deepening my expertise at the intersection of tech and business.
               </p>
               <p>
-                Along the way, I founded Naqla Tech—a logistics platform that scaled to 1000+ users and generated over $50K in revenue. As founder and lead developer, I managed everything from product design to full-stack development, deployment, and iteration. This hands-on experience taught me the power of scalable architecture, user onboarding, and business strategy.
+                Along the way, I founded Naqla Tech, a technology startup delivering end-to-end digital solutions, including web and mobile development, backend systems, bots, and AI automation. As founder and lead developer, I was responsible for product design, full-stack development, deployment, and continuous iteration, gaining hands-on experience in scalable architecture, user onboarding, and technical decision-making.
               </p>
               <p>
                 As a freelance full-stack developer, I’ve delivered 50+ modern web solutions for clients in logistics, education, SaaS, and e-commerce. I specialize in React, Next.js, Tailwind CSS, and Node.js, always focusing on performance, SEO, and user experience. My remote collaborations include building and maintaining production-ready apps for international clients like JunziTech Solutions.
@@ -230,9 +230,9 @@ export default function About() {
             <p className="text-syntax-green text-lg mb-2">Naqla Tech</p>
             <p className="text-dev-text-muted text-sm mb-4">Jan 2025 – Present</p>
             <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
-              <li>Founded and led the development of a logistics platform that scaled to 1000+ users and generated over $50K in revenue.</li>
-              <li>Managed the entire software lifecycle—from product design to full-stack development, deployment, and iteration.</li>
-              <li>Gained hands-on experience in business strategy, user onboarding, and scalable architecture.</li>
+              <li>Founded and led the development of a technology startup delivering end-to-end digital solutions, including web and mobile applications, bots, and automation tools.</li>
+              <li>Managed the entire software lifecycle—from product design to full-stack development, deployment, and continuous iteration.</li>
+              <li>Gained hands-on experience in product strategy, client-focused solution delivery, and building scalable architectures.</li>
             </ul>
           </motion.div>
           <motion.div
@@ -454,6 +454,6 @@ export default function About() {
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </section >
   )
 }

@@ -127,10 +127,7 @@ export default function AboutPage() {
                 </p>
 
                 <p>
-                  As the founder of <span className="font-semibold text-syntax-purple">Naqla Tech</span>, I learned
-                  firsthand how the right technology can transform businesses. Our logistics platform grew to serve
-                  1000+ users and generate $50K+ in revenue, teaching me valuable lessons about scalability, user
-                  experience, and business impact.
+                  As the founder of <span className="font-semibold text-syntax-purple">Naqla Tech</span>, a technology startup, I deliver end-to-end digital solutions including web and mobile development, backend systems, bots, and AI automation. I combine entrepreneurial experience with technical expertise in React, Next.js, and Tailwind CSS to build practical, high-quality products for real business needs.
                 </p>
               </div>
             </div>
