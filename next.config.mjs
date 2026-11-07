@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // 2026-11-07: the `eslint` key was removed (no longer supported in Next.js 16; it only produced a warning).
+  // TypeScript errors now fail the build again: the codebase type-checks cleanly (it used to have 17 errors).
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   images: {
     remotePatterns: [
@@ -38,7 +37,11 @@ const nextConfig = {
   // Phase 0a (2026-11-07): /testimonials showed fabricated testimonials (invented names, placeholder photos) and was
   // removed. Temporary (307) so the path can come back when real, attributable testimonials exist.
   async redirects() {
-    return [{ source: "/testimonials", destination: "/", permanent: false }];
+    // i18n (2026-11-07): also the language-prefixed paths. Un-prefixed URLs are handled by proxy.ts.
+    return [
+      { source: "/testimonials", destination: "/", permanent: false },
+      { source: "/:locale(en|ar)/testimonials", destination: "/:locale", permanent: false },
+    ];
   },
 };
 

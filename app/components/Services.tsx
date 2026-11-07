@@ -3,6 +3,7 @@ import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
 import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 import { hasNumericClaim } from "@/lib/claims"
+import { useI18n, localizeItems } from "@/components/i18n/I18nProvider"
 import {
   Code,
   Palette,
@@ -33,42 +34,42 @@ const servicesData = [
     description:
       "Building bespoke web applications from scratch, tailored to your unique business needs. Specializing in scalable, high-performance solutions.",
     icon: <Code className="w-8 h-8" />,
-    color: "text-syntax-blue",
+    color: "text-brand-text",
   },
   {
     title: "Frontend Development & UI/UX",
     description:
       "Crafting intuitive and engaging user interfaces with a focus on exceptional user experience. Bringing designs to life with pixel-perfect precision.",
     icon: <Layout className="w-8 h-8" />,
-    color: "text-syntax-green",
+    color: "text-brand-text",
   },
   {
     title: "Backend & API Development",
     description:
       "Designing and implementing robust, secure, and scalable backend systems and APIs to power your applications.",
     icon: <Database className="w-8 h-8" />,
-    color: "text-syntax-purple",
+    color: "text-fg-2",
   },
   {
     title: "Cloud Deployment & DevOps",
     description:
       "Deploying and managing applications on cloud platforms (AWS) with CI/CD pipelines for seamless delivery.",
     icon: <Cloud className="w-8 h-8" />,
-    color: "text-syntax-orange",
+    color: "text-brand-text",
   },
   {
     title: "Performance Optimization",
     description:
       "Boosting your website's speed and efficiency for better user engagement and SEO. Implementing advanced techniques to minimize load times.",
     icon: <Zap className="w-8 h-8" />,
-    color: "text-syntax-cyan",
+    color: "text-fg-2",
   },
   {
     title: "Version Control & Collaboration",
     description:
       "Implementing best practices for Git and GitHub to ensure smooth team collaboration and code management.",
     icon: <GitBranch className="w-8 h-8" />,
-    color: "text-syntax-pink",
+    color: "text-fg-2",
   },
 ]
 
@@ -298,7 +299,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     },
   },
   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -306,23 +307,25 @@ const itemVariants = {
 
 const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index: number }) => {
   const [hoveredService, setHoveredService] = useState<number | null>(null)
+  const { t } = useI18n()
+  const sv = t.services
 
   return (
     <motion.div
-      className={`group relative ${service.featured ? "md:col-span-2" : ""}`}
+      className="group relative" /* 2026-11-07: featured cards no longer span 2 columns (left an empty half-card next to a taller sibling) */
       variants={itemVariants}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -4 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       onHoverStart={() => setHoveredService(service.id)}
       onHoverEnd={() => setHoveredService(null)}
     >
-      <div className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border overflow-hidden group-hover:shadow-dev-lg transition-all duration-500 h-full">
+      <div className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border overflow-hidden group-hover:shadow-dev-lg transition-all duration-500 h-full">
         {/* Card Header */}
         <div className={`bg-gradient-to-r ${service.bgColor} p-6 relative overflow-hidden`}>
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div
-              className="absolute top-0 left-0 w-full h-full"
+              className="absolute inset-0"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='0.1'%3E%3Ccircle cx='20' cy='20' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
               }}
@@ -330,39 +333,39 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index:
           </div>
 
           <div className="relative z-10 flex items-start justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-4">
               <div
-                className={`p-4 bg-gradient-to-r ${service.color} rounded-xl text-dark-bg shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                className={`p-4 bg-inverse rounded-xl text-on-inverse transition-transform duration-300`}
               >
                 {service.icon}
               </div>
               <div>
                 {/* Phase 0a: "Most Popular" has no source; hidden until confirmed. */}
                 {SHOW_UNVERIFIED_CLAIMS && service.featured && (
-                  <div className="flex items-center px-3 py-1 bg-gradient-to-r from-syntax-orange to-syntax-pink text-dark-bg text-xs font-bold rounded-full mb-2">
-                    <Star className="w-3 h-3 mr-1" />
-                    Most Popular
+                  <div className="flex items-center px-3 py-1 bg-brand hover:bg-brand/90 text-on-brand text-xs font-bold rounded-full mb-2">
+                    <Star className="w-3 h-3 me-1" />
+                    {sv.mostPopular}
                   </div>
                 )}
-                <h3 className="text-xl md:text-2xl font-poppins font-bold text-dev-text group-hover:text-syntax-green transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-poppins font-bold text-dev-text group-hover:text-brand-text transition-colors duration-300">
                   {service.title}
                 </h3>
                 <p className="text-dev-text-muted font-medium">{service.subtitle}</p>
               </div>
             </div>
 
-            <div className="text-right">
+            <div className="text-end">
               {/* Phase 0a: prices hidden until GAOBA confirms them (open question D2). */}
               {SHOW_UNVERIFIED_CLAIMS && (
                 <>
-                  <div className="text-sm text-dev-text-muted mb-1">Starting from</div>
-                  <div className={`text-lg font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
+                  <div className="text-sm text-dev-text-muted mb-1">{sv.startingFrom}</div>
+                  <div className={`text-lg font-bold text-brand-text`}>
                     {service.pricing}
                   </div>
                 </>
               )}
               <div className="text-xs text-dev-text-muted flex items-center">
-                <Clock className="w-3 h-3 mr-1" />
+                <Clock className="w-3 h-3 me-1" />
                 {service.timeline}
               </div>
             </div>
@@ -377,16 +380,16 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index:
           {/* Features */}
           <div>
             <h4 className="font-semibold text-dev-text mb-3 flex items-center">
-              <CheckCircle2 className="w-4 h-4 mr-2 text-syntax-green" />
-              What's Included
+              <CheckCircle2 className="w-4 h-4 me-2 text-brand-text" />
+              {sv.included}
             </h4>
             <div className="space-y-2">
               {service.features.map((feature, featureIndex) => (
                 <motion.div
                   key={featureIndex}
-                  className="flex items-start space-x-3 p-2 rounded-lg hover:bg-dark-bg-tertiary transition-colors duration-200"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  className="flex items-start gap-3 p-2 rounded-lg hover:bg-dark-bg-tertiary transition-colors duration-200"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: featureIndex * 0.1, duration: 0.5 }}
                 >
                   <div className="w-2 h-2 bg-syntax-green rounded-full mt-2 flex-shrink-0"></div>
@@ -399,15 +402,15 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index:
           {/* Technologies */}
           <div>
             <h4 className="font-semibold text-dev-text mb-3 flex items-center">
-              <Settings className="w-4 h-4 mr-2 text-syntax-blue" />
-              Technologies Used
+              <Settings className="w-4 h-4 me-2 text-brand-text" />
+              {sv.technologies}
             </h4>
             <div className="flex flex-wrap gap-2">
               {service.technologies.map((tech, techIndex) => (
                 <motion.span
                   key={techIndex}
-                  className="px-3 py-1 bg-dark-bg-tertiary text-dev-text-muted text-sm rounded-full hover:bg-dark-bg-secondary hover:text-syntax-blue transition-colors duration-200"
-                  whileHover={{ scale: 1.05 }}
+                  className="px-3 py-1 bg-dark-bg-tertiary text-dev-text-muted text-sm rounded-full hover:bg-dark-bg-secondary hover:text-brand-text transition-colors duration-200"
+                  
                 >
                   {tech}
                 </motion.span>
@@ -417,18 +420,18 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index:
 
           {/* CTA Button */}
           <motion.button
-            className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary group/btn"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            className="btn btn-brand w-full group/btn"
+            
+            
           >
-            Get Started with This Service
-            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform duration-300" />
+            {sv.cardCta}
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 rtl:-scale-x-100 rtl:group-hover/btn:-translate-x-1" />
           </motion.button>
         </div>
 
         {/* Hover Overlay */}
         <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-syntax-blue/5 to-syntax-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          className="absolute inset-0 bg-fg/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
           layoutId={`serviceHover-${service.id}`}
         />
       </div>
@@ -440,14 +443,16 @@ export default function Services() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [activeProcess, setActiveProcess] = useState(0)
+  const { t, href } = useI18n()
+  const sv = t.services
+  // English data above is the source; other languages overlay the texts (services by id, steps by number).
+  const localizedServices = localizeItems(services, "id", sv.overlay)
+  const steps = localizeItems(processSteps, "step", sv.stepsOverlay)
 
   return (
     <section id="services" className="py-20 bg-dark-bg relative overflow-hidden text-dev-text">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-syntax-green/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 left-10 w-96 h-96 bg-syntax-blue/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-syntax-purple/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -459,36 +464,27 @@ export default function Services() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.div
-            className="inline-flex items-center px-6 py-3 bg-dark-bg-secondary/80 backdrop-blur-sm border border-dark-border rounded-full mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <Target className="w-5 h-5 text-syntax-green mr-2" />
-            <span className="text-dev-text font-semibold">Services & Expertise</span>
-          </motion.div>
+          <p className="kicker mb-5">{sv.kicker}</p>
 
           {/* Phase 0b: the page's main heading is now its <h1> (same classes). */}
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-6 text-dev-text"
+            className="display mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Comprehensive Web Development
+            {sv.title}
             <br />
-            {/* Phase 0a: was .text-gradient-syntax, which rendered transparent (undefined CSS variables). */}
-            <span className="text-syntax-green">Services & Solutions</span>
+            <span className="mark">{sv.titleMark}</span>
           </motion.h1>
 
           <motion.p
-            className="text-xl md:text-2xl text-dev-text-muted max-w-4xl mx-auto leading-relaxed"
+            className="lede mx-auto max-w-3xl"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Comprehensive web development services to bring your ideas to life with modern technologies and best
-            practices, specializing in React, Next.js, and Tailwind CSS excellence.
+            {sv.lede}
           </motion.p>
         </motion.div>
 
@@ -499,7 +495,7 @@ export default function Services() {
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
         >
-          {services.map((service, index) => (
+          {localizedServices.map((service, index) => (
             <ServiceCard key={service.id} service={service} index={index} />
           ))}
         </motion.div>
@@ -512,25 +508,24 @@ export default function Services() {
           animate={isInView ? "visible" : "hidden"}
         >
           <motion.div className="text-center mb-12" variants={itemVariants}>
-            <h3 className="text-3xl md:text-4xl font-poppins font-bold text-dev-text mb-4">My Development Process</h3>
+            <h3 className="text-3xl md:text-4xl font-poppins font-bold text-dev-text mb-4">{sv.processTitle}</h3>
             <p className="text-lg text-dev-text-muted max-w-3xl mx-auto">
-              A structured approach ensuring quality, transparency, and successful project delivery with regular
-              communication and milestone tracking.
+              {sv.processLede}
             </p>
           </motion.div>
 
           {/* Process Navigation */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {processSteps.map((step, index) => (
+            {steps.map((step, index) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveProcess(index)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeProcess === index
-                    ? `bg-gradient-to-r ${step.color} text-dark-bg shadow-glow-primary`
-                    : "bg-dark-bg-secondary/80 backdrop-blur-sm text-dev-text-muted hover:bg-dark-bg-tertiary border border-dark-border"
+                    ? `bg-inverse text-on-inverse`
+                    : "bg-dark-bg-secondary/80 text-dev-text-muted hover:bg-dark-bg-tertiary border border-dark-border"
                   }`}
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.98 }}
+                whileHover={{ y: -2 }}
+                
               >
                 {step.step} {step.title}
               </motion.button>
@@ -540,47 +535,47 @@ export default function Services() {
           {/* Active Process Display */}
           <motion.div
             key={activeProcess}
-            className={`bg-dark-bg-secondary rounded-3xl p-8 md:p-12 shadow-dev-xl border border-dark-border`}
+            className={`bg-dark-bg-secondary rounded-card p-8 md:p-12 shadow-dev-xl border border-dark-border`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
-                <div className="flex items-center space-x-4 mb-6">
+                <div className="flex items-center gap-4 mb-6">
                   <div
-                    className={`p-4 bg-gradient-to-r ${processSteps[activeProcess].color} rounded-xl text-dark-bg shadow-lg`}
+                    className={`p-4 bg-inverse rounded-xl text-on-inverse`}
                   >
-                    {processSteps[activeProcess].icon}
+                    {steps[activeProcess].icon}
                   </div>
                   <div>
                     <div className="text-sm font-semibold text-dev-text-muted mb-1">
-                      Step {processSteps[activeProcess].step}
+                      {sv.step} {steps[activeProcess].step}
                     </div>
                     <h4 className="text-2xl md:text-3xl font-poppins font-bold text-dev-text">
-                      {processSteps[activeProcess].title}
+                      {steps[activeProcess].title}
                     </h4>
-                    <p className="text-lg text-dev-text-muted">{processSteps[activeProcess].subtitle}</p>
+                    <p className="text-lg text-dev-text-muted">{steps[activeProcess].subtitle}</p>
                   </div>
                 </div>
 
                 <p className="text-dev-text-muted leading-relaxed mb-6 text-lg">
-                  {processSteps[activeProcess].description}
+                  {steps[activeProcess].description}
                 </p>
               </div>
 
               <div>
                 <h5 className="font-semibold text-dev-text mb-4 flex items-center">
-                  <CheckCircle2 className="w-5 h-5 mr-2 text-syntax-green" />
-                  Key Activities
+                  <CheckCircle2 className="w-5 h-5 me-2 text-brand-text" />
+                  {sv.activities}
                 </h5>
                 <div className="space-y-3">
-                  {processSteps[activeProcess].activities.map((activity, index) => (
+                  {steps[activeProcess].activities.map((activity, index) => (
                     <motion.div
                       key={index}
-                      className="flex items-center space-x-3 p-3 bg-dark-bg-tertiary backdrop-blur-sm rounded-xl"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
+                      className="flex items-center gap-3 p-3 bg-dark-bg-tertiary rounded-xl"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: index * 0.1, duration: 0.5 }}
                     >
                       <div className="w-2 h-2 bg-syntax-green rounded-full flex-shrink-0"></div>
@@ -595,7 +590,7 @@ export default function Services() {
 
         {/* Why Choose Me */}
         <motion.div
-          className="bg-gradient-to-r from-syntax-blue/10 via-syntax-green/10 to-syntax-purple/10 rounded-3xl p-8 md:p-12 shadow-dev-xl border border-dark-border relative overflow-hidden mb-16"
+          className="ink-band rounded-card p-8 md:p-12 relative overflow-hidden mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.8 }}
@@ -603,7 +598,7 @@ export default function Services() {
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-5">
             <div
-              className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-syntax-green to-syntax-blue"
+              className="absolute inset-0 bg-brand"
               style={{
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='0.1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
               }}
@@ -611,24 +606,14 @@ export default function Services() {
           </div>
 
           <div className="relative z-10 text-center">
-            <motion.div
-              className="inline-flex items-center px-6 py-3 bg-dark-bg-secondary/80 backdrop-blur-sm border border-dark-border rounded-full mb-8"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <Award className="w-5 h-5 text-syntax-green mr-2" />
-              <span className="text-dev-text font-semibold">Why Choose Me</span>
-            </motion.div>
+            <p className="kicker mb-6">{sv.whyKicker}</p>
 
             <h3 className="text-3xl md:text-4xl font-poppins font-bold text-dev-text mb-6">
-              Frontend Mastery Meets
-              {/* Phase 0a: was .text-gradient-syntax, which rendered transparent (undefined CSS variables). */}
-              <span className="text-syntax-green"> Full-Stack Excellence</span>
+              {sv.whyTitle} <span className="text-brand-text">{sv.whyTitleAccent}</span>
             </h3>
 
             <p className="text-lg md:text-xl text-dev-text-muted leading-relaxed max-w-4xl mx-auto mb-12">
-              With deep expertise in React, Next.js, and Tailwind CSS, combined with full-stack capabilities and startup
-              founder experience, I deliver solutions that not only look exceptional but drive real business results.
+              {sv.whyText}
             </p>
 
             {/* Phase 0a: the "1000+" and "60%" cards have no source; hidden until confirmed. */}
@@ -636,15 +621,15 @@ export default function Services() {
               {[
                 {
                   icon: <Code className="w-6 h-6" />,
-                  number: "React Expert",
-                  label: "Frontend Mastery",
-                  description: "Advanced React patterns & optimization",
+                  number: sv.why[0].number,
+                  label: sv.why[0].label,
+                  description: sv.why[0].description,
                 },
                 {
                   icon: <Database className="w-6 h-6" />,
-                  number: "Full-Stack",
-                  label: "Complete Solutions",
-                  description: "Frontend to backend integration",
+                  number: sv.why[1].number,
+                  label: sv.why[1].label,
+                  description: sv.why[1].description,
                 },
                 {
                   icon: <Users className="w-6 h-6" />,
@@ -664,13 +649,13 @@ export default function Services() {
                 <motion.div
                   key={index}
                   className="text-center"
-                  whileHover={{ scale: 1.05 }}
+                  
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r from-syntax-blue to-syntax-green rounded-xl text-dark-bg mb-3">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-brand hover:bg-brand/90 rounded-xl text-on-brand mb-3">
                     {stat.icon}
                   </div>
-                  <div className="text-2xl md:text-3xl font-poppins font-bold bg-gradient-to-r from-syntax-green to-syntax-blue bg-clip-text text-transparent mb-1">
+                  <div className="text-2xl md:text-3xl font-poppins font-bold text-brand-text mb-1">
                     {stat.number}
                   </div>
                   <div className="font-semibold text-dev-text mb-1">{stat.label}</div>
@@ -689,11 +674,10 @@ export default function Services() {
           transition={{ duration: 0.8, delay: 1 }}
         >
           <h3 className="text-3xl md:text-4xl font-poppins font-bold text-dev-text mb-4">
-            Ready to Start Your Project?
+            {t.home.services.ctaTitle}
           </h3>
           <p className="text-lg md:text-xl text-dev-text-muted mb-8 max-w-3xl mx-auto">
-            Let's discuss how I can help bring your vision to life with modern web technologies and proven development
-            practices.
+            {t.home.services.ctaText}
           </p>
           <motion.button
             onClick={() => {
@@ -701,15 +685,15 @@ export default function Services() {
               if (contactSection) {
                 contactSection.scrollIntoView({ behavior: 'smooth' })
               } else {
-                window.location.href = '/contact'
+                window.location.href = href('/contact')
               }
             }}
-            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.98 }}
+            className="btn btn-brand"
+            whileHover={{ y: -2 }}
+            
           >
-            Get Started Today
-            <ArrowRight className="w-5 h-5 ml-2" />
+            {sv.finalCta}
+            <ArrowRight className="w-5 h-5 rtl:-scale-x-100" />
           </motion.button>
         </motion.div>
       </div>

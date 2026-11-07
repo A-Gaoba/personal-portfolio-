@@ -6,46 +6,54 @@ import { Mail, Phone, MapPin, Calendar, MessageCircle, X } from "lucide-react"
 import ContactForm from "@/components/ContactForm"
 import { profile } from "@/content/profile"
 import CalendlyWidget from "@/app/components/CalendlyWidget"
+import { useI18n } from "@/components/i18n/I18nProvider"
 
 const ContactPage = () => {
   const [showCalendly, setShowCalendly] = useState(false)
+  const { t } = useI18n()
+  const c = t.contact
 
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
+      label: c.email,
       value: profile.email,
+      ltr: true,
       link: `mailto:${profile.email}`,
-      color: "text-syntax-green",
+      color: "text-brand-text",
     },
     {
       icon: Phone,
-      label: "Phone",
+      label: c.phone,
       value: profile.phone.display,
+      ltr: true,
       link: `tel:${profile.phone.tel}`,
-      color: "text-syntax-blue",
+      color: "text-brand-text",
     },
     {
       icon: MapPin,
-      label: "Location",
-      value: "Moscow, Russia",
+      label: c.location,
+      value: t.common.location,
+      ltr: false,
       link: "https://maps.google.com/?q=Moscow,Russia",
-      color: "text-syntax-purple",
+      color: "text-fg-2",
     },
     {
       icon: Calendar,
-      label: "Schedule a Meeting",
-      value: "Book on Calendly",
+      label: c.meeting,
+      value: c.meetingAction,
+      ltr: false,
       link: "#",
-      color: "text-syntax-orange",
+      color: "text-brand-text",
       onClick: () => setShowCalendly(true),
     },
     {
       icon: MessageCircle,
       label: "WhatsApp",
-      value: "Chat on WhatsApp",
+      value: c.whatsappAction,
+      ltr: false,
       link: profile.phone.whatsapp,
-      color: "text-syntax-cyan",
+      color: "text-fg-2",
     },
   ]
 
@@ -65,43 +73,43 @@ const ContactPage = () => {
   }
 
   return (
-    <section id="contact-page-full" className="py-16 sm:py-20 lg:py-24 bg-dark-bg text-dev-text overflow-hidden">
+    <section id="contact-page-full" className="w-full py-16 sm:py-20 lg:py-24 bg-dark-bg text-dev-text overflow-hidden">
       {/* Phase 0a: overflow-hidden + min-w-0 + break-all stop the horizontal scroll on phones (long email address and
           the cards' slide-in animation made the page 415px wide on a 390px screen). */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           {/* Phase 0b: the page's main heading is now its <h1> (same classes). */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
-            Let's Build Something
-            <span className="text-syntax-green"> Amazing</span>
+          <p className="kicker mb-5">{c.kicker}</p>
+          <h1 className="display mb-6">
+            {c.title} <span className="mark">{c.titleMark}</span>
           </h1>
-          <p className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto">
-            Have a project in mind or just want to say hello? Feel free to reach out!
+          <p className="lede mx-auto max-w-2xl">
+            {c.lede}
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start [&>*]:min-w-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start [&>*]:min-w-0">
           {/* Contact Form */}
           <motion.div
-            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-8"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border p-8"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h3 className="text-2xl font-bold text-dev-text mb-6">Send Me a Message</h3>
+            <h3 className="text-2xl font-bold text-dev-text mb-6">{c.formTitle}</h3>
             <ContactForm source="contact" />
           </motion.div>
 
           {/* Contact Info */}
           <motion.div
-            className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-8 space-y-8"
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="card-paper p-6 sm:p-8 space-y-8"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <h3 className="text-2xl font-bold text-dev-text mb-6">My Contact Details</h3>
+            <h3 className="text-2xl font-bold text-dev-text mb-6">{c.detailsTitle}</h3>
             <motion.div
               className="space-y-6"
               variants={containerVariants}
@@ -110,7 +118,7 @@ const ContactPage = () => {
               viewport={{ once: true, amount: 0.2 }}
             >
               {contactInfo.map((item, index) => (
-                <motion.div key={index} className="flex items-center space-x-4 min-w-0" variants={itemVariants}>
+                <motion.div key={index} className="flex items-center gap-4 min-w-0" variants={itemVariants}>
                   <div className="flex-shrink-0 p-3 bg-dark-bg-tertiary rounded-full">
                     <item.icon className={`w-6 h-6 ${item.color}`} />
                   </div>
@@ -119,14 +127,15 @@ const ContactPage = () => {
                     {item.onClick ? (
                       <button
                         onClick={item.onClick}
-                        className="text-lg font-semibold text-dev-text hover:text-syntax-green transition-colors duration-200 cursor-pointer"
+                        className="text-lg font-semibold text-dev-text hover:text-brand-text transition-colors duration-200 cursor-pointer"
                       >
                         {item.value}
                       </button>
                     ) : (
                       <a
                         href={item.link}
-                        className="text-lg font-semibold text-dev-text hover:text-syntax-green transition-colors duration-200 break-all"
+                        dir={item.ltr ? "ltr" : undefined}
+                        className="text-lg font-semibold text-dev-text hover:text-brand-text transition-colors duration-200 break-all"
                       >
                         {item.value}
                       </a>
@@ -138,12 +147,13 @@ const ContactPage = () => {
 
             {/* Social Media Links */}
             <div className="pt-8 border-t border-dark-border">
-              <h3 className="text-2xl font-bold text-dev-text mb-6">Connect with Me</h3>
-              <div className="flex space-x-4">
+              <h3 className="text-2xl font-bold text-dev-text mb-6">{c.connectTitle}</h3>
+              <div className="flex gap-4">
                 <a
                   href={profile.links.github}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="GitHub"
                   className="p-4 bg-dark-bg-tertiary rounded-full text-dev-text-muted hover:bg-dark-bg-secondary hover:text-dev-text transition-colors duration-200"
                 >
                   <svg
@@ -181,6 +191,7 @@ const ContactPage = () => {
                   href={profile.links.x}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="X (Twitter)"
                   className="p-4 bg-dark-bg-tertiary rounded-full text-dev-text-muted hover:bg-dark-bg-secondary hover:text-dev-text transition-colors duration-200"
                 >
                   <svg
@@ -207,16 +218,16 @@ const ContactPage = () => {
           onClick={() => setShowCalendly(false)}
         >
           <div
-            className="bg-dark-bg-secondary rounded-2xl shadow-dev-lg border border-dark-border w-full max-w-4xl max-h-[90vh] overflow-hidden"
+            className="bg-dark-bg-secondary rounded-card shadow-dev-lg border border-dark-border w-full max-w-4xl max-h-[90vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between p-6 border-b border-dark-border bg-dark-bg-tertiary">
-              <h3 className="text-2xl font-bold text-dev-text">Schedule a Meeting</h3>
+              <h3 className="text-2xl font-bold text-dev-text">{c.meeting}</h3>
               <button
                 onClick={() => setShowCalendly(false)}
                 className="p-2 hover:bg-dark-bg-secondary rounded-lg transition-colors duration-200"
-                aria-label="Close modal"
-                title="Close modal"
+                aria-label={t.common.close}
+                title={t.common.close}
               >
                 <X className="w-6 h-6 text-dev-text-muted" />
               </button>

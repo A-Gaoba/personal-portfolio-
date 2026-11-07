@@ -3,10 +3,10 @@
 import type React from "react"
 import { useState } from "react"
 import { CheckCircle2, XCircle } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { useI18n } from "@/components/i18n/I18nProvider"
 
 /**
  * One contact form for the whole site (Phase 0a, 2026-11-07).
@@ -34,10 +34,12 @@ type Props = {
 export default function ContactForm({
   source,
   idPrefix = source,
-  messageLabel = "Your Message",
-  messagePlaceholder = "Tell me about your project or inquiry...",
+  messageLabel,
+  messagePlaceholder,
   rows = 6,
 }: Props) {
+  const { t, locale } = useI18n()
+  const f = t.form
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [gotcha, setGotcha] = useState("")
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
@@ -56,10 +58,10 @@ export default function ContactForm({
 
     try {
       if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-        throw new Error("All fields are required.")
+        throw new Error(f.errorRequired)
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
-        throw new Error("Please enter a valid email address.")
+        throw new Error(f.errorEmail)
       }
 
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -70,6 +72,7 @@ export default function ContactForm({
           email: formData.email.trim(),
           message: formData.message.trim(),
           source,
+          language: locale,
           _gotcha: gotcha,
         }),
       })
@@ -79,32 +82,32 @@ export default function ContactForm({
         const formspreeError = Array.isArray(errorData.errors)
           ? errorData.errors.map((x: { message?: string }) => x.message).filter(Boolean).join(" ")
           : errorData.error
-        throw new Error(formspreeError || `The message could not be sent (status ${response.status}). Please try again.`)
+        throw new Error(formspreeError || f.errorStatus.replace("{status}", String(response.status)))
       }
 
       setStatus("success")
       setFormData({ name: "", email: "", message: "" })
     } catch (error: any) {
       setStatus("error")
-      setErrorMessage(error?.message || "Failed to send message. Please try again.")
+      setErrorMessage(error?.message || f.errorGeneric)
     }
   }
 
   const fieldClass =
-    "w-full p-3 bg-dark-bg-tertiary border border-dark-border rounded-lg focus:ring-2 focus:ring-syntax-blue focus:border-syntax-blue transition-all duration-200 text-dev-text placeholder-dev-text-subtle"
+    "w-full rounded-xl border border-fg/20 bg-canvas px-4 py-3 text-base text-fg placeholder:text-fg-muted shadow-none transition-colors focus-visible:border-fg focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:ring-offset-0"
 
   return (
     <form onSubmit={handleSubmit} action={FORMSPREE_ENDPOINT} method="POST" className="space-y-6" noValidate>
       <div>
-        <Label htmlFor={id("name")} className="text-dev-text-muted font-semibold mb-2 block">
-          Your Name
+        <Label htmlFor={id("name")} className="mb-2 block text-sm font-semibold text-fg">
+          {f.nameLabel}
         </Label>
         <Input
           type="text"
           id={id("name")}
           name="name"
           autoComplete="name"
-          placeholder="Your name"
+          placeholder={f.namePlaceholder}
           value={formData.name}
           onChange={handleChange}
           className={fieldClass}
@@ -112,8 +115,8 @@ export default function ContactForm({
         />
       </div>
       <div>
-        <Label htmlFor={id("email")} className="text-dev-text-muted font-semibold mb-2 block">
-          Your Email
+        <Label htmlFor={id("email")} className="mb-2 block text-sm font-semibold text-fg">
+          {f.emailLabel}
         </Label>
         <Input
           type="email"
@@ -122,6 +125,7 @@ export default function ContactForm({
           autoComplete="email"
           inputMode="email"
           placeholder="you@email.com"
+          dir="ltr"
           value={formData.email}
           onChange={handleChange}
           className={fieldClass}
@@ -129,13 +133,13 @@ export default function ContactForm({
         />
       </div>
       <div>
-        <Label htmlFor={id("message")} className="text-dev-text-muted font-semibold mb-2 block">
-          {messageLabel}
+        <Label htmlFor={id("message")} className="mb-2 block text-sm font-semibold text-fg">
+          {messageLabel ?? f.messageLabel}
         </Label>
         <Textarea
           id={id("message")}
           name="message"
-          placeholder={messagePlaceholder}
+          placeholder={messagePlaceholder ?? f.messagePlaceholder}
           rows={rows}
           value={formData.message}
           onChange={handleChange}
@@ -145,8 +149,8 @@ export default function ContactForm({
       </div>
 
       {/* Honeypot: hidden from people and screen readers; bots that fill it are dropped by Formspree. */}
-      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-        <label htmlFor={id("gotcha")}>Leave this field empty</label>
+      <div aria-hidden="true" className="absolute -start-[9999px] h-px w-px overflow-hidden">
+        <label htmlFor={id("gotcha")}>{f.honeypot}</label>
         <input
           type="text"
           id={id("gotcha")}
@@ -158,24 +162,24 @@ export default function ContactForm({
         />
       </div>
 
-      <Button
+      <button
         type="submit"
-        className="w-full py-3 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
+        className="btn btn-brand h-auto w-full text-base"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "Sending..." : "Send Message"}
-      </Button>
+        {status === "loading" ? f.sending : f.send}
+      </button>
 
       <div aria-live="polite" role="status">
         {status === "success" && (
-          <div className="mt-4 p-4 bg-syntax-green/20 text-syntax-green rounded-lg flex items-center">
-            <CheckCircle2 className="w-5 h-5 mr-2 flex-shrink-0" />
-            Message sent successfully! I&apos;ll get back to you soon.
+          <div className="mt-4 flex items-center rounded-xl border border-line bg-surface p-4 text-fg">
+            <CheckCircle2 className="me-2 h-5 w-5 flex-shrink-0 text-brand-text" />
+            {f.success}
           </div>
         )}
         {status === "error" && (
-          <div className="mt-4 p-4 bg-syntax-red/20 text-syntax-red rounded-lg flex items-center">
-            <XCircle className="w-5 h-5 mr-2 flex-shrink-0" />
+          <div className="mt-4 flex items-center rounded-xl border border-brand/40 bg-brand/10 p-4 text-brand-text">
+            <XCircle className="w-5 h-5 me-2 flex-shrink-0" />
             {errorMessage}
           </div>
         )}

@@ -6,8 +6,11 @@ import { motion, useInView } from "framer-motion"
 import { Code, Globe, Database, Zap, ArrowRight, Award } from 'lucide-react'
 import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 import { unverified } from "@/lib/claims"
+import { useI18n } from "@/components/i18n/I18nProvider"
 
 export default function SkillsHighlight() {
+  const { t, href } = useI18n()
+  const s = t.home.skills
   const coreSkills = [
     {
       name: "React.js",
@@ -35,32 +38,9 @@ export default function SkillsHighlight() {
     },
   ]
 
-  const skillCategories = [
-    {
-      icon: <Code className="w-6 h-6" />,
-      title: "Frontend Excellence",
-      skills: ["React.js", "Next.js", "Tailwind CSS", "TypeScript", "JavaScript ES6+"],
-      color: "from-syntax-green to-syntax-cyan",
-    },
-    {
-      icon: <Globe className="w-6 h-6" />,
-      title: "Full-Stack Development",
-      skills: ["Node.js", "Express.js", "REST APIs", "GraphQL", "Microservices"],
-      color: "from-syntax-blue to-syntax-cyan",
-    },
-    {
-      icon: <Database className="w-6 h-6" />,
-      title: "Database & Backend",
-      skills: ["MongoDB", "PostgreSQL", "Prisma ORM", "Redis", "AWS"],
-      color: "from-syntax-purple to-syntax-pink",
-    },
-    {
-      icon: <Zap className="w-6 h-6" />,
-      title: "Performance & Tools",
-      skills: ["Performance Optimization", "SEO", "Testing", "CI/CD", "Docker"],
-      color: "from-syntax-orange to-syntax-red",
-    },
-  ]
+  // Category titles and non-brand skill names come from the dictionary; icons stay here.
+  const categoryIcons = [<Code key="c" className="w-6 h-6" />, <Globe key="g" className="w-6 h-6" />, <Database key="d" className="w-6 h-6" />, <Zap key="z" className="w-6 h-6" />]
+  const skillCategories = s.categories.map((c, i) => ({ ...c, icon: categoryIcons[i] }))
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -80,7 +60,7 @@ export default function SkillsHighlight() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
       },
     },
   }
@@ -92,8 +72,6 @@ export default function SkillsHighlight() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-syntax-green/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-syntax-blue/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -105,27 +83,18 @@ export default function SkillsHighlight() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div
-            className="inline-flex items-center px-6 py-3 bg-dark-bg-secondary/80 backdrop-blur-sm border border-dark-border rounded-full mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <Zap className="w-5 h-5 text-syntax-green mr-2" />
-            <span className="text-dev-text font-semibold">Technical Expertise</span>
-          </motion.div>
+          <p className="kicker mb-5">{s.kicker}</p>
 
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text"
+            className="title mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            Comprehensive Technical
+            {s.title}
             <br />
-            <span className="bg-gradient-to-r from-syntax-green via-syntax-blue to-syntax-purple bg-clip-text text-transparent">
-              Expertise & Mastery
-            </span>
+            <span className="mark">{s.titleMark}</span>
           </motion.h2>
         </motion.div>
 
@@ -141,9 +110,9 @@ export default function SkillsHighlight() {
             {coreSkills.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                className="text-center bg-dark-bg-secondary/90 backdrop-blur-sm p-6 rounded-2xl shadow-dev-md border border-dark-border hover:shadow-dev-lg transition-all duration-300"
+                className="text-center bg-dark-bg-secondary/90 p-6 rounded-card shadow-dev-md border border-dark-border hover:shadow-dev-lg transition-all duration-300"
                 variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
+                whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="text-4xl mb-4">{skill.icon}</div>
@@ -198,13 +167,13 @@ export default function SkillsHighlight() {
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              className="bg-dark-bg-secondary/90 backdrop-blur-sm p-6 rounded-2xl shadow-dev-md border border-dark-border hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
+              className="bg-dark-bg-secondary/90 p-6 rounded-card shadow-dev-md border border-dark-border hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
               variants={itemVariants}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div
-                className={`inline-flex items-center justify-center w-12 h-12 bg-gradient-to-r ${category.color} rounded-xl text-dark-bg mb-4`}
+                className={`inline-flex items-center justify-center w-12 h-12 bg-inverse rounded-xl text-on-inverse mb-4`}
               >
                 {category.icon}
               </div>
@@ -212,7 +181,7 @@ export default function SkillsHighlight() {
               <div className="space-y-2">
                 {category.skills.map((skill, skillIndex) => (
                   <div key={skillIndex} className="flex items-center text-sm text-dev-text-muted">
-                    <div className="w-2 h-2 bg-syntax-green rounded-full mr-3 flex-shrink-0"></div>
+                    <div className="w-2 h-2 bg-syntax-green rounded-full me-3 flex-shrink-0"></div>
                     {skill}
                   </div>
                 ))}
@@ -223,41 +192,29 @@ export default function SkillsHighlight() {
 
         {/* CTA Section */}
         <motion.div
-          className="text-center bg-gradient-to-r from-syntax-blue/10 via-syntax-green/10 to-syntax-purple/10 rounded-3xl p-8 md:p-12 shadow-dev-xl border border-dark-border"
+          className="text-center ink-band rounded-card p-8 md:p-12"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div
-            className="inline-flex items-center px-6 py-3 bg-dark-bg-secondary/80 backdrop-blur-sm border border-dark-border rounded-full mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <Award className="w-5 h-5 text-syntax-green mr-2" />
-            <span className="text-dev-text font-semibold">Technical Excellence</span>
-          </motion.div>
+          <p className="kicker mb-5">{s.ctaKicker}</p>
 
           <h3 className="text-3xl md:text-4xl font-bold text-dev-text mb-4">
-            {unverified("50+ ")}Technologies Mastered
-            <span className="bg-gradient-to-r from-syntax-green to-syntax-blue bg-clip-text text-transparent">
-              {" "}
-              Across Full Stack
-            </span>
+            {unverified("50+ ")}{s.ctaTitle} <span className="mark">{s.ctaTitleMark}</span>
           </h3>
 
           <p className="text-lg md:text-xl text-dev-text-muted leading-relaxed max-w-3xl mx-auto mb-8">
-            From frontend excellence to full-stack capabilities, I deliver robust, scalable solutions using modern
-            technologies and best practices.
+            {s.ctaText}
           </p>
 
-          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }}>
+          <motion.div whileHover={{ y: -2 }} >
             <Link
-              href="/skills"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
+              href={href("/skills")}
+              className="btn btn-brand"
             >
-              Explore All Skills & Certifications
-              <ArrowRight className="w-5 h-5 ml-2" />
+              {s.ctaButton}
+              <ArrowRight className="w-5 h-5 rtl:-scale-x-100" />
             </Link>
           </motion.div>
         </motion.div>

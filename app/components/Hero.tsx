@@ -1,319 +1,173 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import { ChevronDown, Code, Terminal, Github, Linkedin, Mail, Twitter } from "lucide-react"
-import FloatingElements from "./FloatingElements"
+import { useEffect, useState } from "react"
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
+import { ArrowDown, ArrowRight, Github, Linkedin, Mail, Twitter } from "lucide-react"
 import { profile } from "@/content/profile"
+import { useI18n } from "@/components/i18n/I18nProvider"
+
+const stack = ["React", "Next.js", "TypeScript", "Node.js", "Tailwind"]
+
+const fadeUp = (delay = 0) => ({
+  initial: { opacity: 0, y: 16 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
+})
 
 export default function Hero() {
-  const [currentRole, setCurrentRole] = useState(0)
-  const [displayText, setDisplayText] = useState("")
-  const [isTyping, setIsTyping] = useState(true)
+  const reduce = useReducedMotion()
+  const { t } = useI18n()
+  const h = t.hero
+  const roles = h.roles
+  const [roleIndex, setRoleIndex] = useState(0)
 
-  const roles = ["Full Stack Developer", "React.js Expert", "Next.js Specialist", "UI/UX Designer", "Problem Solver"]
-
+  // One gentle word swap every 2.6s (replaces the per-letter typing loop, which re-rendered every 100ms).
   useEffect(() => {
-    const role = roles[currentRole]
-    let currentIndex = 0
+    if (reduce) return
+    const id = window.setInterval(() => setRoleIndex((i) => (i + 1) % roles.length), 2600)
+    return () => window.clearInterval(id)
+  }, [reduce, roles.length])
 
-    const typeText = () => {
-      if (currentIndex < role.length) {
-        setDisplayText(role.slice(0, currentIndex + 1))
-        currentIndex++
-        setTimeout(typeText, 100)
-      } else {
-        setIsTyping(false)
-        setTimeout(() => {
-          setIsTyping(true)
-          setDisplayText("")
-          setCurrentRole((prev) => (prev + 1) % roles.length)
-        }, 2000)
-      }
-    }
-
-    if (isTyping) {
-      typeText()
-    }
-  }, [currentRole, isTyping])
-
-  // Phase 0a (2026-11-07): links from content/profile.ts. LinkedIn hidden (the URL here, linkedin.com/a-gaoba, was
-  // malformed and returned 404; the right one is open question A3). The X/Twitter link was drawn with a terminal icon.
+  // Phase 0a (2026-11-07): links from content/profile.ts. LinkedIn hidden until the right URL is confirmed (A3).
   const socialLinks = [
-    { icon: Github, href: profile.links.github, label: "GitHub", color: "hover:text-dev-text" },
-    ...(profile.links.linkedin
-      ? [{ icon: Linkedin, href: profile.links.linkedin, label: "LinkedIn", color: "hover:text-syntax-blue" }]
-      : []),
-    { icon: Mail, href: `mailto:${profile.email}`, label: "Email", color: "hover:text-syntax-green" },
-    { icon: Twitter, href: profile.links.x, label: "X (Twitter)", color: "hover:text-syntax-cyan" },
+    { icon: Github, href: profile.links.github, label: "GitHub" },
+    ...(profile.links.linkedin ? [{ icon: Linkedin, href: profile.links.linkedin, label: "LinkedIn" }] : []),
+    { icon: Mail, href: `mailto:${profile.email}`, label: h.email },
+    { icon: Twitter, href: profile.links.x, label: "X (Twitter)" },
   ]
 
   return (
-    <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dark-bg text-dev-text pt-16">
-      {/* Phase 0a: second <DeveloperBackground /> removed — app/page.tsx already renders one for the whole page. */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center w-full">
-          {/* Content */}
-          <motion.div
-            className="space-y-6 sm:space-y-8"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            {/* Terminal-style greeting */}
-            <motion.div
-              className="font-mono text-xs sm:text-sm text-dev-text-muted bg-dark-bg-secondary/80 backdrop-blur-sm p-3 sm:p-4 rounded-lg border border-dark-border"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="flex items-center space-x-2 mb-2">
-                <div className="flex space-x-1">
-                  <div className="w-3 h-3 bg-syntax-red rounded-full"></div>
-                  <div className="w-3 h-3 bg-syntax-orange rounded-full"></div>
-                  <div className="w-3 h-3 bg-syntax-green rounded-full"></div>
-                </div>
-                <span className="text-dev-text-subtle">terminal</span>
-              </div>
-              <div className="space-y-1">
-                <div>
-                  <span className="text-syntax-green">$</span> <span className="text-syntax-blue">whoami</span>
-                </div>
-                <div className="text-dev-text">Abdulrahman Gaoba</div>
-                <div>
-                  <span className="text-syntax-green">$</span> <span className="text-syntax-blue">cat</span>{" "}
-                  <span className="text-syntax-orange">skills.json</span>
-                </div>
-              </div>
-            </motion.div>
+    <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 lg:flex lg:min-h-[100svh] lg:items-center lg:pb-24">
+      <div aria-hidden="true" className="paper-grid pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
 
-            {/* Main heading */}
-            <div className="space-y-2 sm:space-y-4">
-              <motion.h1
-                className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <span className="text-dev-text">Hi, I'm </span>
-                <span className="text-syntax-green">Abdulrahman</span>
-              </motion.h1>
-
-              <motion.div
-                className="text-lg xs:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-dev-text-muted"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <span className="font-mono text-syntax-blue">const</span> <span className="text-dev-text">role</span>{" "}
-                <span className="text-syntax-orange">=</span> <span className="text-syntax-green">"{displayText}"</span>
-                <motion.span
-                  className="text-syntax-blue ml-1"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
-                >
-                  |
-                </motion.span>
-              </motion.div>
-            </div>
-
-            {/* Description */}
-            <motion.p
-              className="text-base sm:text-lg md:text-xl text-dev-text-muted leading-relaxed max-w-full sm:max-w-2xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              Passionate about creating exceptional web experiences with{" "}
-              <span className="text-syntax-blue font-semibold">React</span>,{" "}
-              <span className="text-syntax-green font-semibold">Next.js</span>, and modern technologies. Turning complex
-              problems into elegant solutions.
+      <div className="container-page relative">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
+          {/* Copy */}
+          <div>
+            <motion.p className="kicker" {...fadeUp(0)}>
+              {h.kicker}
             </motion.p>
 
-            {/* Tech stack pills */}
+            <motion.h1 className="display mt-5" {...fadeUp(0.08)}>
+              {h.greeting} <span className="mark">{h.name}</span>
+            </motion.h1>
+
             <motion.div
-              className="flex flex-wrap gap-2 sm:gap-3"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              className="mt-5 flex h-9 items-center gap-3 overflow-hidden font-mono text-sm text-fg-muted sm:text-base"
+              {...fadeUp(0.16)}
             >
-              {["React", "Next.js", "TypeScript", "Node.js", "Tailwind"].map((tech, index) => (
-                <motion.span
-                  key={tech}
-                  className="px-4 py-2 bg-dark-bg-secondary/70 backdrop-blur-sm text-dev-text-muted border border-dark-border rounded-full text-sm font-mono hover:border-syntax-blue hover:text-syntax-blue transition-all duration-300"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-                >
+              <span aria-hidden="true" className="rtl:font-sans">{h.roleLabel}</span>
+              <span className="relative inline-flex h-full min-w-0 items-center">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.span
+                    key={roles[roleIndex]}
+                    className="whitespace-nowrap rounded-md bg-inverse px-2.5 py-1 font-semibold text-on-inverse"
+                    initial={{ y: 14, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -14, opacity: 0 }}
+                    transition={{ duration: 0.28 }}
+                  >
+                    {roles[roleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </span>
+              <span className="sr-only">{roles.join(", ")}</span>
+            </motion.div>
+
+            <motion.p className="lede mt-6 max-w-xl" {...fadeUp(0.24)}>
+              {h.introBefore}
+              <strong className="font-semibold text-fg">React</strong>
+              {h.introAnd}
+              <strong className="font-semibold text-fg">Next.js</strong>
+              {h.introAfter}
+            </motion.p>
+
+            <motion.ul className="mt-6 flex flex-wrap gap-2" aria-label={h.stackLabel} {...fadeUp(0.3)}>
+              {stack.map((tech) => (
+                <li key={tech} className="tag text-xs">
                   {tech}
-                </motion.span>
+                </li>
               ))}
+            </motion.ul>
+
+            <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" {...fadeUp(0.36)}>
+              <a href="#projects" className="btn btn-brand group">
+                {h.ctaWork}
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
+              </a>
+              <a href="#contact" className="btn btn-line">
+                {h.ctaContact}
+              </a>
             </motion.div>
 
-            {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-            >
-              <motion.a
-                href="#projects"
-                className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-bold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary transform hover:scale-105"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Code className="w-5 h-5 mr-2" />
-                View My Work
-              </motion.a>
-
-              <motion.a
-                href="#contact"
-                className="inline-flex items-center justify-center px-8 py-4 bg-dark-bg-secondary/70 backdrop-blur-sm text-dev-text-muted border-2 border-dark-border rounded-xl font-bold text-lg hover:border-syntax-blue hover:text-syntax-blue hover:bg-dark-bg-tertiary transition-all duration-300"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Terminal className="w-5 h-5 mr-2" />
-                Get In Touch
-              </motion.a>
-            </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              className="flex flex-col xs:flex-row items-start xs:items-center space-y-2 xs:space-y-0 xs:space-x-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.6 }}
-            >
-              <span className="text-dev-text-subtle font-mono text-sm">// Connect with me</span>
-              <div className="flex space-x-4">
-                {socialLinks.map((social, index) => (
-                  <motion.a
+            <motion.div className="mt-8 flex items-center gap-4" {...fadeUp(0.42)}>
+              <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-fg-muted">{h.connect}</span>
+              <span className="h-px w-8 bg-line" aria-hidden="true" />
+              <div className="flex gap-2">
+                {socialLinks.map((social) => (
+                  <a
                     key={social.label}
                     href={social.href}
-                    target="_blank"
+                    target={social.href.startsWith("mailto:") ? undefined : "_blank"}
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className={`p-3 bg-dark-bg-secondary/70 backdrop-blur-sm rounded-lg border border-dark-border text-dev-text-muted ${social.color} transition-all duration-300 hover:border-current`}
-                    whileHover={{ scale: 1.1, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
+                    className="grid h-11 w-11 place-items-center rounded-full border border-line text-fg-2 transition-colors hover:border-fg hover:text-fg"
                   >
-                    <social.icon className="w-5 h-5" />
-                  </motion.a>
+                    <social.icon className="h-[18px] w-[18px]" />
+                  </a>
                 ))}
               </div>
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* Code Editor Mockup */}
+          {/* Code card (ink, like the prompt blocks in GAOBA reels) */}
           <motion.div
-            className="relative mt-8 lg:mt-0 w-full max-w-md sm:max-w-lg mx-auto"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative isolate mx-auto w-full max-w-md lg:max-w-none"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <div className="bg-dark-bg-secondary/90 backdrop-blur-xl rounded-2xl border border-dark-border shadow-dev-lg overflow-hidden">
-              {/* Editor Header */}
-              <div className="flex items-center justify-between px-4 py-3 bg-dark-bg-tertiary/50 border-b border-dark-border">
-                <div className="flex items-center space-x-3">
-                  <div className="flex space-x-1">
-                    <div className="w-3 h-3 bg-syntax-red rounded-full"></div>
-                    <div className="w-3 h-3 bg-syntax-orange rounded-full"></div>
-                    <div className="w-3 h-3 bg-syntax-green rounded-full"></div>
-                  </div>
-                  <span className="text-dev-text-subtle text-sm font-mono">portfolio.tsx</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Code className="w-4 h-4 text-dev-text-subtle" />
-                  <span className="text-dev-text-subtle text-xs">TypeScript React</span>
-                </div>
+            {/* Code stays left-to-right in every language. */}
+            <div className="card-ink overflow-hidden shadow-lift" dir="ltr">
+              <div className="flex items-center justify-between border-b border-on-inverse/10 px-5 py-3.5">
+                <span className="font-mono text-xs text-on-inverse/60">portfolio.tsx</span>
+                <span className="flex gap-1.5" aria-hidden="true">
+                  <i className="h-2.5 w-2.5 rounded-full bg-on-inverse/20" />
+                  <i className="h-2.5 w-2.5 rounded-full bg-on-inverse/20" />
+                  <i className="h-2.5 w-2.5 rounded-full bg-brand" />
+                </span>
               </div>
-
-              {/* Code Content */}
-              <div className="p-6 font-mono text-sm space-y-2">
-                <div className="text-dev-text-muted">
-                  <span className="text-syntax-purple">import</span> <span className="text-syntax-blue">React</span>{" "}
-                  <span className="text-syntax-purple">from</span> <span className="text-syntax-green">'react'</span>
-                </div>
-                <div className="text-dev-text-muted">
-                  <span className="text-syntax-purple">import</span>{" "}
-                  <span className="text-syntax-blue">{"type NextPage"}</span>{" "}
-                  <span className="text-syntax-purple">from</span> <span className="text-syntax-green">'next'</span>
-                </div>
-                <div className="h-4"></div>
-                <div className="text-dev-text-muted">
-                  <span className="text-syntax-blue">const</span> <span className="text-syntax-orange">Portfolio</span>
-                  <span className="text-syntax-blue">:</span> <span className="text-syntax-cyan">NextPage</span>{" "}
-                  <span className="text-syntax-blue">{"="}</span>{" "}
-                  <span className="text-syntax-orange">{"() => {"}</span>
-                </div>
-                <div className="text-dev-text-muted ml-4">
-                  <span className="text-syntax-purple">return</span> <span className="text-syntax-orange">{"("}</span>
-                </div>
-                <div className="text-dev-text-muted ml-8">
-                  <span className="text-syntax-red">{"<"}</span>
-                  <span className="text-syntax-blue">div</span> <span className="text-syntax-orange">className</span>
-                  <span className="text-syntax-blue">{"="}</span>
-                  <span className="text-syntax-green">"amazing-portfolio"</span>
-                  <span className="text-syntax-red">{">"}</span>
-                </div>
-                <div className="text-dev-text-muted ml-12">
-                  <span className="text-syntax-red">{"<"}</span>
-                  <span className="text-syntax-blue">h1</span>
-                  <span className="text-syntax-red">{">"}</span>
-                  <span className="text-dev-text">Building the future</span>
-                  <span className="text-syntax-red">{"<"}</span>
-                  <span className="text-syntax-blue">/h1</span>
-                  <span className="text-syntax-red">{">"}</span>
-                </div>
-                <div className="text-dev-text-muted ml-8">
-                  <span className="text-syntax-red">{"<"}</span>
-                  <span className="text-syntax-blue">/div</span>
-                  <span className="text-syntax-red">{">"}</span>
-                </div>
-                <div className="text-dev-text-muted ml-4">
-                  <span className="text-syntax-orange">{")"}</span>
-                </div>
-                <div className="text-dev-text-muted">
-                  <span className="text-syntax-orange">{"}"}</span>
-                </div>
-                <div className="h-4"></div>
-                <div className="text-dev-text-muted">
-                  <span className="text-syntax-purple">export</span> <span className="text-syntax-purple">default</span>{" "}
-                  <span className="text-syntax-orange">Portfolio</span>
-                </div>
-              </div>
+              <pre className="overflow-x-auto p-5 font-mono text-[12.5px] leading-[1.9] text-on-inverse/75 sm:p-6 sm:text-[13px]">
+                <code>
+                  <span className="text-on-inverse/45">import</span> React <span className="text-on-inverse/45">from</span>{" "}
+                  &apos;react&apos;{"\n"}
+                  <span className="text-on-inverse/45">import</span> type NextPage{" "}
+                  <span className="text-on-inverse/45">from</span> &apos;next&apos;{"\n\n"}
+                  <span className="text-on-inverse/45">const</span> <span className="text-on-inverse">Portfolio</span>: NextPage = () =&gt; {"{"}
+                  {"\n"}
+                  {"  "}
+                  <span className="text-on-inverse/45">return</span> ({"\n"}
+                  {"    "}&lt;div className=&quot;amazing-portfolio&quot;&gt;{"\n"}
+                  {"      "}&lt;h1&gt;<span className="font-semibold text-brand">Building the future</span>&lt;/h1&gt;{"\n"}
+                  {"    "}&lt;/div&gt;{"\n"}
+                  {"  "}){"\n"}
+                  {"}"}
+                  {"\n\n"}
+                  <span className="text-on-inverse/45">export default</span> Portfolio
+                </code>
+              </pre>
             </div>
-            <FloatingElements /> {/* Floating elements */}
+            <div aria-hidden="true" className="absolute -bottom-3 inset-x-6 -z-10 h-full rounded-card bg-surface-2" />
           </motion.div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block cursor-pointer"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 2 }}
-          onClick={() => {
-            const aboutSection = document.getElementById('about');
-            if (aboutSection) {
-              aboutSection.scrollIntoView({ behavior: 'smooth' });
-            }
-          }}
+        <a
+          href="#about"
+          className="mt-14 hidden items-center gap-2 font-mono text-xs uppercase tracking-[0.14em] text-fg-muted transition-colors hover:text-fg lg:inline-flex"
         >
-          <motion.div
-            className="flex flex-col items-center space-y-2 text-dev-text"
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-          >
-            <span className="text-sm font-mono">scroll down</span>
-            <ChevronDown className="w-5 h-5" />
-          </motion.div>
-        </motion.div>
+          <ArrowDown className="h-4 w-4" />
+          {h.scroll}
+        </a>
       </div>
     </section>
   )

@@ -2,151 +2,126 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Code, Info, FolderGit2, Lightbulb, Rocket, Users, Mail } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { usePathname } from "next/navigation" // Add this import
+import { usePathname } from "next/navigation"
+import { Menu, X, ArrowUpRight } from "lucide-react"
+import ThemeToggle from "@/components/ThemeToggle"
+import Logo from "@/components/Logo"
+import LanguageToggle from "@/components/i18n/LanguageToggle"
+import { useI18n } from "@/components/i18n/I18nProvider"
+import { stripLocale } from "@/lib/i18n/config"
 
+// Labels come from the dictionary (t.nav); paths are language-neutral and prefixed with the active locale.
 const navLinks = [
-  { name: "Home", href: "/", icon: Code },
-  { name: "About", href: "/about", icon: Info },
-  { name: "Projects", href: "/projects", icon: FolderGit2 },
-  { name: "Skills", href: "/skills", icon: Lightbulb },
-  { name: "Services", href: "/services", icon: Rocket },
+  { key: "home", href: "/" },
+  { key: "about", href: "/about" },
+  { key: "projects", href: "/projects" },
+  { key: "skills", href: "/skills" },
+  { key: "services", href: "/services" },
   // Phase 0a (2026-11-07): "Testimonials" removed (the page showed fabricated testimonials).
-  { name: "Contact", href: "/contact", icon: Mail },
-]
+  { key: "contact", href: "/contact" },
+] as const
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname() // Get current path
+  const rawPathname = usePathname()
+  const pathname = stripLocale(rawPathname ?? "/")
+  const { t, href } = useI18n()
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true)
-      } else {
-        setScrolled(false)
-      }
-    }
-
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+  // Close the mobile menu on navigation.
+  useEffect(() => setIsOpen(false), [rawPathname])
 
-  const menuVariants = {
-    hidden: { opacity: 0, y: -50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20,
-        staggerChildren: 0.05,
-        delayChildren: 0.1,
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -50,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0 },
-  }
+  const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href))
 
   return (
-    <motion.nav
-      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-dark-bg-secondary/80 backdrop-blur-xl shadow-lg border-b border-dark-border" : "bg-transparent"
-        }`}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ type: "spring", stiffness: 100, damping: 20 }}
+    <nav
+      aria-label={t.nav.label}
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
+        scrolled || isOpen
+          ? "border-b border-line bg-canvas/85 backdrop-blur-md supports-[backdrop-filter]:bg-canvas/75"
+          : "border-b border-transparent bg-transparent"
+      }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
-            {/* Phase 0b: the logo was an <h1> on every page; now a span (same classes, same look). */}
-            <span className="block text-2xl font-bold text-dev-text">
-              Abdulrahman<span className="text-syntax-green">.dev</span>
-            </span>
+      <div className="container-page">
+        <div className="flex h-16 items-center justify-between gap-4">
+          <Link href={href("/")} className="flex-shrink-0 rounded-full" aria-label={t.nav.homeLabel}>
+            <Logo />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
-              {navLinks.map((link) => (
+          {/* Desktop */}
+          <div className="hidden items-center gap-1 md:flex">
+            {navLinks.map((link) => {
+              const active = isActive(link.href)
+              return (
                 <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`
-      ${pathname === link.href ? "text-syntax-blue font-semibold" : "text-dev-text-muted"}
-      hover:text-syntax-green px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200
-    `}
+                  key={link.key}
+                  href={href(link.href)}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative rounded-lg px-3 py-2 text-[15px] font-medium transition-colors ${
+                    active ? "text-fg" : "text-fg-muted hover:text-fg"
+                  }`}
                 >
-                  {link.name}
+                  {t.nav[link.key]}
+                  {active && <span className="absolute inset-x-3 -bottom-px h-[3px] rounded-full bg-brand" />}
                 </Link>
-              ))}
-            </div>
+              )
+            })}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="-mr-2 flex md:hidden">
-            <Button
-              onClick={toggleMenu}
-              variant="ghost"
-              className="inline-flex items-center justify-center p-2 rounded-md text-dev-text-muted hover:text-syntax-green hover:bg-dark-bg-tertiary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-syntax-blue bg-transparent"
+          <div className="flex items-center gap-2">
+            <LanguageToggle />
+            <ThemeToggle />
+            <Link href={href("/contact")} className="btn btn-ink btn-sm hidden lg:inline-flex">
+              {t.nav.cta}
+              <ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setIsOpen((o) => !o)}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              className="grid h-10 w-10 place-items-center rounded-full border border-line text-fg transition-colors hover:bg-fg/5 md:hidden"
             >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
-            </Button>
+              <span className="sr-only">{isOpen ? t.nav.closeMenu : t.nav.openMenu}</span>
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="md:hidden bg-dark-bg-secondary/90 backdrop-blur-xl border-b border-dark-border"
-            initial="hidden"
-            animate="visible"
-            exit="exit"
-            variants={menuVariants}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navLinks.map((link) => (
-                <motion.div key={link.name} variants={itemVariants}>
-                  <Link
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className={`
-        ${pathname === link.href ? "text-syntax-blue font-semibold bg-dark-bg-tertiary" : "text-dev-text-muted"}
-        hover:text-syntax-green hover:bg-dark-bg-tertiary block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200 flex items-center
-      `}
-                  >
-                    <link.icon className="w-5 h-5 mr-3" />
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.nav>
+      {/* Mobile */}
+      <div
+        id="mobile-menu"
+        hidden={!isOpen}
+        className="border-t border-line bg-canvas md:hidden"
+      >
+        <div className="container-page flex flex-col py-3">
+          {navLinks.map((link) => {
+            const active = isActive(link.href)
+            return (
+              <Link
+                key={link.key}
+                href={href(link.href)}
+                aria-current={active ? "page" : undefined}
+                className={`flex items-center justify-between border-b border-line py-3.5 text-lg font-semibold last:border-b-0 ${
+                  active ? "text-fg" : "text-fg-2"
+                }`}
+              >
+                {t.nav[link.key]}
+                {active && <span className="h-2 w-2 rounded-full bg-brand" />}
+              </Link>
+            )
+          })}
+        </div>
+      </div>
+    </nav>
   )
 }
 

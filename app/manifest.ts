@@ -6,10 +6,10 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Abdulrahman Gaoba",
     description:
       "Professional portfolio of Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer",
-    start_url: "/",
+    start_url: "/", // proxy.ts sends it to the saved language (English by default)
     display: "standalone",
-    background_color: "#0f172a",
-    theme_color: "#10b981",
+    background_color: "#ECE8DF",
+    theme_color: "#ECE8DF",
     icons: [
       {
         src: "/portfolio-icon.svg",

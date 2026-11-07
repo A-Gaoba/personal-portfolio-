@@ -166,8 +166,7 @@ export default function DeveloperBackground() {
         className="absolute w-64 h-64 rounded-full opacity-10"
         style={{
           background: "radial-gradient(circle, var(--syntax-purple) 0%, transparent 70%)",
-          top: "20%",
-          right: "20%",
+                    right: "20%",
           left: mousePosition.x * 0.015,
           top: mousePosition.y * 0.015,
         }}

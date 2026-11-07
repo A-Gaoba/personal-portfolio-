@@ -10,6 +10,7 @@ import type { JSX } from "react/jsx-runtime"
 import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 import { withoutUnverifiedClaims, listWithoutUnverifiedClaims } from "@/lib/claims"
 import { verifiedLiveUrl, verifiedRepoUrl } from "@/lib/verified-links"
+import { useI18n, localizeItems } from "@/components/i18n/I18nProvider"
 
 interface Project {
   id: number
@@ -655,7 +656,11 @@ const projects: Project[] = [
 const HIDDEN_PROJECT_IDS = new Set<number>([15])
 
 const Projects = () => {
-  const visibleProjects = projects.filter((p) => !HIDDEN_PROJECT_IDS.has(p.id))
+  const { t } = useI18n()
+  const p = t.projects
+  // English data above is the source of truth; other languages overlay the texts by project id. The Arabic overlay
+  // translates only what is visible today (unverified-claim sentences were never translated).
+  const visibleProjects = localizeItems(projects, "id", p.overlay).filter((x) => !HIDDEN_PROJECT_IDS.has(x.id))
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -689,11 +694,12 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           {/* Phase 0b: the page's main heading is now its <h1> (same classes). */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
-            My <span className="text-syntax-green">Projects</span>
+          <p className="kicker mb-5">{p.kicker}</p>
+          <h1 className="display mb-6">
+            {p.title} <span className="mark">{p.titleMark}</span>
           </h1>
-          <p className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto leading-relaxed">
-            A showcase of my work, from full-stack applications to innovative solutions.
+          <p className="lede mx-auto max-w-2xl">
+            {p.lede}
           </p>
         </div>
 
@@ -707,7 +713,7 @@ const Projects = () => {
           {visibleProjects.map((project) => (
             <motion.div
               key={project.id}
-              className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border overflow-hidden hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300 cursor-pointer"
+              className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border overflow-hidden hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300 cursor-pointer"
               variants={itemVariants}
               onClick={() => openModal(project)}
             >
@@ -721,8 +727,8 @@ const Projects = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 {project.featured && (
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-gradient-to-r from-syntax-orange to-syntax-pink text-dark-bg rounded-full text-xs font-semibold flex items-center">
-                    Featured
+                  <div className="absolute top-4 start-4 px-3 py-1 bg-brand hover:bg-brand/90 text-on-brand rounded-full text-xs font-semibold flex items-center">
+                    {t.common.featured}
                   </div>
                 )}
               </div>
@@ -757,13 +763,14 @@ const Projects = () => {
                 className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-t-lg"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-bg-secondary to-transparent" />
-              <DialogTitle className="absolute bottom-4 left-4 sm:left-6 text-xl sm:text-2xl md:text-3xl font-bold text-dev-text z-10 max-w-[80%]">
+              <DialogTitle className="absolute bottom-4 start-4 sm:start-6 text-xl sm:text-2xl md:text-3xl font-bold text-dev-text z-10 max-w-[80%]">
                 {selectedProject.title}
               </DialogTitle>
               <Button
                 variant="ghost"
                 onClick={closeModal}
-                className="absolute top-2 sm:top-4 right-2 sm:right-4 text-dev-text-muted hover:text-dev-text hover:bg-dark-bg-tertiary p-2"
+                aria-label={t.common.close}
+                className="absolute top-2 sm:top-4 end-2 sm:end-4 text-dev-text-muted hover:text-dev-text hover:bg-dark-bg-tertiary p-2"
               >
                 <X className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
@@ -771,13 +778,13 @@ const Projects = () => {
             <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto max-h-[calc(90vh-200px)]">
               {/* Overview */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Overview</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">{p.overview}</h3>
                 <p className="text-sm sm:text-base text-dev-text-muted leading-relaxed">{withoutUnverifiedClaims(selectedProject.longDescription)}</p>
               </div>
 
               {/* Technologies */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Technologies Used</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">{p.technologies}</h3>
                 <div className="flex flex-wrap gap-2 sm:gap-3">
                   {selectedProject.technologies.map((tech, index) => (
                     <span
@@ -793,11 +800,11 @@ const Projects = () => {
               {/* Phase 0a: metrics have no source in the repo; hidden until confirmed (SHOW_UNVERIFIED_CLAIMS). */}
               {SHOW_UNVERIFIED_CLAIMS && (
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Key Results & Metrics</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">{p.metrics}</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {selectedProject.metrics.map((metric, index) => (
                     <div key={index} className="flex items-center p-3 sm:p-4 bg-dark-bg-tertiary rounded-lg">
-                      <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-syntax-green text-dark-bg rounded-full mr-3">
+                      <div className="flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 bg-syntax-green text-on-brand rounded-full me-3">
                         {metric.icon}
                       </div>
                       <div>
@@ -812,11 +819,11 @@ const Projects = () => {
 
               {/* Challenges & Solutions */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Challenges & Solutions</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">{p.challengesSolutions}</h3>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <h4 className="font-semibold text-dev-text mb-2 flex items-center text-sm sm:text-base">
-                      <X className="w-4 h-4 sm:w-5 sm:h-5 text-syntax-red mr-2" /> Challenges
+                      <X className="w-4 h-4 sm:w-5 sm:h-5 text-brand-text me-2" /> {p.challenges}
                     </h4>
                     <ul className="list-disc list-inside text-dev-text-muted space-y-1 sm:space-y-2 text-sm sm:text-base">
                       {listWithoutUnverifiedClaims(selectedProject.challenges).map((challenge, index) => (
@@ -826,7 +833,7 @@ const Projects = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-dev-text mb-2 flex items-center text-sm sm:text-base">
-                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-syntax-green mr-2" /> Solutions
+                      <Check className="w-4 h-4 sm:w-5 sm:h-5 text-brand-text me-2" /> {p.solutions}
                     </h4>
                     <ul className="list-disc list-inside text-dev-text-muted space-y-1 sm:space-y-2 text-sm sm:text-base">
                       {listWithoutUnverifiedClaims(selectedProject.solutions).map((solution, index) => (
@@ -840,7 +847,7 @@ const Projects = () => {
               {/* Phase 0a: "Achieved Results" are all unsourced numbers; hidden until confirmed. */}
               {SHOW_UNVERIFIED_CLAIMS && (
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Achieved Results</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">{p.results}</h3>
                 <ul className="list-disc list-inside text-dev-text-muted space-y-1 sm:space-y-2 text-sm sm:text-base">
                   {selectedProject.results.map((result, index) => (
                     <li key={index}>{result}</li>
@@ -857,10 +864,10 @@ const Projects = () => {
                     href={verifiedLiveUrl(selectedProject.liveUrl)!}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary text-sm sm:text-base"
+                    className="btn btn-brand"
                   >
-                    <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                    View Live Project
+                    <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5" />
+                    {p.viewLive}
                   </a>
                   )}
                 {verifiedRepoUrl(selectedProject.githubUrl) && (
@@ -868,10 +875,10 @@ const Projects = () => {
                     href={verifiedRepoUrl(selectedProject.githubUrl)!}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-dark-bg-tertiary border-2 border-dark-border text-dev-text-muted rounded-xl hover:border-syntax-blue hover:text-syntax-blue hover:bg-dark-bg-secondary transition-all duration-300 font-semibold shadow-dev-md hover:shadow-dev-lg text-sm sm:text-base"
+                    className="btn btn-line"
                   >
-                    <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                    View Source Code
+                    <Github className="w-4 h-4 sm:w-5 sm:h-5" />
+                    {p.viewSource}
                   </a>
                   )}
               </div>

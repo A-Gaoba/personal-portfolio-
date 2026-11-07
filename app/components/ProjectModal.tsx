@@ -86,7 +86,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             <div className="grid grid-cols-2 gap-4">
               {project.metrics.map((metric, index) => (
                 <div key={index} className="flex items-center p-4 bg-dark-bg-tertiary rounded-lg">
-                  <div className="flex items-center justify-center w-10 h-10 bg-syntax-green text-dark-bg rounded-full mr-3">
+                  <div className="flex items-center justify-center w-10 h-10 bg-syntax-green text-on-brand rounded-full mr-3">
                     {metric.icon}
                   </div>
                   <div>
@@ -104,7 +104,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold text-dev-text mb-2 flex items-center">
-                  <X className="w-5 h-5 text-syntax-red mr-2" /> Challenges
+                  <X className="w-5 h-5 text-brand-text mr-2" /> Challenges
                 </h4>
                 <ul className="list-disc list-inside text-dev-text-muted space-y-2">
                   {project.challenges.map((challenge, index) => (
@@ -114,7 +114,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               </div>
               <div>
                 <h4 className="font-semibold text-dev-text mb-2 flex items-center">
-                  <Check className="w-5 h-5 text-syntax-green mr-2" /> Solutions
+                  <Check className="w-5 h-5 text-brand-text mr-2" /> Solutions
                 </h4>
                 <ul className="list-disc list-inside text-dev-text-muted space-y-2">
                   {project.solutions.map((solution, index) => (
@@ -141,7 +141,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
+              className="btn btn-brand"
             >
               <ExternalLink className="w-5 h-5 mr-2" />
               View Live Project
@@ -150,7 +150,7 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 bg-dark-bg-tertiary border-2 border-dark-border text-dev-text-muted rounded-xl hover:border-syntax-blue hover:text-syntax-blue hover:bg-dark-bg-secondary transition-all duration-300 font-semibold shadow-dev-md hover:shadow-dev-lg"
+              className="btn btn-line"
             >
               <Github className="w-5 h-5 mr-2" />
               View Source Code

@@ -5,8 +5,11 @@ import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { ArrowRight, Award, Users, Code, TrendingUp, Sparkles } from 'lucide-react'
 import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
+import { useI18n } from "@/components/i18n/I18nProvider"
 
 export default function AboutHighlight() {
+  const { t, href } = useI18n()
+  const s = t.home.about
   const stats = [
     {
       number: "4.8/5",
@@ -52,7 +55,7 @@ export default function AboutHighlight() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
       },
     },
   }
@@ -64,8 +67,6 @@ export default function AboutHighlight() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-syntax-green/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-syntax-blue/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -77,27 +78,18 @@ export default function AboutHighlight() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div
-            className="inline-flex items-center px-6 py-3 bg-dark-bg-secondary/80 backdrop-blur-sm border border-dark-border rounded-full mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <Sparkles className="w-5 h-5 text-syntax-green mr-2" />
-            <span className="text-dev-text font-semibold">About Me</span>
-          </motion.div>
+          <p className="kicker mb-5">{s.kicker}</p>
 
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text"
+            className="title mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            From Academic Excellence to
+            {s.title}
             <br />
-            <span className="bg-gradient-to-r from-syntax-green via-syntax-blue to-syntax-purple bg-clip-text text-transparent">
-              Startup Success
-            </span>
+            <span className="mark">{s.titleMark}</span>
           </motion.h2>
         </motion.div>
 
@@ -109,97 +101,47 @@ export default function AboutHighlight() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {/* Profile Image */}
-          <motion.div className="relative" variants={itemVariants}>
-            <div className="relative w-80 h-80 sm:w-96 sm:h-96 mx-auto">
-              {/* Animated Background Ring */}
-              <motion.div
-                className="absolute inset-0 rounded-full opacity-40"
-                style={{
-                  background: "conic-gradient(from 0deg, #98c379, #61afef, #c678dd, #d19a66, #98c379)",
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+          {/* Profile image — 2026-11-07 redesign: the rotating rainbow ring and the four emoji badges were removed
+              (continuous animation; badge labels repeated unverified claims). */}
+          <motion.div className="relative isolate mx-auto w-full max-w-[20rem] sm:max-w-sm" variants={itemVariants}>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-card border border-line bg-surface shadow-lift">
+              <Image
+                src="/myimage.jpeg"
+                alt={t.common.photoAlt}
+                fill
+                sizes="(min-width: 640px) 24rem, 20rem"
+                className="object-cover"
               />
-
-              {/* Profile Image */}
-              <motion.div
-                className="absolute inset-8 bg-dark-bg-secondary rounded-full shadow-dev-lg overflow-hidden border-4 border-dark-border/50 backdrop-blur-sm"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <Image
-                  src="/myimage.jpeg"
-                  alt="Abdulrahman Gaoba - Full Stack Software Engineer"
-                  width={320}
-                  height={320}
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-                  priority
-                />
-              </motion.div>
-
-              {/* Achievement Badges */}
-              {[
-                { icon: "🎓", position: "top-8 -left-8", label: "4.8/5 GPA" },
-                { icon: "🚀", position: "top-16 -right-8", label: "Startup Founder" },
-                { icon: "💼", position: "bottom-16 -left-12", label: "5+ Years Exp" },
-                { icon: "⚡", position: "bottom-8 -right-4", label: "React Expert" },
-              ].map((badge, index) => (
-                <motion.div
-                  key={index}
-                  className={`absolute ${badge.position} group cursor-pointer`}
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: index * 0.2 + 1, duration: 0.5 }}
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="bg-dark-bg-secondary/90 backdrop-blur-sm p-3 rounded-2xl shadow-dev-md border border-dark-border/50 group-hover:shadow-dev-lg transition-all duration-300">
-                    <div className="text-2xl">{badge.icon}</div>
-                  </div>
-                </motion.div>
-              ))}
             </div>
+            <div aria-hidden="true" className="absolute -bottom-3 -end-3 -z-10 h-full w-full rounded-card bg-brand" />
           </motion.div>
 
           {/* Content */}
           <motion.div className="space-y-6" variants={itemVariants}>
             <div className="space-y-4">
-              <motion.div
-                className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-syntax-green/20 to-syntax-blue/20 text-syntax-green rounded-full text-sm font-semibold"
-                whileHover={{ scale: 1.05 }}
-              >
-                <Sparkles className="w-4 h-4 mr-2" />
-                Full Stack Software Engineer & Startup Founder
-              </motion.div>
+              <p className="chip bg-surface">{t.common.role}</p>
 
-              <h3 className="text-3xl md:text-4xl font-bold text-dev-text leading-tight">
-                Transforming Ideas Into
-                <span className="bg-gradient-to-r from-syntax-green to-syntax-blue bg-clip-text text-transparent">
-                  {" "}
-                  Digital Excellence
-                </span>
+              <h3 className="text-3xl font-bold leading-tight tracking-tight text-fg md:text-4xl">
+                {s.subtitle} <span className="mark">{s.subtitleMark}</span>
               </h3>
 
               <div className="space-y-4 text-lg text-dev-text-muted leading-relaxed">
-                <p>
-                  Honors Software Engineering graduate (GPA 4.8) with strong full-stack skills and over a year of experience creating responsive, user-centered web applications. Skilled in building seamless front-end interfaces and robust back-end systems to deliver high-quality, scalable solutions.
-                </p>
+                <p>{s.p1}</p>
 
                 <p>
-                  As the founder of <span className="font-semibold text-syntax-purple">Naqla Tech</span>, I have built a technology startup that delivers complete digital solutions — including full-stack web applications, mobile apps, backend systems, bots, and AI automation tools. At Naqla Tech, we focus on transforming complex business needs into elegant, functional digital products using modern technologies such as React, Next.js, Tailwind CSS, and scalable backend architectures. Our work covers everything from custom app development to intelligent automation workflows that enhance business processes.
+                  {s.p2Before}<span className="font-semibold text-fg-2">Naqla Tech</span>{s.p2After}
                 </p>
               </div>
             </div>
 
             {/* CTA Button */}
-            <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
+            <motion.div whileHover={{ y: -2 }} >
               <Link
-                href="/about"
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
+                href={href("/about")}
+                className="btn btn-ink group"
               >
-                Read My Full Story
-                <ArrowRight className="w-5 h-5 ml-2" />
+                {s.cta}
+                <ArrowRight className="w-5 h-5 rtl:-scale-x-100" />
               </Link>
             </motion.div>
           </motion.div>
@@ -217,15 +159,15 @@ export default function AboutHighlight() {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center bg-dark-bg-secondary/80 backdrop-blur-sm p-6 rounded-2xl shadow-dev-md border border-dark-border/50 hover:shadow-dev-lg transition-all duration-300"
+              className="text-center bg-dark-bg-secondary/80 p-6 rounded-card shadow-dev-md border border-dark-border/50 hover:shadow-dev-lg transition-all duration-300"
               variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
+              whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-r from-syntax-blue to-syntax-green rounded-xl mb-4 text-dark-bg mx-auto">
+              <div className="flex items-center justify-center w-12 h-12 bg-brand hover:bg-brand/90 rounded-xl mb-4 text-on-brand mx-auto">
                 {stat.icon}
               </div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-syntax-green to-syntax-blue bg-clip-text text-transparent mb-2">
+              <div className="text-3xl font-bold text-brand-text mb-2">
                 {stat.number}
               </div>
               <div className="font-semibold text-dev-text mb-1">{stat.label}</div>

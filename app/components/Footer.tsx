@@ -1,173 +1,123 @@
-"use client"
 import Link from "next/link"
-import { motion } from "framer-motion"
-import { Github, Linkedin, Twitter, Mail, MapPin, Phone, MessageCircle } from "lucide-react"
+import { Github, Linkedin, Twitter, Mail, MapPin, Phone, MessageCircle, ArrowUpRight } from "lucide-react"
 import { profile } from "@/content/profile"
+import Logo from "@/components/Logo"
+import type { Messages } from "@/messages/en"
+import { type Locale, localizePath } from "@/lib/i18n/config"
 
-const Footer = () => {
+
+// Server component: the footer has no state, so it no longer ships framer-motion code for a fade-in.
+const Footer = ({ locale, t }: { locale: Locale; t: Messages }) => {
   const currentYear = new Date().getFullYear()
+  const f = t.footer
+  const href = (path: string) => localizePath(locale, path)
+  const quickLinks = [
+    { href: "/about", label: f.links.about },
+    { href: "/projects", label: f.links.projects },
+    { href: "/skills", label: f.links.skills },
+    { href: "/services", label: f.links.services },
+  ]
 
-  const footerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  }
+  const socials = [
+    { href: profile.links.github, label: "GitHub", icon: Github },
+    // Phase 0a: LinkedIn hidden until the right profile URL is confirmed (open question A3).
+    ...(profile.links.linkedin ? [{ href: profile.links.linkedin, label: "LinkedIn", icon: Linkedin }] : []),
+    { href: profile.links.x, label: "X (Twitter)", icon: Twitter },
+  ]
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
-  }
+  const contact = [
+    { icon: Mail, href: `mailto:${profile.email}`, label: profile.email, external: false, ltr: true },
+    { icon: Phone, href: `tel:${profile.phone.tel}`, label: profile.phone.display, external: false, ltr: true },
+    { icon: MapPin, href: "https://maps.google.com/?q=Moscow,Russia", label: t.common.location, external: true, ltr: false },
+    { icon: MessageCircle, href: profile.phone.whatsapp, label: t.contact.whatsappAction, external: true, ltr: false },
+  ]
 
   return (
-    <motion.footer
-      className="bg-dark-bg-secondary text-dev-text-muted py-12 sm:py-16 lg:py-20 border-t border-dark-border"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.3 }}
-      variants={footerVariants}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {/* Brand Info */}
-          <motion.div className="space-y-4" variants={itemVariants}>
-            <Link href="/" className="flex-shrink-0">
-              {/* Phase 0b: logo was an <h1>; now a span (same look). */}
-              <span className="block text-3xl font-bold text-dev-text">
-                Abdulrahman<span className="text-syntax-green">.dev</span>
-              </span>
-            </Link>
-            <p className="text-dev-text-subtle leading-relaxed">
-              Building exceptional web experiences with a focus on performance, scalability, and user satisfaction.
+    <footer className="bg-inverse text-on-inverse">
+      <div className="container-page py-14 sm:py-16">
+        {/* CTA strip */}
+        <div className="flex flex-col gap-6 border-b border-on-inverse/15 pb-12 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-on-inverse/60">
+              {f.kicker}
             </p>
-            <div className="flex space-x-4">
-              <a
-                href={profile.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full text-dev-text-muted hover:text-dev-text hover:bg-dark-bg-tertiary transition-colors duration-200"
-                aria-label="GitHub"
-              >
-                <Github className="w-6 h-6" />
-              </a>
-              {/* Phase 0a: LinkedIn hidden until the right profile URL is confirmed (open question A3). */}
-              {profile.links.linkedin && (
-                <a
-                  href={profile.links.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2 rounded-full text-dev-text-muted hover:text-syntax-blue hover:bg-dark-bg-tertiary transition-colors duration-200"
-                  aria-label="LinkedIn"
-                >
-                  <Linkedin className="w-6 h-6" />
-                </a>
-                )}
-              <a
-                href={profile.links.x}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full text-dev-text-muted hover:text-syntax-cyan hover:bg-dark-bg-tertiary transition-colors duration-200"
-                aria-label="X (Twitter)"
-              >
-                <Twitter className="w-6 h-6" />
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Quick Links */}
-          <motion.div className="space-y-4" variants={itemVariants}>
-            <h3 className="text-xl font-semibold text-dev-text mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/about"
-                  className="text-dev-text-muted hover:text-syntax-green transition-colors duration-200"
-                >
-                  About Me
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/projects"
-                  className="text-dev-text-muted hover:text-syntax-green transition-colors duration-200"
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/skills"
-                  className="text-dev-text-muted hover:text-syntax-green transition-colors duration-200"
-                >
-                  Skills & Certifications
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-dev-text-muted hover:text-syntax-green transition-colors duration-200"
-                >
-                  Services
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-
-          {/* Contact Info */}
-          <motion.div className="space-y-4" variants={itemVariants}>
-            <h3 className="text-xl font-semibold text-dev-text mb-4">Contact Info</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center">
-                <Mail className="w-5 h-5 text-syntax-green mr-3" />
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="text-dev-text-muted hover:text-syntax-green transition-colors duration-200"
-                >
-                  {profile.email}
-                </a>
-              </li>
-              <li className="flex items-center">
-                <Phone className="w-5 h-5 text-syntax-blue mr-3" />
-                <a
-                  href={`tel:${profile.phone.tel}`}
-                  className="text-dev-text-muted hover:text-syntax-blue transition-colors duration-200"
-                >
-                  {profile.phone.display}
-                </a>
-              </li>
-              <li className="flex items-center">
-                <MapPin className="w-5 h-5 text-syntax-purple mr-3" />
-                <a
-                  href="https://maps.google.com/?q=Moscow,Russia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dev-text-muted hover:text-syntax-purple transition-colors duration-200"
-                >
-                  Moscow, Russia
-                </a>
-              </li>
-              <li className="flex items-center">
-                <MessageCircle className="w-5 h-5 text-syntax-cyan mr-3" />
-                <a
-                  href={profile.phone.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-dev-text-muted hover:text-syntax-cyan transition-colors duration-200"
-                >
-                  Chat on WhatsApp
-                </a>
-              </li>
-            </ul>
-          </motion.div>
+            <p className="mt-3 max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+              {f.titleBefore}<span className="text-brand">{f.titleAccent}</span>{f.titleAfter}
+            </p>
+          </div>
+          <Link href={href("/contact")} className="btn btn-brand self-start md:self-auto">
+            {f.cta}
+            <ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" />
+          </Link>
         </div>
 
-        {/* Copyright */}
-        <motion.div
-          className="border-t border-dark-border mt-12 pt-8 text-center text-dev-text-subtle text-sm"
-          variants={itemVariants}
-        >
-          &copy; {currentYear} Abdulrahman Gaoba. All rights reserved.
-        </motion.div>
+        <div className="grid gap-10 pt-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr]">
+          <div className="space-y-4">
+            <Link href={href("/")} className="inline-block rounded-full" aria-label={t.nav.homeLabel}>
+              <Logo inverted />
+            </Link>
+            <p className="max-w-sm leading-relaxed text-on-inverse/70">
+              {f.tagline}
+            </p>
+            <div className="flex gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
+                  className="grid h-11 w-11 place-items-center rounded-full border border-on-inverse/20 text-on-inverse/80 transition-colors hover:border-on-inverse hover:text-on-inverse"
+                >
+                  <s.icon className="h-[18px] w-[18px]" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-on-inverse/60">
+              {f.quickLinks}
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {quickLinks.map((l) => (
+                <li key={l.href}>
+                  <Link href={href(l.href)} className="text-on-inverse/80 transition-colors hover:text-on-inverse">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-on-inverse/60">
+              {f.contactInfo}
+            </h3>
+            <ul className="mt-4 space-y-3">
+              {contact.map((c) => (
+                <li key={c.label} className="flex items-center gap-3">
+                  <c.icon className="h-[18px] w-[18px] flex-none text-brand" aria-hidden="true" />
+                  <a
+                    href={c.href}
+                    {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                    dir={c.ltr ? "ltr" : undefined}
+                    className="break-all text-on-inverse/80 transition-colors hover:text-on-inverse"
+                  >
+                    {c.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <div className="mt-12 flex flex-col gap-2 border-t border-on-inverse/15 pt-6 text-sm text-on-inverse/60 sm:flex-row sm:justify-between">
+          <span>&copy; {currentYear} {f.copyright}</span>
+          <span className="font-mono text-xs">gaoba.vercel.app</span>
+        </div>
       </div>
-    </motion.footer>
+    </footer>
   )
 }
 

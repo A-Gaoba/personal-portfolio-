@@ -8,9 +8,12 @@ import { ExternalLink, Github, ArrowRight, Star, TrendingUp, Code } from 'lucide
 import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 import { withoutUnverifiedClaims } from "@/lib/claims"
 import { verifiedLiveUrl, verifiedRepoUrl } from "@/lib/verified-links"
+import { useI18n, localizeItems } from "@/components/i18n/I18nProvider"
 
 export default function ProjectsHighlight() {
-  const featuredProjects = [
+  const { t, href } = useI18n()
+  const s = t.home.projects
+  const projectsEn = [
     {
       id: 1,
       title: "Naqla Tech Logistics Platform",
@@ -51,6 +54,8 @@ export default function ProjectsHighlight() {
       featured: false,
     },
   ]
+  // English text above is the source; other languages overlay title/subtitle/description by id.
+  const featuredProjects = localizeItems(projectsEn, "id", s.overlay)
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -70,7 +75,7 @@ export default function ProjectsHighlight() {
       y: 0,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
       },
     },
   }
@@ -82,8 +87,6 @@ export default function ProjectsHighlight() {
     >
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-40 left-20 w-96 h-96 bg-syntax-green/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-40 right-20 w-[500px] h-[500px] bg-syntax-blue/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -95,37 +98,28 @@ export default function ProjectsHighlight() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div
-            className="inline-flex items-center px-6 py-3 bg-dark-bg-secondary/80 backdrop-blur-sm border border-dark-border rounded-full mb-6"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            <Code className="w-5 h-5 text-syntax-green mr-2" />
-            <span className="text-dev-text font-semibold">Featured Work</span>
-          </motion.div>
+          <p className="kicker mb-5">{s.kicker}</p>
 
           <motion.h2
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text"
+            className="title mb-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            Transforming Ideas Into
+            {s.title}
             <br />
-            <span className="bg-gradient-to-r from-syntax-green via-syntax-blue to-syntax-purple bg-clip-text text-transparent">
-              Digital Excellence
-            </span>
+            <span className="mark">{s.titleMark}</span>
           </motion.h2>
 
           <motion.p
-            className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto leading-relaxed"
+            className="lede mx-auto max-w-2xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true, amount: 0.3 }}
           >
-            Showcasing high-impact projects that demonstrate technical expertise and measurable business results.
+            {s.lede}
           </motion.p>
         </motion.div>
 
@@ -142,17 +136,17 @@ export default function ProjectsHighlight() {
               key={project.id}
               className={`group relative ${project.featured ? "lg:col-span-2" : ""}`}
               variants={itemVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
+              whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
-              <div className="bg-dark-bg-secondary/90 backdrop-blur-sm rounded-3xl shadow-dev-xl border border-dark-border overflow-hidden group-hover:shadow-dev-lg transition-all duration-500">
+              <div className="bg-dark-bg-secondary/90 rounded-card shadow-dev-xl border border-dark-border overflow-hidden group-hover:shadow-dev-lg transition-all duration-500">
                 {/* Project Image */}
                 <div className="relative h-64 md:h-80 overflow-hidden">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={`${project.title} - ${project.subtitle}`}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="object-cover transition-transform duration-700"
                   />
 
                   {/* Overlay */}
@@ -161,27 +155,27 @@ export default function ProjectsHighlight() {
                   {/* Featured Badge */}
                   {project.featured && (
                     <div className="absolute top-4 left-4">
-                      <div className="flex items-center px-3 py-1 bg-gradient-to-r from-syntax-orange to-syntax-pink text-dark-bg rounded-full text-sm font-semibold">
-                        <Star className="w-4 h-4 mr-1" />
-                        Featured
+                      <div className="flex items-center px-3 py-1 bg-brand hover:bg-brand/90 text-on-brand rounded-full text-sm font-semibold">
+                        <Star className="w-4 h-4 me-1" />
+                        {t.common.featured}
                       </div>
                     </div>
                   )}
 
                   {/* Hover Actions — Phase 0a: only links verified on 2026-11-07 (lib/verified-links.ts). */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="flex space-x-4">
+                    <div className="flex gap-4">
                       {verifiedLiveUrl(project.liveUrl) && (
                       <motion.a
                         href={verifiedLiveUrl(project.liveUrl)!}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 bg-dark-bg-secondary/90 backdrop-blur-sm text-dev-text rounded-xl font-semibold hover:bg-dark-bg-tertiary transition-colors duration-200"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        className="px-6 py-3 bg-dark-bg-secondary/90 text-dev-text rounded-xl font-semibold hover:bg-dark-bg-tertiary transition-colors duration-200"
+                        
+                        
                       >
-                        <ExternalLink className="w-5 h-5 mr-2 inline" />
-                        View Live
+                        <ExternalLink className="w-5 h-5 me-2 inline" />
+                        {s.viewLive}
                       </motion.a>
                       )}
                       {verifiedRepoUrl(project.githubUrl) && (
@@ -189,9 +183,10 @@ export default function ProjectsHighlight() {
                         href={verifiedRepoUrl(project.githubUrl)!}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-3 bg-dark-bg-secondary/90 backdrop-blur-sm rounded-xl hover:bg-dark-bg-tertiary transition-colors duration-200"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                        aria-label={t.common.sourceCode}
+                        className="p-3 bg-dark-bg-secondary/90 rounded-xl hover:bg-dark-bg-tertiary transition-colors duration-200"
+                        
+                        
                       >
                         <Github className="w-5 h-5 text-dev-text" />
                       </motion.a>
@@ -203,7 +198,7 @@ export default function ProjectsHighlight() {
                 {/* Project Content */}
                 <div className="p-8">
                   <div className="mb-4">
-                    <h3 className="text-2xl md:text-3xl font-bold text-dev-text mb-2 group-hover:text-syntax-green transition-colors duration-300">
+                    <h3 className="text-2xl md:text-3xl font-bold text-dev-text mb-2 group-hover:text-brand-text transition-colors duration-300">
                       {project.title}
                     </h3>
                     <p className="text-lg text-dev-text-muted mb-4">{project.subtitle}</p>
@@ -216,7 +211,7 @@ export default function ProjectsHighlight() {
                       {project.technologies.map((tech, techIndex) => (
                         <span
                           key={techIndex}
-                          className="px-3 py-1 bg-dark-bg-tertiary text-dev-text-muted text-sm rounded-full hover:bg-dark-bg-secondary hover:text-syntax-blue transition-colors duration-200"
+                          className="px-3 py-1 bg-dark-bg-tertiary text-dev-text-muted text-sm rounded-full hover:bg-dark-bg-secondary hover:text-brand-text transition-colors duration-200"
                         >
                           {tech}
                         </span>
@@ -230,9 +225,9 @@ export default function ProjectsHighlight() {
                     {project.metrics.map((metric, metricIndex) => (
                       <div
                         key={metricIndex}
-                        className="text-center p-3 bg-gradient-to-r from-syntax-blue/10 to-syntax-green/10 rounded-lg"
+                        className="text-center p-3 bg-surface-2 rounded-lg"
                       >
-                        <TrendingUp className="w-4 h-4 text-syntax-green mx-auto mb-1" />
+                        <TrendingUp className="w-4 h-4 text-brand-text mx-auto mb-1" />
                         <span className="text-sm text-dev-text font-medium">{metric}</span>
                       </div>
                     ))}
@@ -252,13 +247,13 @@ export default function ProjectsHighlight() {
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div whileHover={{ scale: 1.05, y: -2 }} whileTap={{ scale: 0.98 }}>
+          <motion.div whileHover={{ y: -2 }} >
             <Link
-              href="/projects"
-              className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
+              href={href("/projects")}
+              className="btn btn-brand"
             >
-              View All Projects & Case Studies
-              <ArrowRight className="w-5 h-5 ml-2" />
+              {s.cta}
+              <ArrowRight className="w-5 h-5 rtl:-scale-x-100" />
             </Link>
           </motion.div>
         </motion.div>

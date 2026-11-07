@@ -1,8 +1,6 @@
 import { ImageResponse } from "next/og"
 
-// Phase 0b (2026-11-07): replaces /og-image.jpg, which the metadata referenced but which never existed (404).
-// Uses the site's CURRENT colours (dark bg, green ".dev" accent from the navbar logo) on purpose: the GAOBA
-// Editorial identity is applied in Phase 1, after review. Text only, no claims.
+// Site Open Graph image in the GAOBA Editorial identity (ivory canvas, ink text, one red marker). Text only, no claims.
 export const alt = "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer"
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
@@ -16,23 +14,42 @@ export default function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
+          justifyContent: "space-between",
           padding: "80px 96px",
-          background: "#1E1E1E",
-          color: "#D4D4D4",
+          background: "#ECE8DF",
+          color: "#141414",
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", fontSize: 40, fontWeight: 700, color: "#D4D4D4" }}>
-          Abdulrahman<span style={{ color: "#98C379" }}>.dev</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div
+            style={{
+              display: "flex",
+              width: 64,
+              height: 64,
+              borderRadius: 32,
+              background: "#141414",
+              color: "#ECE8DF",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: 26,
+              fontWeight: 700,
+            }}
+          >
+            AG
+          </div>
+          <div style={{ display: "flex", fontSize: 26, color: "#6B655B", letterSpacing: 4 }}>PORTFOLIO</div>
         </div>
-        <div style={{ display: "flex", fontSize: 76, fontWeight: 700, marginTop: 36, lineHeight: 1.1, color: "#F5F5F5" }}>
-          Abdulrahman Gaoba
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ display: "flex", fontSize: 92, fontWeight: 700, lineHeight: 1.05, letterSpacing: -2 }}>
+            Abdulrahman Gaoba
+          </div>
+          <div style={{ display: "flex", width: 220, height: 12, background: "#FF4A1C", marginTop: 20, borderRadius: 3 }} />
+          <div style={{ display: "flex", fontSize: 40, marginTop: 32, color: "#4A463F" }}>
+            Full Stack Developer &amp; UI/UX Designer
+          </div>
         </div>
-        <div style={{ display: "flex", fontSize: 40, marginTop: 20, color: "#98C379" }}>
-          Full Stack Developer &amp; UI/UX Designer
-        </div>
-        <div style={{ display: "flex", fontSize: 28, marginTop: 56, color: "#858585" }}>gaoba.vercel.app</div>
+        <div style={{ display: "flex", fontSize: 26, color: "#6B655B" }}>gaoba.vercel.app</div>
       </div>
     ),
     size,

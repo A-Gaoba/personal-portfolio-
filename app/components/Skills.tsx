@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Code, Database, GitBranch, Zap, ShieldCheck, Server } from "lucide-react"
+import { useI18n } from "@/components/i18n/I18nProvider"
 
 const SHOW_CERT_ICONS = false
 
@@ -53,16 +54,18 @@ const certifications = [
 // were empty) while "Languages", "Tools" and "Practices" were never shown (13 skills hidden). The cards now use
 // exactly the categories of skillsData; no skill was added or removed.
 const categories = [
-  { name: "Languages", icon: Code, color: "text-syntax-blue" },
-  { name: "Frontend", icon: Code, color: "text-syntax-cyan" },
-  { name: "Backend", icon: Server, color: "text-syntax-green" },
-  { name: "Database", icon: Database, color: "text-syntax-purple" },
-  { name: "Tools", icon: GitBranch, color: "text-syntax-orange" },
-  { name: "Testing", icon: Zap, color: "text-syntax-pink" },
-  { name: "Practices", icon: ShieldCheck, color: "text-syntax-red" },
+  { name: "Languages", icon: Code, color: "text-brand-text" },
+  { name: "Frontend", icon: Code, color: "text-fg-2" },
+  { name: "Backend", icon: Server, color: "text-brand-text" },
+  { name: "Database", icon: Database, color: "text-fg-2" },
+  { name: "Tools", icon: GitBranch, color: "text-brand-text" },
+  { name: "Testing", icon: Zap, color: "text-fg-2" },
+  { name: "Practices", icon: ShieldCheck, color: "text-brand-text" },
 ]
 
 export default function Skills() {
+  const { t } = useI18n()
+  const k = t.skills
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -83,18 +86,18 @@ export default function Skills() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           {/* Phase 0b: the page's main heading is now its <h1> (same classes). */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
-            {/* Phase 0a: was .text-gradient-syntax, which rendered transparent (undefined CSS variables). */}
-            My <span className="text-syntax-green">Skills</span> & Expertise
+          <p className="kicker mb-5">{k.kicker}</p>
+          <h1 className="display mb-6">
+            {k.titleBefore}<span className="mark">{k.titleMark}</span>{k.titleAfter}
           </h1>
-          <p className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto leading-relaxed">
-            A comprehensive overview of my technical proficiencies and certifications.
+          <p className="lede mx-auto max-w-2xl">
+            {k.lede}
           </p>
         </div>
 
         {/* Skills by Category */}
         <div className="mb-16">
-          <h3 className="text-3xl md:text-4xl font-bold text-dev-text text-center mb-10">Technical Stack</h3>
+          <h3 className="text-3xl md:text-4xl font-bold text-dev-text text-center mb-10">{k.stack}</h3>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             variants={containerVariants}
@@ -105,14 +108,14 @@ export default function Skills() {
             {categories.map((category) => (
               <motion.div
                 key={category.name}
-                className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6 hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
+                className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border p-6 hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
                 variants={itemVariants}
               >
                 <div className="flex items-center mb-6">
-                  <div className={`p-3 rounded-lg ${category.color} bg-dark-bg-tertiary mr-4`}>
+                  <div className={`p-3 rounded-lg ${category.color} bg-dark-bg-tertiary me-4`}>
                     <category.icon className="w-6 h-6" />
                   </div>
-                  <h4 className="text-xl font-bold text-dev-text">{category.name}</h4>
+                  <h4 className="text-xl font-bold text-dev-text">{k.categories[category.name as keyof typeof k.categories] ?? category.name}</h4>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {skillsData
@@ -120,7 +123,8 @@ export default function Skills() {
                     .map((skill, skillIndex) => (
                       <span
                         key={skillIndex}
-                        className="px-4 py-2 bg-dark-bg-tertiary text-dev-text-muted text-sm rounded-full font-mono hover:text-syntax-blue hover:border-syntax-blue transition-colors duration-200 border border-transparent"
+                        dir="ltr"
+                        className="px-4 py-2 bg-dark-bg-tertiary text-dev-text-muted text-sm rounded-full font-mono hover:text-brand-text hover:border-syntax-blue transition-colors duration-200 border border-transparent"
                       >
                         {skill.name}
                       </span>
@@ -133,7 +137,7 @@ export default function Skills() {
 
         {/* Certifications */}
         <div>
-          <h3 className="text-3xl md:text-4xl font-bold text-dev-text text-center mb-10">Certifications</h3>
+          <h3 className="text-3xl md:text-4xl font-bold text-dev-text text-center mb-10">{k.certifications}</h3>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             variants={containerVariants}
@@ -144,7 +148,7 @@ export default function Skills() {
             {certifications.map((cert, index) => (
               <motion.div
                 key={index}
-                className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6 flex items-center space-x-4 hover:shadow-dev-lg hover:border-syntax-green transition-all duration-300"
+                className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border p-6 flex items-center gap-4 hover:shadow-dev-lg hover:border-syntax-green transition-all duration-300"
                 variants={itemVariants}
               >
                 {/* Phase 0a: the icon files (/icons/ai.svg, /icons/data-analytics.svg) do not exist in public/, so the
@@ -159,8 +163,8 @@ export default function Skills() {
                   />
                 )}
                 <div>
-                  <h4 className="text-lg font-bold text-dev-text">{cert.name}</h4>
-                  <p className="text-dev-text-muted text-sm">{cert.issuer}</p>
+                  <h4 className="text-lg font-bold text-dev-text">{k.certs[index]?.name ?? cert.name}</h4>
+                  <p className="text-dev-text-muted text-sm">{k.certs[index]?.issuer ?? cert.issuer}</p>
                   <p className="text-dev-text-subtle text-xs">{cert.date}</p>
                 </div>
               </motion.div>
