@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GAOBA Visual Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=Martian+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens: 04-gaoba-ai-resources.md § 9.5 (primitives = brand.ts of gaoba-edu-reel-v3) ── */
+:root{
+  --gaoba-ivory-50:#F3F0E8; --gaoba-ivory-100:#ECE8DF; --gaoba-ivory-200:#E2DDD1; --gaoba-paper:#FBF9F4;
+  --gaoba-ink-900:#141414; --gaoba-ink-800:#1F1E1C; --gaoba-ink-600:#4A463F; --gaoba-ink-500:#6B655B; --gaoba-ink-300:#A8A196;
+  --gaoba-red-500:#FF4A1C; --gaoba-red-700:#B8320E;
+
+  --background:var(--gaoba-ivory-100); --background-raised:var(--gaoba-ivory-50); --surface:var(--gaoba-paper);
+  --surface-inverse:var(--gaoba-ink-900); --text:var(--gaoba-ink-900); --text-secondary:var(--gaoba-ink-600);
+  --text-muted:var(--gaoba-ink-500); --text-on-inverse:var(--gaoba-ivory-100); --accent:var(--gaoba-red-500);
+  --accent-text:var(--gaoba-red-700); --accent-tint:rgba(255,74,28,.12); --on-accent:var(--gaoba-ink-900);
+  --border:rgba(20,20,20,.14); --border-strong:rgba(20,20,20,.28); --grid:rgba(20,20,20,.06);
+  --shadow-paper:0 20px 40px rgba(80,58,30,.16), 0 4px 10px rgba(80,58,30,.08);
+  --radius-card:20px; --radius-control:12px;
+  --font-sans:"Readex Pro",system-ui,sans-serif; --font-mono:"Martian Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+/* Decision (2026-11-07): light is the default for every visitor; dark only when chosen with the toggle. */
+:root[data-theme="dark"]{
+  --background:#141414; --background-raised:#1A1918; --surface:#1F1E1C; --surface-inverse:#FBF9F4;
+  --text:#ECE8DF; --text-secondary:#CFC9BD; --text-muted:#A8A196; --text-on-inverse:#141414;
+  --accent-text:#FF4A1C; --accent-tint:rgba(255,74,28,.18); --border:rgba(236,232,223,.14);
+  --border-strong:rgba(236,232,223,.28); --grid:rgba(236,232,223,.05); --shadow-paper:0 20px 40px rgba(0,0,0,.45);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--background);color:var(--text);font-family:var(--font-sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.mono{font-family:var(--font-mono);direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:1240px;margin:0 auto;padding:32px 16px 80px}
+
+/* Doc chrome (not part of the design) */
+.doc-head{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:32px}
+.doc-head h1{font-size:clamp(24px,4vw,34px);font-weight:700;line-height:1.2}
+.doc-head p{color:var(--text-secondary);max-width:62ch;font-size:15px}
+.toggle{font:600 14px var(--font-sans);border:1px solid var(--border-strong);background:var(--surface);color:var(--text);border-radius:999px;padding:8px 16px;cursor:pointer}
+.label{font:600 12px var(--font-mono);letter-spacing:.04em;color:var(--text-muted);text-transform:uppercase;margin:40px 0 12px;direction:ltr;text-align:right}
+.note{font-size:13px;color:var(--text-muted);margin-top:10px}
+
+/* Shared components */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:var(--radius-control);font:600 15px var(--font-sans);border:1.5px solid transparent;cursor:pointer;white-space:nowrap}
+.btn-accent{background:var(--accent);color:var(--on-accent)}
+.btn-ink{background:var(--surface-inverse);color:var(--text-on-inverse)}
+.btn-line{border-color:var(--border-strong);color:var(--text);background:transparent}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-card);box-shadow:var(--shadow-paper)}
+.chip{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--border-strong);font-size:14px;font-weight:500;white-space:nowrap;background:transparent;color:var(--text)}
+.chip.on{background:var(--surface-inverse);color:var(--text-on-inverse);border-color:transparent}
+.tag{font:600 12px var(--font-sans);color:var(--text-muted);display:flex;gap:6px;align-items:center}
+.tag i{width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block}
+.pick{position:relative;white-space:nowrap}
+.pick::after{content:"";position:absolute;inset-inline:0;bottom:.04em;height:.12em;background:var(--accent);border-radius:2px}
+.paper-grid{background-image:linear-gradient(to left,var(--grid) 1px,transparent 1px);background-size:calc(100%/6) 100%}
+
+/* ── Desktop home (English, LTR) ── */
+.browser{border-radius:16px;overflow:hidden;border:1px solid var(--border-strong);background:var(--background)}
+.browser-bar{display:flex;gap:6px;align-items:center;padding:10px 14px;background:var(--background-raised);border-bottom:1px solid var(--border);direction:ltr}
+.browser-bar b{width:10px;height:10px;border-radius:50%;background:var(--border-strong)}
+.browser-bar span{margin-left:12px;font:12px var(--font-mono);color:var(--text-muted)}
+.home{direction:ltr;text-align:left}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;gap:20px}
+.nav .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+.avatar{width:34px;height:34px;border-radius:50%;background:var(--surface-inverse);color:var(--text-on-inverse);display:grid;place-items:center;font-size:13px;font-weight:700;box-shadow:0 0 0 2px var(--surface),0 0 0 3.5px var(--text);flex:none}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:15px;color:var(--text-secondary)}
+.hero{padding:56px 40px 64px;display:grid;grid-template-columns:1.35fr 1fr;gap:48px;align-items:center}
+.hero h2{font-size:clamp(34px,4.6vw,58px);line-height:1.08;font-weight:700;letter-spacing:-.02em}
+.hero .sub{margin-top:18px;color:var(--text-secondary);font-size:18px;max-width:46ch}
+.hero .ctas{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;align-items:center}
+.hero .cv{font-size:14px;color:var(--text-secondary);border-bottom:1px solid var(--border-strong);padding-bottom:2px;margin-left:6px}
+.proof{padding:22px}
+.proof .shot{aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,var(--gaoba-ivory-200),var(--gaoba-ivory-50));display:grid;place-items:center;color:var(--gaoba-ink-500);font:12px var(--font-mono);border:1px solid var(--border)}
+.proof h4{margin-top:14px;font-size:16px}
+.proof p{font-size:13px;color:var(--text-muted)}
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 40px 56px}
+.path{padding:22px}
+.path small{font:600 11px var(--font-mono);color:var(--text-muted);letter-spacing:.06em;text-transform:uppercase}
+.path h3{font-size:20px;margin:6px 0 6px}
+.path p{font-size:14px;color:var(--text-secondary)}
+.path .go{margin-top:14px;font-weight:600;font-size:14px;display:inline-flex;gap:6px}
+.path.ig .go{color:var(--accent-text)}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;padding:0 40px 18px}
+.section-h h3{font-size:26px}
+.section-h a{font-size:14px;color:var(--text-secondary)}
+.work{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 40px 56px}
+.work .card{overflow:hidden}
+.work .img{aspect-ratio:16/10;background:linear-gradient(160deg,var(--gaoba-ivory-200),var(--gaoba-paper));border-bottom:1px solid var(--border);display:grid;place-items:center;font:11px var(--font-mono);color:var(--gaoba-ink-500)}
+.work .body{padding:16px 18px 18px}
+.work h4{font-size:17px}
+.work p{font-size:13px;color:var(--text-muted);margin-top:2px}
+.stack{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.stack span{font:11px var(--font-mono);color:var(--text-secondary);border:1px solid var(--border);border-radius:6px;padding:2px 6px}
+.ink-band{background:var(--surface-inverse);color:var(--text-on-inverse);padding:44px 40px;display:grid;grid-template-columns:1fr 1.6fr;gap:32px;align-items:center}
+.ink-band h3{font-size:28px;line-height:1.2}
+.ink-band p{opacity:.75;margin-top:8px;font-size:15px}
+.ink-band .mini{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;direction:rtl;text-align:right}
+.ink-band .mini div{border:1px solid color-mix(in srgb,var(--text-on-inverse) 22%,transparent);border-radius:14px;padding:14px}
+.ink-band .mini b{display:block;font-size:14px;line-height:1.4}
+.ink-band .mini small{font-size:12px;opacity:.65}
+.foot{display:flex;justify-content:space-between;padding:28px 40px;font-size:14px;color:var(--text-muted);border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
+
+/* ── Phones (Arabic, RTL) ── */
+.phones{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;align-items:start}
+.phone{border:10px solid var(--gaoba-ink-900);border-radius:42px;overflow:hidden;background:var(--background);max-width:390px;width:100%;margin-inline:auto;box-shadow:var(--shadow-paper)}
+:root[data-theme="dark"] .phone{border-color:#2A2826}
+.ph-cap{text-align:center;margin-top:10px;font-weight:600;font-size:14px;font-family:var(--font-mono);direction:ltr}
+.list small{direction:ltr;unicode-bidi:isolate}
+.ph-sub{text-align:center;font-size:12px;color:var(--text-muted)}
+.scr{height:720px;overflow:auto;padding:0 16px 24px}
+.scr::-webkit-scrollbar{display:none}
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 0 12px;position:sticky;top:0;background:var(--background);z-index:2}
+.handle{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;direction:ltr}
+.scr h2{font-size:26px;line-height:1.25;margin-top:6px}
+.scr .lede{color:var(--text-secondary);font-size:14px;margin-top:4px}
+.search{display:flex;align-items:center;gap:8px;margin-top:16px;background:var(--surface);border:1px solid var(--border-strong);border-radius:var(--radius-control);min-height:48px;padding:0 14px;color:var(--text-muted);font-size:14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 0 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.res{padding:16px;margin-top:12px}
+.res h3{font-size:17px;line-height:1.35;margin:6px 0 4px}
+.res p{font-size:13px;color:var(--text-secondary)}
+.res .reel{font-size:12px;color:var(--text-muted);margin-top:8px;display:flex;align-items:center;gap:6px}
+.res .acts{display:flex;gap:8px;margin-top:12px}
+.res .acts .btn{min-height:44px;font-size:14px;padding:0 14px;flex:1}
+.new{display:inline-block;background:var(--accent-tint);color:var(--accent-text);font-size:11px;font-weight:700;border-radius:6px;padding:1px 7px}
+.prompt{background:var(--surface-inverse);color:var(--text-on-inverse);border-radius:16px;padding:16px;margin-top:10px;position:relative}
+.prompt pre{font:12px/1.7 var(--font-mono);white-space:pre-wrap;direction:ltr;text-align:left;max-height:170px;overflow:hidden;mask-image:linear-gradient(#000 70%,transparent)}
+.prompt pre em{font-style:normal;color:var(--accent)}
+.prompt .btn{width:100%;margin-top:12px}
+.copied{display:flex;align-items:center;justify-content:center;gap:6px;font-size:13px;margin-top:8px;color:var(--text-secondary)}
+.h3{font-size:15px;margin-top:22px;font-weight:700}
+.steps{font-size:14px;color:var(--text-secondary);padding-inline-start:20px;margin-top:6px}
+.file{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 14px;margin-top:8px}
+.file b{font-size:14px}
+.file small{font:11px var(--font-mono);color:var(--text-muted);display:block}
+.reelcard{display:flex;gap:12px;align-items:center;padding:10px;margin-top:14px}
+.thumb{width:56px;aspect-ratio:9/16;border-radius:8px;background:var(--gaoba-ivory-100);border:1px solid var(--border);display:grid;place-items:center;flex:none;position:relative;overflow:hidden}
+.thumb::before{content:"";position:absolute;inset:auto 6px 10px;height:3px;background:var(--gaoba-red-500)}
+.thumb span{font-size:16px;color:var(--gaoba-ink-900)}
+.links-top{text-align:center;padding:28px 0 8px}
+.links-top .avatar{width:84px;height:84px;font-size:26px;margin:0 auto 12px;box-shadow:0 0 0 3px var(--surface),0 0 0 6px var(--text)}
+.links-top h2{font-size:22px}
+.links-top p{font-size:14px;color:var(--text-secondary)}
+.latest{padding:14px;margin-top:18px;border:1.5px solid var(--accent)}
+.stack-btn{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+.stack-btn .btn{width:100%;min-height:54px;font-size:15px}
+.list{margin-top:20px;border-top:1px solid var(--border)}
+.list a{display:flex;justify-content:space-between;align-items:center;padding:13px 2px;border-bottom:1px solid var(--border);font-size:14px}
+.list small{font:11px var(--font-mono);color:var(--text-muted)}
+
+/* Palette strip */
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}
+.sw{border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+.sw div{height:64px}
+.sw p{padding:8px 10px;font-size:12px;background:var(--surface)}
+.sw p b{display:block;font:600 11px var(--font-mono);direction:ltr;text-align:right}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding:36px 20px}
+  .nav{padding:16px 20px}.nav ul{display:none}
+  .paths,.work{grid-template-columns:1fr;padding:0 20px 40px}
+  .section-h{padding:0 20px 14px}
+  .ink-band{grid-template-columns:1fr;padding:32px 20px}
+  .ink-band .mini{grid-template-columns:1fr}
+  .foot{padding:22px 20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="doc-head">
+    <div>
+      <h1>تصور بصري — الموقع بهوية GAOBA Editorial</h1>
+      <p>تطبيق مباشر للـ Design Tokens المقترحة في <span class="mono">04-gaoba-ai-resources.md</span>. النصوص التسويقية مسودات للتوضيح، والموارد أمثلة مبنية على مواضيع Reels موجودة في الـ Skill (password, hallucination, llm). لا أرقام ولا شهادات. هذا الملف مستقل ولا يغيّر الموقع.</p>
+    </div>
+    <button class="toggle" id="themeBtn" type="button">الوضع الداكن / الفاتح</button>
+  </header>
+
+  <!-- Palette -->
+  <div class="label">01 · Palette (from brand.ts + accessible additions)</div>
+  <div class="pal">
+    <div class="sw"><div style="background:#ECE8DF"></div><p>الأرضية العاجية<b>#ECE8DF</b></p></div>
+    <div class="sw"><div style="background:#FBF9F4"></div><p>الورق (البطاقات)<b>#FBF9F4</b></p></div>
+    <div class="sw"><div style="background:#141414"></div><p>الحبر (النص)<b>#141414</b></p></div>
+    <div class="sw"><div style="background:#1F1E1C"></div><p>سطح داكن<b>#1F1E1C</b></p></div>
+    <div class="sw"><div style="background:#FF4A1C"></div><p>الـ pick (تمييز)<b>#FF4A1C</b></p></div>
+    <div class="sw"><div style="background:#B8320E"></div><p>أحمر للنص الصغير<b>#B8320E</b></p></div>
+    <div class="sw"><div style="background:#4A463F"></div><p>نص ثانوي<b>#4A463F</b></p></div>
+    <div class="sw"><div style="background:#6B655B"></div><p>نص خافت<b>#6B655B</b></p></div>
+  </div>
+
+  <!-- Desktop home -->
+  <div class="label">02 · Home — desktop (English first)</div>
+  <div class="browser">
+    <div class="browser-bar"><b></b><b></b><b></b><span>gaoba.vercel.app</span></div>
+    <div class="home">
+      <nav class="nav">
+        <a class="brand" href="#"><span class="avatar">AG</span>Abdulrahman Gaoba</a>
+        <ul><li>Work</li><li>Services</li><li>Resources</li><li>About</li></ul>
+        <a class="btn btn-ink" href="#" style="min-height:40px">Contact</a>
+      </nav>
+      <section class="hero paper-grid">
+        <div>
+          <h2>I build web products, automations and <span class="pick">AI tools</span> that ship.</h2>
+          <p class="sub">Software engineer · MSc Data-Driven Management (RUDN) · creator of GAOBA AI, Arabic education on AI tools.</p>
+          <div class="ctas">
+            <a class="btn btn-accent" href="#">See my work</a>
+            <a class="btn btn-line" href="#">Start a project</a>
+            <a class="cv" href="#">Download CV ↓</a>
+          </div>
+        </div>
+        <div class="card proof">
+          <div class="shot">real project screenshot</div>
+          <h4>Yemen Culture — yemculru.com</h4>
+          <p>Next.js · role · what I built (your words)</p>
+        </div>
+      </section>
+
+      <section class="paths">
+        <a class="card path" href="#"><small>Hiring?</small><h3>Experience &amp; CV</h3><p>Roles, education, stack, and the projects behind them.</p><span class="go">About me →</span></a>
+        <a class="card path" href="#"><small>Need a project?</small><h3>Services</h3><p>Websites, automation and AI workflows, data dashboards.</p><span class="go">How I work →</span></a>
+        <a class="card path ig" href="#"><small>From Instagram?</small><h3 dir="rtl" style="text-align:left">موارد GAOBA AI</h3><p>Prompts, files and tools from the reels. Free.</p><span class="go">Open resources →</span></a>
+      </section>
+
+      <div class="section-h"><h3>Selected work</h3><a href="#">All work →</a></div>
+      <section class="work">
+        <article class="card"><div class="img">yemen.png</div><div class="body"><h4>Yemen Culture</h4><p>Public-sector website · live</p><div class="stack"><span>Next.js</span><span>Tailwind</span></div></div></article>
+        <article class="card"><div class="img">anfasak.png</div><div class="body"><h4>Anfasak Perfumes</h4><p>E-commerce storefront · live</p><div class="stack"><span>Next.js</span><span>TypeScript</span></div></div></article>
+        <article class="card"><div class="img">loqmat-hala.png</div><div class="body"><h4>Loqmat Hala</h4><p>Ordering site · live · public repo</p><div class="stack"><span>React</span><span>Next.js</span></div></div></article>
+      </section>
+
+      <section class="ink-band">
+        <div>
+          <h3>GAOBA AI</h3>
+          <p>Arabic reels on AI tools. Every resource from the videos lives here, ready to copy.</p>
+          <a class="btn btn-accent" href="#" style="margin-top:18px">@a_gaoba.ai resources</a>
+        </div>
+        <div class="mini">
+          <div><small>برومبت · أمان</small><b>فحص قوة كلمة المرور دون كشفها</b></div>
+          <div><small>دليل PDF · Claude</small><b>كيف تكشف هلوسة الذكاء الاصطناعي</b></div>
+          <div><small>دليل · أساسيات</small><b>كيف يتوقع LLM الكلمة التالية</b></div>
+        </div>
+      </section>
+
+      <footer class="foot"><span>© 2026 Abdulrahman Gaoba</span><span>Instagram · GitHub · LinkedIn · Email</span></footer>
+    </div>
+  </div>
+  <p class="note">الأحمر يظهر مرة واحدة لكل شاشة: الخط تحت «AI tools» وزر الـ CTA. بلوك الحبر يُستخدم مرة واحدة فقط (شريط GAOBA AI).</p>
+
+  <!-- Phones -->
+  <div class="label">03 · Mobile — Arabic, RTL (390px)</div>
+  <div class="phones">
+
+    <!-- /resources -->
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="top"><span class="handle"><span class="avatar" style="width:30px;height:30px;font-size:11px">AG</span>@a_gaoba.ai</span><span aria-hidden="true">☰</span></div>
+        <h2>الموارد</h2>
+        <p class="lede">برومبتات وملفات وأدوات من فيديوهاتي، مجانية.</p>
+        <div class="search">🔍 ابحث: برومبت، Claude، أتمتة…</div>
+        <div class="chips"><span class="chip on">الكل</span><span class="chip">برومبتات</span><span class="chip">ملفات</span><span class="chip">Skills</span><span class="chip">قوالب</span></div>
+        <div class="chips" style="padding-top:4px"><span class="chip">أمان</span><span class="chip">Claude</span><span class="chip">ChatGPT</span><span class="chip">أتمتة</span></div>
+
+        <article class="card res">
+          <div class="tag"><i></i>برومبت · أمان <span class="new">جديد</span></div>
+          <h3>فحص قوة كلمة المرور دون كشفها</h3>
+          <p>انسخه في ChatGPT أو Claude ليقيّم نمط كلمة مرورك.</p>
+          <div class="reel">▶ من فيديو <span class="mono">03-11</span></div>
+          <div class="acts"><a class="btn btn-accent" href="#">نسخ البرومبت</a><a class="btn btn-line" href="#">فتح</a></div>
+        </article>
+        <article class="card res">
+          <div class="tag"><i style="background:var(--text)"></i>دليل PDF · Claude</div>
+          <h3>كيف تكشف هلوسة الذكاء الاصطناعي</h3>
+          <p>قائمة تحقق من 5 خطوات قبل أن تثق بالإجابة.</p>
+          <div class="reel">▶ من فيديو <span class="mono">28-10</span></div>
+          <div class="acts"><a class="btn btn-ink" href="#">تنزيل PDF</a><a class="btn btn-line" href="#">فتح</a></div>
+        </article>
+        <article class="card res">
+          <div class="tag"><i style="background:var(--text)"></i>دليل · أساسيات</div>
+          <h3>كيف يتوقع LLM الكلمة التالية</h3>
+          <p>شرح مبسط مع أمثلة جاهزة للتجربة.</p>
+          <div class="acts"><a class="btn btn-line" href="#">فتح</a></div>
+        </article>
+      </div></div>
+      <p class="ph-cap">/resources</p><p class="ph-sub">بحث + فلاتر في الرابط + إجراء مباشر من البطاقة</p>
+    </div>
+
+    <!-- /resources/[slug] -->
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="top"><a href="#" style="font-size:14px;color:var(--text-secondary)">→ الموارد</a><span class="handle" style="font-size:12px">@a_gaoba.ai</span></div>
+        <div class="tag" style="margin-top:4px"><i></i>برومبت · أمان · مجاني</div>
+        <h2>فحص قوة كلمة المرور دون كشفها</h2>
+        <p class="lede">يقيّم <b>نمط</b> كلمة مرورك (الطول، التنوع، التكرار) دون أن تكتبها كاملة.</p>
+
+        <div class="card reelcard"><div class="thumb"><span>▶</span></div><div><b style="font-size:14px">شاهد الفيديو</b><div style="font-size:12px;color:var(--text-muted)">Instagram · <span class="mono">@a_gaoba.ai</span></div></div></div>
+
+        <div class="h3">البرومبت</div>
+        <div class="prompt">
+<pre>You are a password-security reviewer.
+I will describe the PATTERN of my password,
+never the password itself: <em>{length}</em>,
+<em>{character types}</em>, <em>{repeated words}</em>.
+Rate it 1–5, explain the weakest part,
+and suggest a stronger pattern...</pre>
+          <a class="btn btn-accent" href="#">📋 نسخ البرومبت</a>
+        </div>
+        <div class="copied">✓ تم النسخ</div>
+
+        <div class="h3">طريقة الاستخدام</div>
+        <ol class="steps"><li>انسخ البرومبت.</li><li>الصقه في ChatGPT أو Claude.</li><li>استبدل ما بين الأقواس بوصف النمط فقط.</li></ol>
+
+        <div class="h3">الملفات</div>
+        <div class="card file"><div><b>دليل الفيديو</b><small>PDF · resource_guide.pdf</small></div><a class="btn btn-ink" href="#" style="min-height:40px;padding:0 14px;font-size:13px">⬇ تنزيل</a></div>
+
+        <div class="h3">أدوات مذكورة</div>
+        <p style="font-size:14px;margin-top:6px"><a href="#" style="color:var(--accent-text);font-weight:600">ChatGPT ↗</a> · <a href="#" style="color:var(--accent-text);font-weight:600">Claude ↗</a></p>
+
+        <a class="btn btn-line" href="#" style="width:100%;margin-top:20px">مشاركة الرابط</a>
+      </div></div>
+      <p class="ph-cap">/resources/[slug]</p><p class="ph-sub">البرومبت في بلوك حبر LTR + زر نسخ كبير</p>
+    </div>
+
+    <!-- /links -->
+    <div>
+      <div class="phone"><div class="scr">
+        <div class="links-top">
+          <div class="avatar">AG</div>
+          <h2>GAOBA AI</h2>
+          <p class="mono" style="direction:ltr;font-size:13px">@a_gaoba.ai</p>
+          <p>ذكاء اصطناعي بالعربي: أدوات وبرومبتات مجانية</p>
+        </div>
+        <a class="card latest" href="#" style="display:block">
+          <div class="tag"><span class="new">أحدث فيديو</span></div>
+          <h3 style="font-size:17px;margin:8px 0 4px">فحص قوة كلمة المرور دون كشفها</h3>
+          <span class="btn btn-accent" style="width:100%;margin-top:8px">افتح البرومبت ←</span>
+        </a>
+        <div class="stack-btn">
+          <a class="btn btn-ink" href="#">كل الموارد المجانية</a>
+          <a class="btn btn-line" href="#">اطلب مشروعًا أو خدمة</a>
+          <a class="btn btn-line" href="#">أعمالي (Portfolio)</a>
+        </div>
+        <nav class="list" aria-label="آخر الموارد">
+          <a href="#"><span>كيف تكشف هلوسة الذكاء الاصطناعي</span><small>28-10</small></a>
+          <a href="#"><span>كيف يتوقع LLM الكلمة التالية</span><small>20-10</small></a>
+          <a href="#"><span>…</span><small></small></a>
+        </nav>
+      </div></div>
+      <p class="ph-cap">/links</p><p class="ph-sub">رابط البايو: أول شاشة تجيب «أين البرومبت؟»</p>
+    </div>
+
+  </div>
+  <p class="note">«AG» مكان صورتك الرسمية (<span class="mono">creator.png</span> نفسها المستخدمة في ترويسة الفيديوهات). التواريخ والعناوين أمثلة.</p>
+</div>
+<script>
+  // Theme toggle for previewing both modes; preference kept per viewer when storage is available.
+  (function(){
+    var root=document.documentElement, key="gaoba-concept-theme";
+    try{var saved=localStorage.getItem(key); if(saved) root.setAttribute("data-theme",saved);}catch(e){}
+    var q=new URLSearchParams(location.search).get("theme"); if(q==="light"||q==="dark") root.setAttribute("data-theme",q);
+    document.getElementById("themeBtn").addEventListener("click",function(){
+      var cur=root.getAttribute("data-theme") || "light";
+      var next=cur==="dark"?"light":"dark"; root.setAttribute("data-theme",next);
+      try{localStorage.setItem(key,next);}catch(e){}
+    });
+  })();
+</script>
+</body>
+</html>
