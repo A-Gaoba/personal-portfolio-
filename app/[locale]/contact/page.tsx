@@ -35,7 +35,10 @@ export default async function Contact({ params }: PageProps) {
       <ScrollProgress />
       <main className="min-h-screen w-full flex flex-col justify-center items-stretch pt-16 bg-canvas">
         <ContactPage />
-        <CalendlyWidget />
+        {/* Inline calendar under the form; the page padding lives here (the widget is also used inside the booking window). */}
+        <div className="container-page pb-20">
+          <CalendlyWidget />
+        </div>
       </main>
     </>
   )

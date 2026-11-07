@@ -1,5 +1,6 @@
 "use client"
 import { useRef, useState } from "react"
+import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 import { hasNumericClaim } from "@/lib/claims"
@@ -76,6 +77,7 @@ const servicesData = [
 const services = [
   {
     id: 1,
+    slug: "web-apps",
     icon: <Code className="w-8 h-8" />,
     title: "Custom Web Application Development",
     subtitle: "Full-Stack Solutions with Frontend Excellence",
@@ -98,6 +100,7 @@ const services = [
   },
   {
     id: 2,
+    slug: "frontend",
     icon: <Palette className="w-8 h-8" />,
     title: "Frontend Architecture & UI/UX Implementation",
     subtitle: "Pixel-Perfect Interfaces with Modern Design Systems",
@@ -120,13 +123,14 @@ const services = [
   },
   {
     id: 3,
+    slug: "performance",
     icon: <Zap className="w-8 h-8" />,
     title: "Performance Optimization & Core Web Vitals",
     subtitle: "Lightning-Fast Applications with Superior UX",
     description:
       "Enhance your web application's speed, SEO, and user experience through advanced optimization techniques and best practices. Achieve perfect Lighthouse scores and superior Core Web Vitals.",
     features: [
-      "Core Web Vitals optimization (LCP, FID, CLS)",
+      "Core Web Vitals optimization (LCP, INP, CLS)",
       "Bundle size reduction and code splitting",
       "Image & asset optimization strategies",
       "Advanced caching implementation",
@@ -142,6 +146,7 @@ const services = [
   },
   {
     id: 4,
+    slug: "pwa",
     icon: <Smartphone className="w-8 h-8" />,
     title: "Progressive Web App Development",
     subtitle: "Native App Experience on the Web",
@@ -164,6 +169,7 @@ const services = [
   },
   {
     id: 5,
+    slug: "consulting",
     icon: <Search className="w-8 h-8" />,
     title: "Code Review & Technical Consulting",
     subtitle: "Expert Guidance for Development Excellence",
@@ -186,6 +192,7 @@ const services = [
   },
   {
     id: 6,
+    slug: "modernization",
     icon: <TrendingUp className="w-8 h-8" />,
     title: "Legacy System Modernization",
     subtitle: "Seamless Migration to Modern Technologies",
@@ -307,7 +314,7 @@ const itemVariants = {
 
 const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index: number }) => {
   const [hoveredService, setHoveredService] = useState<number | null>(null)
-  const { t } = useI18n()
+  const { t, href } = useI18n()
   const sv = t.services
 
   return (
@@ -418,15 +425,11 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index:
             </div>
           </div>
 
-          {/* CTA Button */}
-          <motion.button
-            className="btn btn-brand w-full group/btn"
-            
-            
-          >
+          {/* CTA — goes to the contact form with this service preselected (was a button with no action). */}
+          <Link href={href(`/contact?service=${service.slug}#contact-form`)} className="btn btn-brand w-full group/btn">
             {sv.cardCta}
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1 rtl:-scale-x-100 rtl:group-hover/btn:-translate-x-1" />
-          </motion.button>
+          </Link>
         </div>
 
         {/* Hover Overlay */}
@@ -519,6 +522,8 @@ export default function Services() {
             {steps.map((step, index) => (
               <motion.button
                 key={index}
+                type="button"
+                aria-pressed={activeProcess === index}
                 onClick={() => setActiveProcess(index)}
                 className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 ${activeProcess === index
                     ? `bg-inverse text-on-inverse`
@@ -679,22 +684,10 @@ export default function Services() {
           <p className="text-lg md:text-xl text-dev-text-muted mb-8 max-w-3xl mx-auto">
             {t.home.services.ctaText}
           </p>
-          <motion.button
-            onClick={() => {
-              const contactSection = document.getElementById('contact')
-              if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' })
-              } else {
-                window.location.href = href('/contact')
-              }
-            }}
-            className="btn btn-brand"
-            whileHover={{ y: -2 }}
-            
-          >
+          <Link href={href("/contact#contact-form")} className="btn btn-brand">
             {sv.finalCta}
             <ArrowRight className="w-5 h-5 rtl:-scale-x-100" />
-          </motion.button>
+          </Link>
         </motion.div>
       </div>
     </section>

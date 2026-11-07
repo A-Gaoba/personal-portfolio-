@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { CheckCircle2, XCircle } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -42,6 +42,12 @@ export default function ContactForm({
   const f = t.form
   const [formData, setFormData] = useState({ name: "", email: "", message: "" })
   const [gotcha, setGotcha] = useState("")
+  // Optional service, preselected from /contact?service=<slug> (the "Get Started with This Service" buttons).
+  const [service, setService] = useState("")
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("service")
+    if (requested && requested in f.services) setService(requested)
+  }, [f.services])
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
   const [errorMessage, setErrorMessage] = useState("")
 
@@ -73,6 +79,7 @@ export default function ContactForm({
           message: formData.message.trim(),
           source,
           language: locale,
+          service: service ? `${service} — ${f.services[service as keyof typeof f.services]}` : "general",
           _gotcha: gotcha,
         }),
       })
@@ -87,6 +94,7 @@ export default function ContactForm({
 
       setStatus("success")
       setFormData({ name: "", email: "", message: "" })
+      setService("")
     } catch (error: any) {
       setStatus("error")
       setErrorMessage(error?.message || f.errorGeneric)
@@ -131,6 +139,25 @@ export default function ContactForm({
           className={fieldClass}
           required
         />
+      </div>
+      <div>
+        <Label htmlFor={id("service")} className="mb-2 block text-sm font-semibold text-fg">
+          {f.serviceLabel}
+        </Label>
+        <select
+          id={id("service")}
+          name="service"
+          value={service}
+          onChange={(e) => setService(e.target.value)}
+          className={`${fieldClass} h-[50px] cursor-pointer appearance-auto`}
+        >
+          <option value="">{f.serviceNone}</option>
+          {Object.entries(f.services).map(([slug, label]) => (
+            <option key={slug} value={slug}>
+              {label}
+            </option>
+          ))}
+        </select>
       </div>
       <div>
         <Label htmlFor={id("message")} className="mb-2 block text-sm font-semibold text-fg">

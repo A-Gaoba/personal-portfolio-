@@ -238,6 +238,17 @@ const en = {
   },
 
   form: {
+    serviceLabel: "Service (optional)",
+    serviceNone: "General inquiry",
+    /** Keys are the service slugs used in /contact?service=… links (app/components/Services.tsx). */
+    services: {
+      "web-apps": "Custom Web Application Development",
+      frontend: "Frontend Architecture & UI/UX Implementation",
+      performance: "Performance Optimization & Core Web Vitals",
+      pwa: "Progressive Web App Development",
+      consulting: "Code Review & Technical Consulting",
+      modernization: "Legacy System Modernization",
+    },
     nameLabel: "Your Name",
     namePlaceholder: "Your name",
     emailLabel: "Your Email",
@@ -247,7 +258,7 @@ const en = {
     send: "Send Message",
     sending: "Sending...",
     success: "Message sent successfully! I'll get back to you soon.",
-    errorRequired: "All fields are required.",
+    errorRequired: "Please fill in all required fields.",
     errorEmail: "Please enter a valid email address.",
     errorStatus: "The message could not be sent (status {status}). Please try again.",
     errorGeneric: "Failed to send message. Please try again.",
@@ -270,12 +281,12 @@ const en = {
       ["Company", "Founder of Naqla Tech"],
       ["Studying", "Master's in Data-Driven Management, RUDN University"],
       ["Degree", "BSc in Software Engineering, Ufa University of Science and Technology"],
-      ["Languages", "Saint Petersburg Mining University (Russian), University of Sana'a (English)"],
+      ["Languages", "Saint Petersburg Mining University (Russian), Sana'a University (English)"],
       ["Based in", "Moscow, Russia"],
     ] as [string, string][],
     /** "{count}" = where the unverified "50+ " goes (hidden while SHOW_UNVERIFIED_CLAIMS is false). */
     story: [
-      "My journey began with a love for technology and a drive to solve real-world problems. I graduated with honors from Ufa University of Science and Technology (BSc in Software Engineering, GPA 4.8), after mastering Russian at Saint Petersburg Mining University (GPA 5) and building a strong foundation in English at University of Sana’a (GPA 4). Now, I’m pursuing a Master’s in Data-Driven Management at RUDN University in Moscow, deepening my expertise at the intersection of tech and business.",
+      "My journey began with a love for technology and a drive to solve real-world problems. I graduated with honors from Ufa University of Science and Technology (BSc in Software Engineering, GPA 4.8), after mastering Russian at Saint Petersburg Mining University (GPA 5) and building a strong foundation in English at Sana'a University (GPA 4). Now, I’m pursuing a Master’s in Data-Driven Management at RUDN University in Moscow, deepening my expertise at the intersection of tech and business.",
       "Along the way, I founded Naqla Tech, a technology startup delivering end-to-end digital solutions, including web and mobile development, backend systems, bots, and AI automation. As founder and lead developer, I was responsible for product design, full-stack development, deployment, and continuous iteration, gaining hands-on experience in scalable architecture, user onboarding, and technical decision-making.",
       "As a freelance full-stack developer, I’ve delivered {count}modern web solutions for clients in logistics, education, SaaS, and e-commerce. I specialize in React, Next.js, Tailwind CSS, and Node.js, always focusing on performance, SEO, and user experience. My remote collaborations include building and maintaining production-ready apps for international clients like JunziTech Solutions.",
       "Previously, as a Frontend Developer at CereSoftware, I built responsive, accessible interfaces with React and Tailwind CSS, improved code performance, and played a key role in agile development cycles and direct client communications.",
@@ -317,7 +328,7 @@ const en = {
     pathTitle: "The Path to",
     pathMark: "Excellence",
     path: [
-      { year: "2017", title: "English Language Studies", text: "University of Sana’a — GPA 4" },
+      { year: "2017", title: "English Language Studies", text: "Sana'a University — GPA 4" },
       { year: "2020", title: "Russian Language Prep Course", text: "Saint Petersburg Mining University — GPA 5" },
       { year: "2024", title: "BSc in Software Engineering", text: "Ufa University of Science and Technology — GPA 4.8" },
       {

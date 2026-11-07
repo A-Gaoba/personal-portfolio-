@@ -150,7 +150,7 @@ export default function ProjectsHighlight() {
                   />
 
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100 transition-opacity duration-500" />
 
                   {/* Featured Badge */}
                   {project.featured && (
@@ -163,7 +163,8 @@ export default function ProjectsHighlight() {
                   )}
 
                   {/* Hover Actions — Phase 0a: only links verified on 2026-11-07 (lib/verified-links.ts). */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                  {/* Visible on hover, on keyboard focus, and always on touch screens (no hover there). */}
+                  <div className="absolute inset-0 flex items-end justify-center pb-6 opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 [@media(hover:none)]:opacity-100 transition-all duration-300 sm:items-center sm:pb-0">
                     <div className="flex gap-4">
                       {verifiedLiveUrl(project.liveUrl) && (
                       <motion.a

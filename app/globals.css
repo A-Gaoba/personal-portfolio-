@@ -227,6 +227,11 @@
   }
 }
 
+/* In-page anchors (#about, #projects, #contact…) land below the fixed 64px navbar instead of under it. */
+html {
+  scroll-padding-top: 5rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

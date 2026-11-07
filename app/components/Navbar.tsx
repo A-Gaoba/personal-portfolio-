@@ -35,8 +35,14 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Close the mobile menu on navigation.
+  // Close the mobile menu on navigation, and with Escape.
   useEffect(() => setIsOpen(false), [rawPathname])
+  useEffect(() => {
+    if (!isOpen) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setIsOpen(false)
+    document.addEventListener("keydown", onKey)
+    return () => document.removeEventListener("keydown", onKey)
+  }, [isOpen])
 
   const isActive = (href: string) => (href === "/" ? pathname === "/" : pathname?.startsWith(href))
 
@@ -110,6 +116,8 @@ const Navbar = () => {
                 key={link.key}
                 href={href(link.href)}
                 aria-current={active ? "page" : undefined}
+                // Tapping the current page's link does not change the path, so close the menu explicitly.
+                onClick={() => setIsOpen(false)}
                 className={`flex items-center justify-between border-b border-line py-3.5 text-lg font-semibold last:border-b-0 ${
                   active ? "text-fg" : "text-fg-2"
                 }`}

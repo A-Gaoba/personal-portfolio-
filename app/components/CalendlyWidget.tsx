@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useTheme } from "next-themes"
 import { InlineWidget } from "react-calendly"
 import { useI18n } from "@/components/i18n/I18nProvider"
+import { profile } from "@/content/profile"
 
 // Calendly colours follow the GAOBA theme (hex without "#", as Calendly expects). Calendly applies custom colours
 // only on paid plans; on a free plan its default look is shown.
@@ -19,12 +20,13 @@ export default function CalendlyWidget() {
   const mode = mounted && resolvedTheme === "dark" ? "dark" : "light"
 
   return (
-    <section aria-label={t.contact.meeting} className="container-page pb-20">
+    // No page padding here: callers add it (the booking window must not get it, it squeezed the calendar on phones).
+    <section aria-label={t.contact.meeting}>
       <div className="card-paper overflow-hidden">
         <InlineWidget
           key={mode}
-          url="https://calendly.com/abdalrahmangooba25/30min"
-          styles={{ height: "700px", width: "100%" }}
+          url={profile.links.calendly}
+          styles={{ height: "min(700px, 75dvh)", minHeight: "520px", width: "100%" }}
           pageSettings={{ ...THEMES[mode], hideEventTypeDetails: false, hideLandingPageDetails: false }}
         />
       </div>

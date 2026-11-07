@@ -3,9 +3,8 @@
 import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { ExternalLink, Github, X, Star, TrendingUp, Award, Users, Check } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { ExternalLink, Github, X, Star, TrendingUp, Award, Users, Check, CircleAlert } from "lucide-react"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import type { JSX } from "react/jsx-runtime"
 import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 import { withoutUnverifiedClaims, listWithoutUnverifiedClaims } from "@/lib/claims"
@@ -669,11 +668,6 @@ const Projects = () => {
     setIsModalOpen(true)
   }
 
-  const closeModal = () => {
-    setIsModalOpen(false)
-    setSelectedProject(null)
-  }
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -716,6 +710,17 @@ const Projects = () => {
               className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border overflow-hidden hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300 cursor-pointer"
               variants={itemVariants}
               onClick={() => openModal(project)}
+              // Keyboard access: the card opens the details dialog like a button.
+              role="button"
+              tabIndex={0}
+              aria-haspopup="dialog"
+              aria-label={`${project.title} — ${p.overview}`}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault()
+                  openModal(project)
+                }
+              }}
             >
               <div className="relative h-52 w-full">
                 <Image
@@ -753,29 +758,30 @@ const Projects = () => {
 
       {selectedProject && (
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="w-[95vw] max-w-[90vw] sm:max-w-[85vw] md:max-w-[80vw] lg:max-w-[75vw] xl:max-w-[70vw] 2xl:max-w-[65vw] max-h-[90vh] bg-dark-bg-secondary text-dev-text border-dark-border p-0 overflow-hidden">
-            <DialogHeader className="relative">
+          <DialogContent hideClose className="w-[95vw] max-w-[90vw] sm:max-w-[85vw] md:max-w-[80vw] lg:max-w-[75vw] xl:max-w-[70vw] 2xl:max-w-[65vw] max-h-[90dvh] flex flex-col gap-0 bg-dark-bg-secondary text-dev-text border-dark-border p-0 overflow-hidden">
+            <DialogHeader className="relative shrink-0 space-y-0">
               <Image
                 src={selectedProject.image || "/placeholder.svg"}
                 alt={selectedProject.title}
                 width={800}
                 height={400}
-                className="w-full h-48 sm:h-56 md:h-64 object-cover rounded-t-lg"
+                className="w-full h-40 sm:h-56 md:h-64 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-dark-bg-secondary to-transparent" />
               <DialogTitle className="absolute bottom-4 start-4 sm:start-6 text-xl sm:text-2xl md:text-3xl font-bold text-dev-text z-10 max-w-[80%]">
                 {selectedProject.title}
               </DialogTitle>
-              <Button
-                variant="ghost"
-                onClick={closeModal}
+              <DialogDescription className="sr-only">{withoutUnverifiedClaims(selectedProject.description)}</DialogDescription>
+              {/* The only close button (the built-in one is hidden). Escape and a click outside also close it (Radix). */}
+              <DialogClose
                 aria-label={t.common.close}
-                className="absolute top-2 sm:top-4 end-2 sm:end-4 text-dev-text-muted hover:text-dev-text hover:bg-dark-bg-tertiary p-2"
+                className="absolute top-3 end-3 z-10 grid h-10 w-10 place-items-center rounded-full bg-canvas/90 text-fg shadow-paper transition-colors hover:bg-canvas focus-visible:outline-2 focus-visible:outline-brand"
               >
-                <X className="h-5 w-5 sm:h-6 sm:w-6" />
-              </Button>
+                <X className="h-5 w-5" />
+              </DialogClose>
             </DialogHeader>
-            <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto max-h-[calc(90vh-200px)]">
+            {/* The body scrolls inside the dialog (flex-1 + min-h-0), so long projects are never cut off under the image. */}
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain p-4 sm:p-6 space-y-4 sm:space-y-6">
               {/* Overview */}
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">{p.overview}</h3>
@@ -823,7 +829,8 @@ const Projects = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                   <div>
                     <h4 className="font-semibold text-dev-text mb-2 flex items-center text-sm sm:text-base">
-                      <X className="w-4 h-4 sm:w-5 sm:h-5 text-brand-text me-2" /> {p.challenges}
+                      {/* Not an X icon: it read as a second close button. */}
+                      <CircleAlert aria-hidden="true" className="w-4 h-4 sm:w-5 sm:h-5 text-brand-text me-2" /> {p.challenges}
                     </h4>
                     <ul className="list-disc list-inside text-dev-text-muted space-y-1 sm:space-y-2 text-sm sm:text-base">
                       {listWithoutUnverifiedClaims(selectedProject.challenges).map((challenge, index) => (

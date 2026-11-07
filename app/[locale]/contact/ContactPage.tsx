@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
 import { Mail, Phone, MapPin, Calendar, MessageCircle, X } from "lucide-react"
 import ContactForm from "@/components/ContactForm"
@@ -12,6 +12,21 @@ const ContactPage = () => {
   const [showCalendly, setShowCalendly] = useState(false)
   const { t } = useI18n()
   const c = t.contact
+  const closeRef = useRef<HTMLButtonElement>(null)
+
+  // Calendly window: Escape closes it, focus moves to its close button, and the page behind does not scroll.
+  useEffect(() => {
+    if (!showCalendly) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setShowCalendly(false)
+    document.addEventListener("keydown", onKey)
+    const overflow = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    closeRef.current?.focus()
+    return () => {
+      document.removeEventListener("keydown", onKey)
+      document.body.style.overflow = overflow
+    }
+  }, [showCalendly])
 
   const contactInfo = [
     {
@@ -43,7 +58,7 @@ const ContactPage = () => {
       label: c.meeting,
       value: c.meetingAction,
       ltr: false,
-      link: "#",
+      link: profile.links.calendly,
       color: "text-brand-text",
       onClick: () => setShowCalendly(true),
     },
@@ -89,9 +104,10 @@ const ContactPage = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start [&>*]:min-w-0">
-          {/* Contact Form */}
+          {/* Contact Form — #contact-form is the target of the service buttons (/contact?service=…#contact-form). */}
           <motion.div
-            className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border p-8"
+            id="contact-form"
+            className="bg-dark-bg-secondary rounded-card shadow-dev-md border border-dark-border p-6 sm:p-8 scroll-mt-24"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -126,6 +142,8 @@ const ContactPage = () => {
                     <p className="text-dev-text-muted text-sm">{item.label}</p>
                     {item.onClick ? (
                       <button
+                        type="button"
+                        aria-haspopup="dialog"
                         onClick={item.onClick}
                         className="text-lg font-semibold text-dev-text hover:text-brand-text transition-colors duration-200 cursor-pointer"
                       >
@@ -134,6 +152,9 @@ const ContactPage = () => {
                     ) : (
                       <a
                         href={item.link}
+                        // Maps and WhatsApp open in a new tab; mailto:/tel: hand off to the device.
+                        target={item.link.startsWith("http") ? "_blank" : undefined}
+                        rel={item.link.startsWith("http") ? "noopener noreferrer" : undefined}
                         dir={item.ltr ? "ltr" : undefined}
                         className="text-lg font-semibold text-dev-text hover:text-brand-text transition-colors duration-200 break-all"
                       >
@@ -173,6 +194,7 @@ const ContactPage = () => {
                     href={profile.links.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label="LinkedIn"
                     className="p-4 bg-dark-bg-tertiary rounded-full text-dev-text-muted hover:bg-dark-bg-secondary hover:text-dev-text transition-colors duration-200"
                   >
                     <svg
@@ -214,16 +236,21 @@ const ContactPage = () => {
       {/* Calendly Modal */}
       {showCalendly && (
         <div
-          className="fixed inset-0 bg-dark-bg z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-inverse/50 p-3 sm:p-4"
           onClick={() => setShowCalendly(false)}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="calendly-dialog-title"
         >
           <div
-            className="bg-dark-bg-secondary rounded-card shadow-dev-lg border border-dark-border w-full max-w-4xl max-h-[90vh] overflow-hidden"
+            className="bg-dark-bg-secondary rounded-card shadow-dev-lg border border-dark-border w-full max-w-4xl max-h-[92vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between p-6 border-b border-dark-border bg-dark-bg-tertiary">
-              <h3 className="text-2xl font-bold text-dev-text">{c.meeting}</h3>
+            <div className="sticky top-0 z-10 flex items-center justify-between gap-4 p-4 sm:p-6 border-b border-dark-border bg-dark-bg-tertiary">
+              <h3 id="calendly-dialog-title" className="text-xl sm:text-2xl font-bold text-dev-text">{c.meeting}</h3>
               <button
+                ref={closeRef}
+                type="button"
                 onClick={() => setShowCalendly(false)}
                 className="p-2 hover:bg-dark-bg-secondary rounded-lg transition-colors duration-200"
                 aria-label={t.common.close}
@@ -232,7 +259,7 @@ const ContactPage = () => {
                 <X className="w-6 h-6 text-dev-text-muted" />
               </button>
             </div>
-            <div className="p-6 bg-dark-bg-secondary">
+            <div className="p-2 sm:p-6 bg-dark-bg-secondary">
               <CalendlyWidget />
             </div>
           </div>

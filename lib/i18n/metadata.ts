@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { DEFAULT_OG_IMAGE } from "@/lib/site"
+import { ogImage } from "@/lib/site"
 import { type Locale, defaultLocale, localeMeta, locales, localizePath, otherLocales } from "./config"
 import { getDictionary } from "./dictionaries"
 
@@ -29,7 +29,7 @@ export function pageMetadata(
   const t = getDictionary(locale)
   const m = t.meta.pages[page]
   const url = localizePath(locale, path)
-  const image = { ...DEFAULT_OG_IMAGE, alt: t.meta.ogAlt }
+  const image = ogImage(locale, t.meta.ogAlt)
   return {
     title: options.absoluteTitle ? { absolute: m.title } : m.title,
     description: m.description,
