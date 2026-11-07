@@ -1,71 +1,28 @@
 import type { Metadata } from "next"
+import { DEFAULT_OG_IMAGE } from "@/lib/site"
 import Image from "next/image"
 import { MapPin } from "lucide-react"
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import About from "../components/About"
 import ScrollProgress from "../components/ScrollProgress"
 import DeveloperBackground from "../components/DeveloperBackground"
 
+// Phase 0b (2026-11-07): relative canonical (resolved against SITE_URL), no misspelling stuffing.
 export const metadata: Metadata = {
   title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
   description:
-    "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence (4.8/5 GPA) to founding Naqla Tech, serving 1000+ users and generating $50K+ revenue.",
-  keywords: [
-    // English Keywords
-    "About Abdulrahman Gaoba",
-    "abdulraman gaoba",
-    "abdulrahamn gooba",
-    "abdulrahman gaoba",
-    "a-gaboa",
-    "Software Engineer Story",
-    "Startup Founder Journey",
-    "Naqla Tech Founder",
-    "Full Stack Developer Background",
-    "Software Engineering Career",
-    "React Developer Story",
-    "Next.js Expert Background",
-    "Yemeni Developer",
-    "Freelance Developer",
-    // Arabic Keywords
-    "عبد الرحمن قوبع",
-    "عبد الرحمن قوبع",
-    "قصة مطور برمجيات",
-    "مؤسس شركة ناقلة تك",
-    "خلفية مطور Full Stack",
-    "مطور يمني",
-    "مطور React",
-    "مطور Next.js",
-    "مؤسس شركة تقنية",
-    "مطور برمجيات",
-    "قصة نجاح مطور",
-    "مطور مواقع إلكترونية"
-  ].join(", "),
+    "About Abdulrahman Gaoba (عبد الرحمن قوبع): education in software engineering, work as a full stack developer, and the founding of Naqla Tech.",
+  alternates: {
+    canonical: "/about",
+  },
   openGraph: {
     title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
-    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder. Discover the journey from academic excellence to founding Naqla Tech.",
-    url: "https://abdulrahmangooba.dev/about",
-    siteName: "Abdulrahman Gaoba Portfolio",
-    images: [
-      {
-        url: "/myimage.jpeg",
-        width: 800,
-        height: 800,
-        alt: "Abdulrahman Gaoba - Full Stack Developer & Startup Founder",
-      },
-    ],
+    description:
+      "Education in software engineering, work as a full stack developer, and the founding of Naqla Tech.",
+    url: "/about",
+    siteName: "Abdulrahman Gaoba",
     locale: "en_US",
     type: "profile",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "About Abdulrahman Gaoba | Full Stack Developer & Startup Founder",
-    description: "Learn about Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع), a passionate Full Stack Developer and startup founder.",
-    images: ["/myimage.jpeg"],
-    creator: "@A_Gaoba",
-  },
-  alternates: {
-    canonical: "https://abdulrahmangooba.dev/about",
+    images: [DEFAULT_OG_IMAGE],
   },
 }
 
@@ -74,7 +31,7 @@ export default function AboutPage() {
     <div className="relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50/30">
       <DeveloperBackground />
       <ScrollProgress />
-      <Navbar />
+      {/* Phase 0a: <Navbar /> removed here — app/layout.tsx already renders it (the page showed two navbars). */}
       {/* Hero Section */}
       <section className="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-dark-bg">
         <div className="absolute inset-0">

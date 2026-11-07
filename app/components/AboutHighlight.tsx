@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { ArrowRight, Award, Users, Code, TrendingUp, Sparkles } from 'lucide-react'
+import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 
 export default function AboutHighlight() {
   const stats = [
@@ -204,7 +205,8 @@ export default function AboutHighlight() {
           </motion.div>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Phase 0a: "1000+ Users", "50+ Projects", "5+ Years" (and GPA) cards hidden until confirmed (SHOW_UNVERIFIED_CLAIMS). */}
+        {SHOW_UNVERIFIED_CLAIMS && (
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-6"
           variants={containerVariants}
@@ -231,6 +233,7 @@ export default function AboutHighlight() {
             </motion.div>
           ))}
         </motion.div>
+        )}
       </div>
     </section>
   )

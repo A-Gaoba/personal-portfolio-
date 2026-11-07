@@ -1,58 +1,37 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useRef } from "react"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
-import { Calendar, Mail, MessageCircle, Send, Clock, Users, CheckCircle2, ArrowRight } from "lucide-react"
+import { Calendar, Mail, Send, ArrowRight } from "lucide-react"
+import ContactForm from "@/components/ContactForm"
+import { profile } from "@/content/profile"
 
 const ContactHighlight: React.FC = () => {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  })
-
+  // Phase 0a (2026-11-07): the cards pointed to abdulrahman@example.com and two placeholder Calendly links
+  // (calendly.com/your-…-link). Now: the site's real email and the Calendly event the contact page already used
+  // (https://calendly.com/abdalrahmangooba25/30min, checked: 200). The "response within 24 hours" promise was
+  // removed (unverified).
   const contactMethods = [
     {
       icon: Mail,
       title: "Email Me",
-      description: "Get a response within 24 hours",
-      action: "abdulrahman@example.com",
+      description: "Write to me directly",
+      action: profile.email,
       color: "from-syntax-blue to-syntax-cyan",
-      link: "mailto:abdulrahman@example.com",
-    },
-    {
-      icon: MessageCircle,
-      title: "Quick Chat",
-      description: "Schedule a 15-minute consultation",
-      action: "Book a Call",
-      color: "from-syntax-green to-syntax-cyan",
-      link: "https://calendly.com/your-quick-call-link",
+      link: `mailto:${profile.email}`,
     },
     {
       icon: Calendar,
-      title: "Project Discussion",
-      description: "Detailed project planning session",
+      title: "Book a Call",
+      description: "Schedule a 30-minute call on Calendly",
       action: "Schedule Meeting",
-      color: "from-syntax-purple to-syntax-pink",
-      link: "https://calendly.com/your-project-meeting-link",
+      color: "from-syntax-green to-syntax-cyan",
+      link: profile.links.calendly,
     },
   ]
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    })
-  }
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -111,7 +90,8 @@ const ContactHighlight: React.FC = () => {
           >
             Ready to Start Your
             <br />
-            <span className="text-gradient-syntax">Next Project?</span>
+            {/* Phase 0a: was .text-gradient-syntax, which rendered transparent (undefined CSS variables). */}
+            <span className="text-syntax-green">Next Project?</span>
           </motion.h2>
 
           <motion.p
@@ -165,25 +145,7 @@ const ContactHighlight: React.FC = () => {
               ))}
             </div>
 
-            {/* Quick Stats */}
-            <motion.div className="grid grid-cols-3 gap-4 pt-8" variants={itemVariants}>
-              {[
-                { icon: <Clock className="w-5 h-5" />, label: "24h Response", value: "Guaranteed" },
-                { icon: <Users className="w-5 h-5" />, label: "Happy Clients", value: "50+" },
-                { icon: <CheckCircle2 className="w-5 h-5" />, label: "Success Rate", value: "100%" },
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="text-center bg-gradient-to-r from-syntax-blue/10 to-syntax-green/10 p-4 rounded-xl"
-                >
-                  <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-r from-syntax-blue to-syntax-green rounded-lg text-dark-bg mx-auto mb-2">
-                    {stat.icon}
-                  </div>
-                  <div className="text-lg font-bold text-dev-text">{stat.value}</div>
-                  <div className="text-sm text-dev-text-muted">{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
+            {/* Phase 0a: "24h Response Guaranteed", "50+ Happy Clients" and "100% Success Rate" removed (no source). */}
           </motion.div>
 
           {/* Quick Contact Form */}
@@ -195,65 +157,9 @@ const ContactHighlight: React.FC = () => {
           >
             <h3 className="text-2xl font-bold text-dev-text mb-6">Send a Quick Message</h3>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-dev-text-muted mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-dark-bg-tertiary backdrop-blur-sm border border-dark-border rounded-xl focus:outline-none focus:ring-2 focus:ring-syntax-blue focus:border-transparent transition-all duration-200 text-dev-text placeholder-dev-text-subtle"
-                  placeholder="Enter your name"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-dev-text-muted mb-2">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-dark-bg-tertiary backdrop-blur-sm border border-dark-border rounded-xl focus:outline-none focus:ring-2 focus:ring-syntax-blue focus:border-transparent transition-all duration-200 text-dev-text placeholder-dev-text-subtle"
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-dev-text-muted mb-2">
-                  Project Details
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-dark-bg-tertiary backdrop-blur-sm border border-dark-border rounded-xl focus:outline-none focus:ring-2 focus:ring-syntax-blue focus:border-transparent transition-all duration-200 resize-none text-dev-text placeholder-dev-text-subtle"
-                  placeholder="Tell me about your project..."
-                  required
-                />
-              </div>
-
-              <motion.button
-                type="submit"
-                className="w-full px-8 py-4 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold text-lg hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary"
-                whileHover={{ scale: 1.02, y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Send className="w-5 h-5 mr-2 inline" />
-                Send Message
-              </motion.button>
-            </form>
+            {/* Phase 0a: this form only called console.log(), so messages were lost. It now sends through the same
+                Formspree endpoint as the contact page. */}
+            <ContactForm source="home" messageLabel="Project Details" messagePlaceholder="Tell me about your project..." rows={4} />
 
             <div className="mt-6 text-center">
               <p className="text-sm text-dev-text-muted">

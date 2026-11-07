@@ -2,7 +2,9 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Code, Database, Cloud, GitBranch, Zap, ShieldCheck, Server } from "lucide-react"
+import { Code, Database, GitBranch, Zap, ShieldCheck, Server } from "lucide-react"
+
+const SHOW_CERT_ICONS = false
 
 const skillsData = [
   { name: "JavaScript", icon: "/icons/javascript.svg", category: "Languages" },
@@ -47,14 +49,17 @@ const certifications = [
   },
 ]
 
+// Phase 0a (2026-11-07): the cards used categories that do not exist in skillsData ("Cloud", "DevOps", "Design"
+// were empty) while "Languages", "Tools" and "Practices" were never shown (13 skills hidden). The cards now use
+// exactly the categories of skillsData; no skill was added or removed.
 const categories = [
-  { name: "Frontend", icon: Code, color: "text-syntax-blue" },
+  { name: "Languages", icon: Code, color: "text-syntax-blue" },
+  { name: "Frontend", icon: Code, color: "text-syntax-cyan" },
   { name: "Backend", icon: Server, color: "text-syntax-green" },
   { name: "Database", icon: Database, color: "text-syntax-purple" },
-  { name: "Cloud", icon: Cloud, color: "text-syntax-orange" },
-  { name: "DevOps", icon: GitBranch, color: "text-syntax-cyan" },
+  { name: "Tools", icon: GitBranch, color: "text-syntax-orange" },
   { name: "Testing", icon: Zap, color: "text-syntax-pink" },
-  { name: "Design", icon: ShieldCheck, color: "text-syntax-red" },
+  { name: "Practices", icon: ShieldCheck, color: "text-syntax-red" },
 ]
 
 export default function Skills() {
@@ -77,9 +82,11 @@ export default function Skills() {
     <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-dark-bg text-dev-text">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
-            My <span className="text-gradient-syntax">Skills</span> & Expertise
-          </h2>
+          {/* Phase 0b: the page's main heading is now its <h1> (same classes). */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
+            {/* Phase 0a: was .text-gradient-syntax, which rendered transparent (undefined CSS variables). */}
+            My <span className="text-syntax-green">Skills</span> & Expertise
+          </h1>
           <p className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto leading-relaxed">
             A comprehensive overview of my technical proficiencies and certifications.
           </p>
@@ -140,7 +147,9 @@ export default function Skills() {
                 className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border p-6 flex items-center space-x-4 hover:shadow-dev-lg hover:border-syntax-green transition-all duration-300"
                 variants={itemVariants}
               >
-                {cert.icon && (
+                {/* Phase 0a: the icon files (/icons/ai.svg, /icons/data-analytics.svg) do not exist in public/, so the
+                    images were broken; not rendered until real icons are added. */}
+                {SHOW_CERT_ICONS && cert.icon && (
                   <Image
                     src={cert.icon || "/placeholder.svg"}
                     alt={cert.issuer}

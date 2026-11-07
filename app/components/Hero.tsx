@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { ChevronDown, Code, Terminal, Github, Linkedin, Mail } from "lucide-react"
+import { ChevronDown, Code, Terminal, Github, Linkedin, Mail, Twitter } from "lucide-react"
 import FloatingElements from "./FloatingElements"
-import DeveloperBackground from "./DeveloperBackground"
+import { profile } from "@/content/profile"
 
 export default function Hero() {
   const [currentRole, setCurrentRole] = useState(0)
@@ -37,16 +37,20 @@ export default function Hero() {
     }
   }, [currentRole, isTyping])
 
+  // Phase 0a (2026-11-07): links from content/profile.ts. LinkedIn hidden (the URL here, linkedin.com/a-gaoba, was
+  // malformed and returned 404; the right one is open question A3). The X/Twitter link was drawn with a terminal icon.
   const socialLinks = [
-    { icon: Github, href: "https://github.com/A-Gaoba", label: "GitHub", color: "hover:text-dev-text" },
-    { icon: Linkedin, href: "https://www.linkedin.com/a-gaoba", label: "LinkedIn", color: "hover:text-syntax-blue" },
-    { icon: Mail, href: "mailto:abdulrahmangooba@gmail.com", label: "Email", color: "hover:text-syntax-green" },
-    { icon: Terminal, href: "https://twitter.com/A_Gaoba", label: "Twitter", color: "hover:text-syntax-cyan" },
+    { icon: Github, href: profile.links.github, label: "GitHub", color: "hover:text-dev-text" },
+    ...(profile.links.linkedin
+      ? [{ icon: Linkedin, href: profile.links.linkedin, label: "LinkedIn", color: "hover:text-syntax-blue" }]
+      : []),
+    { icon: Mail, href: `mailto:${profile.email}`, label: "Email", color: "hover:text-syntax-green" },
+    { icon: Twitter, href: profile.links.x, label: "X (Twitter)", color: "hover:text-syntax-cyan" },
   ]
 
   return (
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dark-bg text-dev-text pt-16">
-      <DeveloperBackground /> {/* Animated background */}
+      {/* Phase 0a: second <DeveloperBackground /> removed — app/page.tsx already renders one for the whole page. */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center w-full">
           {/* Content */}
@@ -190,6 +194,7 @@ export default function Hero() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={social.label}
                     className={`p-3 bg-dark-bg-secondary/70 backdrop-blur-sm rounded-lg border border-dark-border text-dev-text-muted ${social.color} transition-all duration-300 hover:border-current`}
                     whileHover={{ scale: 1.1, y: -2 }}
                     whileTap={{ scale: 0.95 }}

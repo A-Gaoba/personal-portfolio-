@@ -4,6 +4,8 @@ import { useRef } from "react"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { Code, Globe, Database, Zap, ArrowRight, Award } from 'lucide-react'
+import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
+import { unverified } from "@/lib/claims"
 
 export default function SkillsHighlight() {
   const coreSkills = [
@@ -146,6 +148,9 @@ export default function SkillsHighlight() {
               >
                 <div className="text-4xl mb-4">{skill.icon}</div>
                 <h3 className="text-xl font-bold text-dev-text mb-2">{skill.name}</h3>
+                {/* Phase 0a: self-rated percentages (95%, 92%…) hidden until confirmed; the ring's gradient was also
+                    broken (stopColor was built from Tailwind class names such as "#syntax-cyan"). */}
+                {SHOW_UNVERIFIED_CLAIMS && (
                 <div className="relative w-16 h-16 mx-auto mb-4">
                   <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
                     <path
@@ -176,6 +181,7 @@ export default function SkillsHighlight() {
                     <span className="text-lg font-bold text-dev-text">{skill.level}%</span>
                   </div>
                 </div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -233,7 +239,7 @@ export default function SkillsHighlight() {
           </motion.div>
 
           <h3 className="text-3xl md:text-4xl font-bold text-dev-text mb-4">
-            50+ Technologies Mastered
+            {unverified("50+ ")}Technologies Mastered
             <span className="bg-gradient-to-r from-syntax-green to-syntax-blue bg-clip-text text-transparent">
               {" "}
               Across Full Stack

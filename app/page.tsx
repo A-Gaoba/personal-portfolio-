@@ -1,88 +1,33 @@
 import type { Metadata } from "next"
+import { DEFAULT_OG_IMAGE } from "@/lib/site"
 import Hero from "./components/Hero"
 import AboutHighlight from "./components/AboutHighlight"
 import ProjectsHighlight from "./components/ProjectsHighlight"
 import SkillsHighlight from "./components/SkillsHighlight"
 import ServicesHighlight from "./components/ServicesHighlight"
 import ContactHighlight from "./components/ContactHighlight"
-import TestimonialsSlider from "./components/TestimonialsSlider"
 import ScrollProgress from "./components/ScrollProgress"
 import DeveloperBackground from "./components/DeveloperBackground"
 
+// Phase 0a (2026-11-07): the testimonials section (TestimonialsSlider) was removed from the page because its
+// four quotes used invented names and placeholder photos. The component file is kept untouched in the repo.
+// Phase 0b: metadata inherits the domain from app/layout.tsx (SITE_URL); no unverified numbers.
 export const metadata: Metadata = {
   title: "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer | Portfolio",
-  description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies. Founder of Naqla Tech with 5+ years experience in creating innovative web solutions.",
-  keywords: [
-    // English Keywords
-    "Abdulrahman Gaoba",
-    "abdulraman gaoba",
-    "abdulrahamn gooba",
-    "abdulrahman gaoba",
-    "a-gaboa",
-    "Full Stack Developer",
-    "React Developer",
-    "Next.js Developer",
-    "UI/UX Designer",
-    "Web Development",
-    "Portfolio",
-    "Naqla Tech",
-    "Yemeni Developer",
-    "Freelance Developer",
-    "JavaScript",
-    "TypeScript",
-    "Node.js",
-    "MongoDB",
-    "AWS",
-    // Arabic Keywords
-    "عبد الرحمن قوبع",
-    "عبد الرحمن قوبع",
-    "مطور واجهات",
-    "مبرمج مواقع",
-    "تصميم صفحات هبوط",
-    "تطوير مواقع إلكترونية",
-    "خدمات برمجة احترافية",
-    "مطور ويب",
-    "مصمم واجهات",
-    "برمجة مواقع",
-    "تطوير تطبيقات",
-    "تصميم تجربة المستخدم",
-    "برمجة جافا سكريبت",
-    "تطوير React",
-    "برمجة Node.js",
-    "تصميم UI/UX",
-    "مطور Full Stack",
-    "برمجة احترافية",
-    "خدمات تطوير الويب",
-    "مطور يمني",
-    "برمجة مواقع إلكترونية",
-    "تصميم واجهات المستخدم"
-  ].join(", "),
+  description:
+    "Portfolio of Abdulrahman Gaoba (عبد الرحمن قوبع), a full stack developer building web applications with React, Next.js and Node.js.",
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer | Portfolio",
-    description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies.",
-    url: "https://abdulrahmangooba.dev",
-    siteName: "Abdulrahman Gaoba Portfolio",
-    images: [
-      {
-        url: "/myimage.jpeg",
-        width: 800,
-        height: 800,
-        alt: "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer",
-      },
-    ],
+    description:
+      "Portfolio of Abdulrahman Gaoba, a full stack developer building web applications with React, Next.js and Node.js.",
+    url: "/",
+    siteName: "Abdulrahman Gaoba",
     locale: "en_US",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Abdulrahman Gaoba - Full Stack Developer & UI/UX Designer | Portfolio",
-    description: "Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) is a passionate Full Stack Developer and UI/UX Designer specializing in React, Next.js, Node.js, and modern web technologies.",
-    images: ["/myimage.jpeg"],
-    creator: "@A_Gaoba",
-    site: "@A_Gaoba",
-  },
-  alternates: {
-    canonical: "https://abdulrahmangooba.dev",
+    images: [DEFAULT_OG_IMAGE],
   },
 }
 
@@ -97,7 +42,6 @@ export default function Home() {
         <ProjectsHighlight />
         <SkillsHighlight />
         <ServicesHighlight />
-        <TestimonialsSlider />
         <ContactHighlight />
       </main>
     </div>

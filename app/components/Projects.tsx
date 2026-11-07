@@ -7,6 +7,9 @@ import { ExternalLink, Github, X, Star, TrendingUp, Award, Users, Check } from "
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import type { JSX } from "react/jsx-runtime"
+import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
+import { withoutUnverifiedClaims, listWithoutUnverifiedClaims } from "@/lib/claims"
+import { verifiedLiveUrl, verifiedRepoUrl } from "@/lib/verified-links"
 
 interface Project {
   id: number
@@ -646,7 +649,13 @@ const projects: Project[] = [
   },
 ]
 
+// Phase 0a (2026-11-07): projects hidden from the page (data kept above, restorable by removing the id):
+// 15 "E-Commerce Dashboard" — its live link was a placeholder (dashboard-demo.com) and it reused the Richy Planner
+// screenshot; shown again only if GAOBA confirms it is a real project (open question C15).
+const HIDDEN_PROJECT_IDS = new Set<number>([15])
+
 const Projects = () => {
+  const visibleProjects = projects.filter((p) => !HIDDEN_PROJECT_IDS.has(p.id))
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -679,9 +688,10 @@ const Projects = () => {
     <section id="projects" className="  bg-dark-bg text-dev-text">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
+          {/* Phase 0b: the page's main heading is now its <h1> (same classes). */}
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-dev-text">
             My <span className="text-syntax-green">Projects</span>
-          </h2>
+          </h1>
           <p className="text-xl md:text-2xl text-dev-text-muted max-w-3xl mx-auto leading-relaxed">
             A showcase of my work, from full-stack applications to innovative solutions.
           </p>
@@ -694,7 +704,7 @@ const Projects = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <motion.div
               key={project.id}
               className="bg-dark-bg-secondary rounded-2xl shadow-dev-md border border-dark-border overflow-hidden hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300 cursor-pointer"
@@ -718,7 +728,7 @@ const Projects = () => {
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-bold text-dev-text mb-2">{project.title}</h3>
-                <p className="text-dev-text-muted text-sm mb-4 line-clamp-3">{project.description}</p>
+                <p className="text-dev-text-muted text-sm mb-4 line-clamp-3">{withoutUnverifiedClaims(project.description)}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, techIndex) => (
                     <span
@@ -762,7 +772,7 @@ const Projects = () => {
               {/* Overview */}
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Overview</h3>
-                <p className="text-sm sm:text-base text-dev-text-muted leading-relaxed">{selectedProject.longDescription}</p>
+                <p className="text-sm sm:text-base text-dev-text-muted leading-relaxed">{withoutUnverifiedClaims(selectedProject.longDescription)}</p>
               </div>
 
               {/* Technologies */}
@@ -780,7 +790,8 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Key Metrics */}
+              {/* Phase 0a: metrics have no source in the repo; hidden until confirmed (SHOW_UNVERIFIED_CLAIMS). */}
+              {SHOW_UNVERIFIED_CLAIMS && (
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Key Results & Metrics</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -797,6 +808,7 @@ const Projects = () => {
                   ))}
                 </div>
               </div>
+              )}
 
               {/* Challenges & Solutions */}
               <div>
@@ -807,7 +819,7 @@ const Projects = () => {
                       <X className="w-4 h-4 sm:w-5 sm:h-5 text-syntax-red mr-2" /> Challenges
                     </h4>
                     <ul className="list-disc list-inside text-dev-text-muted space-y-1 sm:space-y-2 text-sm sm:text-base">
-                      {selectedProject.challenges.map((challenge, index) => (
+                      {listWithoutUnverifiedClaims(selectedProject.challenges).map((challenge, index) => (
                         <li key={index}>{challenge}</li>
                       ))}
                     </ul>
@@ -817,7 +829,7 @@ const Projects = () => {
                       <Check className="w-4 h-4 sm:w-5 sm:h-5 text-syntax-green mr-2" /> Solutions
                     </h4>
                     <ul className="list-disc list-inside text-dev-text-muted space-y-1 sm:space-y-2 text-sm sm:text-base">
-                      {selectedProject.solutions.map((solution, index) => (
+                      {listWithoutUnverifiedClaims(selectedProject.solutions).map((solution, index) => (
                         <li key={index}>{solution}</li>
                       ))}
                     </ul>
@@ -825,7 +837,8 @@ const Projects = () => {
                 </div>
               </div>
 
-              {/* Results */}
+              {/* Phase 0a: "Achieved Results" are all unsourced numbers; hidden until confirmed. */}
+              {SHOW_UNVERIFIED_CLAIMS && (
               <div>
                 <h3 className="text-xl sm:text-2xl font-bold text-dev-text mb-3 sm:mb-4">Achieved Results</h3>
                 <ul className="list-disc list-inside text-dev-text-muted space-y-1 sm:space-y-2 text-sm sm:text-base">
@@ -834,28 +847,35 @@ const Projects = () => {
                   ))}
                 </ul>
               </div>
+              )}
 
-              {/* Action Buttons */}
+              {/* Action Buttons — Phase 0a: only links verified on 2026-11-07 are shown (lib/verified-links.ts). */}
+              {(verifiedLiveUrl(selectedProject.liveUrl) || verifiedRepoUrl(selectedProject.githubUrl)) && (
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-4 border-t border-dark-border">
-                <a
-                  href={selectedProject.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary text-sm sm:text-base"
-                >
-                  <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  View Live Project
-                </a>
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-dark-bg-tertiary border-2 border-dark-border text-dev-text-muted rounded-xl hover:border-syntax-blue hover:text-syntax-blue hover:bg-dark-bg-secondary transition-all duration-300 font-semibold shadow-dev-md hover:shadow-dev-lg text-sm sm:text-base"
-                >
-                  <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                  View Source Code
-                </a>
+                {verifiedLiveUrl(selectedProject.liveUrl) && (
+                  <a
+                    href={verifiedLiveUrl(selectedProject.liveUrl)!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-syntax-blue to-syntax-green text-dark-bg rounded-xl font-semibold hover:from-syntax-green hover:to-syntax-cyan transition-all duration-300 shadow-glow-primary hover:shadow-glow-secondary text-sm sm:text-base"
+                  >
+                    <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    View Live Project
+                  </a>
+                  )}
+                {verifiedRepoUrl(selectedProject.githubUrl) && (
+                  <a
+                    href={verifiedRepoUrl(selectedProject.githubUrl)!}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-3 bg-dark-bg-tertiary border-2 border-dark-border text-dev-text-muted rounded-xl hover:border-syntax-blue hover:text-syntax-blue hover:bg-dark-bg-secondary transition-all duration-300 font-semibold shadow-dev-md hover:shadow-dev-lg text-sm sm:text-base"
+                  >
+                    <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    View Source Code
+                  </a>
+                  )}
               </div>
+              )}
             </div>
           </DialogContent>
         </Dialog>

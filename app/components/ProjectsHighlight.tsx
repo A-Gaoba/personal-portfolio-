@@ -5,6 +5,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { ExternalLink, Github, ArrowRight, Star, TrendingUp, Code } from 'lucide-react'
+import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
+import { withoutUnverifiedClaims } from "@/lib/claims"
+import { verifiedLiveUrl, verifiedRepoUrl } from "@/lib/verified-links"
 
 export default function ProjectsHighlight() {
   const featuredProjects = [
@@ -165,11 +168,12 @@ export default function ProjectsHighlight() {
                     </div>
                   )}
 
-                  {/* Hover Actions */}
+                  {/* Hover Actions — Phase 0a: only links verified on 2026-11-07 (lib/verified-links.ts). */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <div className="flex space-x-4">
+                      {verifiedLiveUrl(project.liveUrl) && (
                       <motion.a
-                        href={project.liveUrl}
+                        href={verifiedLiveUrl(project.liveUrl)!}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-6 py-3 bg-dark-bg-secondary/90 backdrop-blur-sm text-dev-text rounded-xl font-semibold hover:bg-dark-bg-tertiary transition-colors duration-200"
@@ -179,8 +183,10 @@ export default function ProjectsHighlight() {
                         <ExternalLink className="w-5 h-5 mr-2 inline" />
                         View Live
                       </motion.a>
+                      )}
+                      {verifiedRepoUrl(project.githubUrl) && (
                       <motion.a
-                        href={project.githubUrl}
+                        href={verifiedRepoUrl(project.githubUrl)!}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="p-3 bg-dark-bg-secondary/90 backdrop-blur-sm rounded-xl hover:bg-dark-bg-tertiary transition-colors duration-200"
@@ -189,6 +195,7 @@ export default function ProjectsHighlight() {
                       >
                         <Github className="w-5 h-5 text-dev-text" />
                       </motion.a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -200,7 +207,7 @@ export default function ProjectsHighlight() {
                       {project.title}
                     </h3>
                     <p className="text-lg text-dev-text-muted mb-4">{project.subtitle}</p>
-                    <p className="text-dev-text-muted leading-relaxed">{project.description}</p>
+                    <p className="text-dev-text-muted leading-relaxed">{withoutUnverifiedClaims(project.description)}</p>
                   </div>
 
                   {/* Technologies */}
@@ -217,7 +224,8 @@ export default function ProjectsHighlight() {
                     </div>
                   </div>
 
-                  {/* Metrics */}
+                  {/* Phase 0a: metrics ("1000+ Users", "$50K+ Revenue"…) have no source; hidden until confirmed. */}
+                  {SHOW_UNVERIFIED_CLAIMS && (
                   <div className="grid grid-cols-3 gap-4">
                     {project.metrics.map((metric, metricIndex) => (
                       <div
@@ -229,6 +237,7 @@ export default function ProjectsHighlight() {
                       </div>
                     ))}
                   </div>
+                  )}
                 </div>
               </div>
             </motion.div>

@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Github, Linkedin, Twitter, Mail, MapPin, Phone, MessageCircle } from "lucide-react"
+import { profile } from "@/content/profile"
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -29,16 +30,17 @@ const Footer = () => {
           {/* Brand Info */}
           <motion.div className="space-y-4" variants={itemVariants}>
             <Link href="/" className="flex-shrink-0">
-              <h1 className="text-3xl font-bold text-dev-text">
+              {/* Phase 0b: logo was an <h1>; now a span (same look). */}
+              <span className="block text-3xl font-bold text-dev-text">
                 Abdulrahman<span className="text-syntax-green">.dev</span>
-              </h1>
+              </span>
             </Link>
             <p className="text-dev-text-subtle leading-relaxed">
               Building exceptional web experiences with a focus on performance, scalability, and user satisfaction.
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://github.com/A-Gaoba"
+                href={profile.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full text-dev-text-muted hover:text-dev-text hover:bg-dark-bg-tertiary transition-colors duration-200"
@@ -46,21 +48,24 @@ const Footer = () => {
               >
                 <Github className="w-6 h-6" />
               </a>
+              {/* Phase 0a: LinkedIn hidden until the right profile URL is confirmed (open question A3). */}
+              {profile.links.linkedin && (
+                <a
+                  href={profile.links.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full text-dev-text-muted hover:text-syntax-blue hover:bg-dark-bg-tertiary transition-colors duration-200"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="w-6 h-6" />
+                </a>
+                )}
               <a
-                href="https://linkedin.com/in/A_Gaoba"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-full text-dev-text-muted hover:text-syntax-blue hover:bg-dark-bg-tertiary transition-colors duration-200"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-6 h-6" />
-              </a>
-              <a
-                href="https://twitter.com/A_Gaoba"
+                href={profile.links.x}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-full text-dev-text-muted hover:text-syntax-cyan hover:bg-dark-bg-tertiary transition-colors duration-200"
-                aria-label="Twitter"
+                aria-label="X (Twitter)"
               >
                 <Twitter className="w-6 h-6" />
               </a>
@@ -113,19 +118,19 @@ const Footer = () => {
               <li className="flex items-center">
                 <Mail className="w-5 h-5 text-syntax-green mr-3" />
                 <a
-                  href="mailto:abdulrahmangooba@gmail.com"
+                  href={`mailto:${profile.email}`}
                   className="text-dev-text-muted hover:text-syntax-green transition-colors duration-200"
                 >
-                  abdulrahmangooba@gmail.com
+                  {profile.email}
                 </a>
               </li>
               <li className="flex items-center">
                 <Phone className="w-5 h-5 text-syntax-blue mr-3" />
                 <a
-                  href="tel:+79174828474"
+                  href={`tel:${profile.phone.tel}`}
                   className="text-dev-text-muted hover:text-syntax-blue transition-colors duration-200"
                 >
-                  +7 (917) 482-84-74
+                  {profile.phone.display}
                 </a>
               </li>
               <li className="flex items-center">
@@ -142,7 +147,7 @@ const Footer = () => {
               <li className="flex items-center">
                 <MessageCircle className="w-5 h-5 text-syntax-cyan mr-3" />
                 <a
-                  href="https://wa.me/79174828474"
+                  href={profile.phone.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-dev-text-muted hover:text-syntax-cyan transition-colors duration-200"

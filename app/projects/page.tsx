@@ -1,103 +1,37 @@
 import ProjectsPageClient from "@/app/projects/ProjectsPageClient"
 import ScrollProgress from "@/app/components/ScrollProgress"
 import JsonLd from "@/app/components/JsonLd"
+import { SITE_URL, absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/site"
 
+// Phase 0b (2026-11-07): relative canonical (SITE_URL), no misspelling stuffing, no "proven results" claim.
 export const metadata = {
   title: "Projects Portfolio | Abdulrahman Gaoba - Full Stack Developer",
-  description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع) portfolio of web development projects including Naqla Tech, Yemeni Cultural Directory, Junzi Tech Solutions, and 15+ other successful projects with proven results.",
-  keywords: [
-    // English Keywords
-    "Abdulrahman Gaoba Projects",
-    "abdulraman gaoba portfolio",
-    "abdulrahamn gooba projects",
-    "abdulrahman gaoba portfolio",
-    "a-gaboa projects",
-    "Web Development Portfolio",
-    "React Projects",
-    "Next.js Projects",
-    "Naqla Tech",
-    "Yemeni Cultural Directory",
-    "Junzi Tech Solutions",
-    "E-commerce Projects",
-    "Portfolio Websites",
-    "Full Stack Projects",
-    "UI/UX Design Projects",
-    // Arabic Keywords
-    "عبد الرحمن قوبع",
-    "عبد الرحمن قوبع",
-    "مشاريع عبد الرحمن قوبع",
-    "أعمال مطور واجهات",
-    "مشاريع تطوير مواقع",
-    "مشاريع React",
-    "مشاريع Next.js",
-    "شركة ناقلة تك",
-    "دليل الثقافة اليمنية",
-    "حلول جنزي التقنية",
-    "مشاريع تجارة إلكترونية",
-    "مواقع محفظة أعمال",
-    "مشاريع Full Stack",
-    "مشاريع تصميم واجهات",
-    "أعمال برمجة مواقع",
-    "مشاريع تطوير تطبيقات"
-  ].join(", "),
+  description:
+    "Web projects built by Abdulrahman Gaoba (عبد الرحمن قوبع): e-commerce stores, business and portfolio websites, and web platforms built with React and Next.js.",
+  alternates: {
+    canonical: "/projects",
+  },
   openGraph: {
     title: "Projects Portfolio | Abdulrahman Gaoba - Full Stack Developer",
-    description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) portfolio of web development projects including Naqla Tech, Yemeni Cultural Directory, Junzi Tech Solutions, and 15+ other successful projects.",
-    url: "https://abdulrahmangooba.dev/projects",
-    siteName: "Abdulrahman Gaoba Portfolio",
-    images: [
-      {
-        url: "/projectsImages/naqla.png",
-        width: 1200,
-        height: 630,
-        alt: "Abdulrahman Gaoba Projects Portfolio",
-      },
-    ],
+    description:
+      "E-commerce stores, business and portfolio websites, and web platforms built with React and Next.js.",
+    url: "/projects",
+    siteName: "Abdulrahman Gaoba",
     locale: "en_US",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Projects Portfolio | Abdulrahman Gaoba - Full Stack Developer",
-    description: "Explore Abdulrahman Gaoba's (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) portfolio of web development projects with proven results.",
-    images: ["/projectsImages/naqla.png"],
-    creator: "@A_Gaoba",
-  },
-  alternates: {
-    canonical: "https://abdulrahmangooba.dev/projects",
+    images: [DEFAULT_OG_IMAGE],
   },
 }
 
 export default function Projects() {
+  // Phase 0b (2026-11-07): replaced the placeholder JSON-LD ("Project Alpha/Beta" on abdulrahman.dev, a domain
+  // that belongs to someone else) with a plain CollectionPage on this site's own URL.
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Abdulrahman's Projects",
-    description: "A portfolio of full-stack development and UI/UX design projects by Abdulrahman.",
-    url: "https://abdulrahman.dev/projects",
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          item: {
-            "@type": "CreativeWork",
-            name: "Project Alpha",
-            description: "A full-stack web application for managing tasks.",
-          },
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          item: {
-            "@type": "CreativeWork",
-            name: "Project Beta",
-            description: "A UI/UX redesign for an e-commerce platform.",
-          },
-        },
-      ],
-    },
+    name: "Projects by Abdulrahman Gaoba",
+    url: absoluteUrl("/projects"),
+    author: { "@id": `${SITE_URL}/#person` },
   }
 
   return (

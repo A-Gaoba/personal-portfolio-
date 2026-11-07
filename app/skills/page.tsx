@@ -1,40 +1,34 @@
 import Skills from "@/app/components/Skills"
 import ScrollProgress from "@/app/components/ScrollProgress"
 import JsonLd from "@/app/components/JsonLd"
+import { SITE_URL, absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/site"
 
+// Phase 0b (2026-11-07): canonical added (resolved against SITE_URL).
 export const metadata = {
-  title: "Skills - Abdulrahman's Portfolio",
-  description: "Explore Abdulrahman's technical skills in full-stack development and UI/UX design.",
+  title: "Skills - Abdulrahman Gaoba",
+  description: "Technical skills of Abdulrahman Gaoba in full stack web development.",
+  alternates: {
+    canonical: "/skills",
+  },
+  openGraph: {
+    title: "Skills - Abdulrahman Gaoba",
+    description: "Technical skills of Abdulrahman Gaoba in full stack web development.",
+    url: "/skills",
+    siteName: "Abdulrahman Gaoba",
+    locale: "en_US",
+    type: "website",
+    images: [DEFAULT_OG_IMAGE],
+  },
 }
 
 export default function SkillsPage() {
+  // Phase 0b (2026-11-07): same page, correct URL (was abdulrahman.dev, a domain that belongs to someone else).
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "Technical Skills",
-    description: "A comprehensive list of technical skills possessed by Abdulrahman, a full-stack developer.",
-    url: "https://abdulrahman.dev/skills",
-    mainEntity: {
-      "@type": "ItemList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          item: {
-            "@type": "Thing",
-            name: "React",
-          },
-        },
-        {
-          "@type": "ListItem",
-          position: 2,
-          item: {
-            "@type": "Thing",
-            name: "Next.js",
-          },
-        },
-      ],
-    },
+    name: "Technical skills of Abdulrahman Gaoba",
+    url: absoluteUrl("/skills"),
+    about: { "@id": `${SITE_URL}/#person` },
   }
 
   return (

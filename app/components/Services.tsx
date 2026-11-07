@@ -1,6 +1,8 @@
 "use client"
 import { useRef, useState } from "react"
 import { motion, useInView } from "framer-motion"
+import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
+import { hasNumericClaim } from "@/lib/claims"
 import {
   Code,
   Palette,
@@ -335,7 +337,8 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index:
                 {service.icon}
               </div>
               <div>
-                {service.featured && (
+                {/* Phase 0a: "Most Popular" has no source; hidden until confirmed. */}
+                {SHOW_UNVERIFIED_CLAIMS && service.featured && (
                   <div className="flex items-center px-3 py-1 bg-gradient-to-r from-syntax-orange to-syntax-pink text-dark-bg text-xs font-bold rounded-full mb-2">
                     <Star className="w-3 h-3 mr-1" />
                     Most Popular
@@ -349,10 +352,15 @@ const ServiceCard = ({ service, index }: { service: (typeof services)[0]; index:
             </div>
 
             <div className="text-right">
-              <div className="text-sm text-dev-text-muted mb-1">Starting from</div>
-              <div className={`text-lg font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
-                {service.pricing}
-              </div>
+              {/* Phase 0a: prices hidden until GAOBA confirms them (open question D2). */}
+              {SHOW_UNVERIFIED_CLAIMS && (
+                <>
+                  <div className="text-sm text-dev-text-muted mb-1">Starting from</div>
+                  <div className={`text-lg font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}>
+                    {service.pricing}
+                  </div>
+                </>
+              )}
               <div className="text-xs text-dev-text-muted flex items-center">
                 <Clock className="w-3 h-3 mr-1" />
                 {service.timeline}
@@ -460,7 +468,8 @@ export default function Services() {
             <span className="text-dev-text font-semibold">Services & Expertise</span>
           </motion.div>
 
-          <motion.h2
+          {/* Phase 0b: the page's main heading is now its <h1> (same classes). */}
+          <motion.h1
             className="text-4xl md:text-5xl lg:text-6xl font-poppins font-bold mb-6 text-dev-text"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -468,8 +477,9 @@ export default function Services() {
           >
             Comprehensive Web Development
             <br />
-            <span className="text-gradient-syntax">Services & Solutions</span>
-          </motion.h2>
+            {/* Phase 0a: was .text-gradient-syntax, which rendered transparent (undefined CSS variables). */}
+            <span className="text-syntax-green">Services & Solutions</span>
+          </motion.h1>
 
           <motion.p
             className="text-xl md:text-2xl text-dev-text-muted max-w-4xl mx-auto leading-relaxed"
@@ -612,7 +622,8 @@ export default function Services() {
 
             <h3 className="text-3xl md:text-4xl font-poppins font-bold text-dev-text mb-6">
               Frontend Mastery Meets
-              <span className="text-gradient-syntax"> Full-Stack Excellence</span>
+              {/* Phase 0a: was .text-gradient-syntax, which rendered transparent (undefined CSS variables). */}
+              <span className="text-syntax-green"> Full-Stack Excellence</span>
             </h3>
 
             <p className="text-lg md:text-xl text-dev-text-muted leading-relaxed max-w-4xl mx-auto mb-12">
@@ -620,7 +631,8 @@ export default function Services() {
               founder experience, I deliver solutions that not only look exceptional but drive real business results.
             </p>
 
-            <div className="grid md:grid-cols-4 gap-8">
+            {/* Phase 0a: the "1000+" and "60%" cards have no source; hidden until confirmed. */}
+            <div className={`grid gap-8 ${SHOW_UNVERIFIED_CLAIMS ? "md:grid-cols-4" : "md:grid-cols-2 max-w-3xl mx-auto"}`}>
               {[
                 {
                   icon: <Code className="w-6 h-6" />,
@@ -646,7 +658,9 @@ export default function Services() {
                   label: "Performance Boost",
                   description: "Average improvement delivered",
                 },
-              ].map((stat, index) => (
+              ]
+                .filter((stat) => SHOW_UNVERIFIED_CLAIMS || !hasNumericClaim(stat.number))
+                .map((stat, index) => (
                 <motion.div
                   key={index}
                   className="text-center"

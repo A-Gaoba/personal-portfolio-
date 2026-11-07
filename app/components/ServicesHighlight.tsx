@@ -4,6 +4,7 @@ import { useRef } from "react"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { Code, Palette, Zap, Smartphone, ArrowRight, Target, CheckCircle2 } from 'lucide-react'
+import { SHOW_UNVERIFIED_CLAIMS } from "@/lib/site"
 
 export default function ServicesHighlight() {
   const services = [
@@ -144,11 +145,14 @@ export default function ServicesHighlight() {
                   </div>
                   <div>
                     <h3 className="text-xl md:text-2xl font-bold text-dev-text">{service.title}</h3>
-                    <div
-                      className={`text-lg font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}
-                    >
-                      {service.pricing}
-                    </div>
+                    {/* Phase 0a: prices hidden until GAOBA confirms them (open question D2). */}
+                    {SHOW_UNVERIFIED_CLAIMS && (
+                      <div
+                        className={`text-lg font-bold bg-gradient-to-r ${service.color} bg-clip-text text-transparent`}
+                      >
+                        {service.pricing}
+                      </div>
+                    )}
                   </div>
                 </div>
 

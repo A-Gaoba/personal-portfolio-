@@ -1,86 +1,36 @@
 import ContactPage from "@/app/contact/ContactPage"
 import ScrollProgress from "@/app/components/ScrollProgress"
 import JsonLd from "@/app/components/JsonLd"
+import { SITE_URL, absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/site"
 import CalendlyWidget from "../components/CalendlyWidget";
 
+// Phase 0b (2026-11-07): relative canonical (SITE_URL), no misspelling stuffing.
 export const metadata = {
   title: "Contact Abdulrahman Gaoba | Full Stack Developer & UI/UX Designer",
-  description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع, عبد الرحمن قوبع) for full-stack development and UI/UX design projects. Available for freelance work, consulting, and collaboration opportunities.",
-  keywords: [
-    // English Keywords
-    "Contact Abdulrahman Gaoba",
-    "abdulraman gaoba contact",
-    "abdulrahamn gooba contact",
-    "abdulrahman gaoba contact",
-    "a-gaboa contact",
-    "Hire Full Stack Developer",
-    "React Developer for Hire",
-    "Next.js Developer",
-    "UI/UX Designer Contact",
-    "Freelance Developer",
-    "Web Development Services",
-    "Project Consultation",
-    "Abdulrahman Gaoba Email",
-    "Abdulrahman Gaoba LinkedIn",
-    // Arabic Keywords
-    "عبد الرحمن قوبع",
-    "عبد الرحمن قوبع",
-    "تواصل مع عبد الرحمن قوبع",
-    "توظيف مطور واجهات",
-    "مطور React للتوظيف",
-    "مطور Next.js",
-    "مصمم واجهات للتوظيف",
-    "مطور مستقل",
-    "خدمات تطوير الويب",
-    "استشارات مشاريع",
-    "بريد عبد الرحمن قوبع",
-    "لينكد إن عبد الرحمن قوبع",
-    "توظيف مطور مواقع",
-    "خدمات برمجة احترافية",
-    "مطور يمني للتوظيف"
-  ].join(", "),
+  description:
+    "Contact Abdulrahman Gaoba (عبد الرحمن قوبع) about web development and UI/UX projects: send a message or book a call.",
+  alternates: {
+    canonical: "/contact",
+  },
   openGraph: {
     title: "Contact Abdulrahman Gaoba | Full Stack Developer & UI/UX Designer",
-    description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) for full-stack development and UI/UX design projects. Available for freelance work and collaboration.",
-    url: "https://abdulrahmangooba.dev/contact",
-    siteName: "Abdulrahman Gaoba Portfolio",
-    images: [
-      {
-        url: "/myimage.jpeg",
-        width: 800,
-        height: 800,
-        alt: "Contact Abdulrahman Gaoba - Full Stack Developer",
-      },
-    ],
+    description: "Send a message or book a call about a web development or UI/UX project.",
+    url: "/contact",
+    siteName: "Abdulrahman Gaoba",
     locale: "en_US",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Contact Abdulrahman Gaoba | Full Stack Developer & UI/UX Designer",
-    description: "Get in touch with Abdulrahman Gaoba (abdulraman gaoba, a-gaboa, عبد الرحمن قوبع) for full-stack development and UI/UX design projects.",
-    images: ["/myimage.jpeg"],
-    creator: "@A_Gaoba",
-  },
-  alternates: {
-    canonical: "https://abdulrahmangooba.dev/contact",
+    images: [DEFAULT_OG_IMAGE],
   },
 }
 
 export default function Contact() {
+  // Phase 0b (2026-11-07): correct URL (was abdulrahman.dev, a domain that belongs to someone else).
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    name: "Contact Abdulrahman",
-    description: "Contact page for Abdulrahman, a full-stack developer and UI/UX designer.",
-    url: "https://abdulrahman.dev/contact",
-    potentialAction: {
-      "@type": "CommunicateAction",
-      target: {
-        "@type": "EntryPoint",
-        actionPlatform: ["http://schema.org/Website", "http://schema.org/EmailMessage"],
-      },
-    },
+    name: "Contact Abdulrahman Gaoba",
+    url: absoluteUrl("/contact"),
+    about: { "@id": `${SITE_URL}/#person` },
   }
 
   return (

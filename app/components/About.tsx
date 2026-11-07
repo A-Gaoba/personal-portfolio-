@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Award, Users, Code, TrendingUp, Sparkles, Briefcase, BookOpen } from "lucide-react"
+import { unverified } from "@/lib/claims" // Phase 0a: "50+" hidden until confirmed (open question B6)
 
 export default function About() {
   const stats = [
@@ -203,7 +204,7 @@ export default function About() {
                 Along the way, I founded Naqla Tech, a technology startup delivering end-to-end digital solutions, including web and mobile development, backend systems, bots, and AI automation. As founder and lead developer, I was responsible for product design, full-stack development, deployment, and continuous iteration, gaining hands-on experience in scalable architecture, user onboarding, and technical decision-making.
               </p>
               <p>
-                As a freelance full-stack developer, I’ve delivered 50+ modern web solutions for clients in logistics, education, SaaS, and e-commerce. I specialize in React, Next.js, Tailwind CSS, and Node.js, always focusing on performance, SEO, and user experience. My remote collaborations include building and maintaining production-ready apps for international clients like JunziTech Solutions.
+                As a freelance full-stack developer, I’ve delivered {unverified("50+ ")}modern web solutions for clients in logistics, education, SaaS, and e-commerce. I specialize in React, Next.js, Tailwind CSS, and Node.js, always focusing on performance, SEO, and user experience. My remote collaborations include building and maintaining production-ready apps for international clients like JunziTech Solutions.
               </p>
               <p>
                 Previously, as a Frontend Developer at CereSoftware, I built responsive, accessible interfaces with React and Tailwind CSS, improved code performance, and played a key role in agile development cycles and direct client communications.
@@ -246,7 +247,7 @@ export default function About() {
             <p className="text-syntax-green text-lg mb-2">Remote</p>
             <p className="text-dev-text-muted text-sm mb-4">Jan 2023 – Present</p>
             <ul className="list-disc list-inside text-dev-text-subtle space-y-1">
-              <li>Delivered 50+ modern web solutions for clients across logistics, education, SaaS, and e-commerce sectors.</li>
+              <li>Delivered {unverified("50+ ")}modern web solutions for clients across logistics, education, SaaS, and e-commerce sectors.</li>
               <li>Specialized in React, Next.js, Tailwind CSS, and Node.js with a focus on performance, SEO, and UX.</li>
               <li>Collaborated remotely with international clients including JunziTech Solutions, building and maintaining production-ready applications.</li>
             </ul>
@@ -378,7 +379,7 @@ export default function About() {
                   <h3 className="text-xl font-bold text-dev-text">Freelance Full-Stack Developer</h3>
                 </div>
               </div>
-              <p className="text-dev-text-muted leading-relaxed">Delivered 50+ modern web solutions for clients worldwide, specializing in React, Next.js, Tailwind CSS, and Node.js.</p>
+              <p className="text-dev-text-muted leading-relaxed">Delivered {unverified("50+ ")}modern web solutions for clients worldwide, specializing in React, Next.js, Tailwind CSS, and Node.js.</p>
             </div>
           </motion.div>
           <motion.div

@@ -13,7 +13,7 @@ const navLinks = [
   { name: "Projects", href: "/projects", icon: FolderGit2 },
   { name: "Skills", href: "/skills", icon: Lightbulb },
   { name: "Services", href: "/services", icon: Rocket },
-  { name: "Testimonials", href: "/testimonials", icon: Users },
+  // Phase 0a (2026-11-07): "Testimonials" removed (the page showed fabricated testimonials).
   { name: "Contact", href: "/contact", icon: Mail },
 ]
 
@@ -78,9 +78,10 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <h1 className="text-2xl font-bold text-dev-text">
+            {/* Phase 0b: the logo was an <h1> on every page; now a span (same classes, same look). */}
+            <span className="block text-2xl font-bold text-dev-text">
               Abdulrahman<span className="text-syntax-green">.dev</span>
-            </h1>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
