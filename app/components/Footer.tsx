@@ -16,6 +16,7 @@ const Footer = ({ locale, t }: { locale: Locale; t: Messages }) => {
     { href: "/projects", label: f.links.projects },
     { href: "/skills", label: f.links.skills },
     { href: "/services", label: f.links.services },
+    { href: "/resources", label: f.links.resources },
   ]
 
   const socials = [

@@ -17,6 +17,7 @@ const navLinks = [
   { key: "projects", href: "/projects" },
   { key: "skills", href: "/skills" },
   { key: "services", href: "/services" },
+  { key: "resources", href: "/resources" },
   // Phase 0a (2026-11-07): "Testimonials" removed (the page showed fabricated testimonials).
   { key: "contact", href: "/contact" },
 ] as const
@@ -61,8 +62,8 @@ const Navbar = () => {
             <Logo />
           </Link>
 
-          {/* Desktop */}
-          <div className="hidden items-center gap-1 md:flex">
+          {/* Desktop — from lg: with 7 links (Resources added 2026-11-08) the row no longer fits at md (768px). */}
+          <div className="hidden items-center gap-1 lg:flex">
             {navLinks.map((link) => {
               const active = isActive(link.href)
               return (
@@ -84,7 +85,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
-            <Link href={href("/contact")} className="btn btn-ink btn-sm hidden lg:inline-flex">
+            <Link href={href("/contact")} className="btn btn-ink btn-sm hidden xl:inline-flex">
               {t.nav.cta}
               <ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" />
             </Link>
@@ -93,7 +94,7 @@ const Navbar = () => {
               onClick={() => setIsOpen((o) => !o)}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
-              className="grid h-10 w-10 place-items-center rounded-full border border-line text-fg transition-colors hover:bg-fg/5 md:hidden"
+              className="grid h-10 w-10 place-items-center rounded-full border border-line text-fg transition-colors hover:bg-fg/5 lg:hidden"
             >
               <span className="sr-only">{isOpen ? t.nav.closeMenu : t.nav.openMenu}</span>
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -106,7 +107,7 @@ const Navbar = () => {
       <div
         id="mobile-menu"
         hidden={!isOpen}
-        className="border-t border-line bg-canvas md:hidden"
+        className="border-t border-line bg-canvas lg:hidden"
       >
         <div className="container-page flex flex-col py-3">
           {navLinks.map((link) => {
