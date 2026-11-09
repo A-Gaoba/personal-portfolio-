@@ -39,10 +39,17 @@ export type ResourceText = {
   /** Optional step-by-step guide content (each step can carry a copy-paste prompt). */
   setup?: GuideStep
   rules?: GuideStep[]
-  /** Optional: per-tool notes (e.g. Claude Code, Cursor). */
-  tools?: { name: string; points: string[] }[]
+  /** Optional: per-tool notes (e.g. Claude Code, Cursor), with an optional official link. */
+  tools?: { name: string; points: string[]; link?: { label: string; url: string } }[]
+  /** Optional heading/lede for the tools section (defaults to the site strings "Claude Code and Cursor"). */
+  toolsTitle?: string
+  toolsLede?: string
   rulesFile?: GuideStep
   checklist?: { title: string; items: string[] }
+  /** Optional: models grouped by RAM (name, download size, run command, official page). */
+  tiers?: { ram: string; title: string; models: { name: string; size: string; command: string; url: string }[]; notes?: string[] }[]
+  /** Optional closing notes (e.g. sources), each with an optional link. */
+  footnotes?: { title: string; text: string; link?: { label: string; url: string } }[]
 }
 
 export type GuideStep = {
@@ -78,6 +85,272 @@ export type Resource = {
 const SKILLS_REPO = "https://github.com/Jakeschincariol/instagram-agent-skill"
 
 export const resources: Resource[] = [
+  {
+    // GAOBA AI's own guide for the ram-local-models reel (no third-party project, so no `source`).
+    // public/resources/ram-local-models/resource_guide.pdf is GAOBA_REEL/resources/resource_guide.pdf, unmodified
+    // (3 pages, 213,336 bytes); its URL is already shared. Models, sizes, commands and links are copied from the PDF,
+    // which took the sizes from the Ollama library tag pages on 2026-11-09. The English text is a translation.
+    // Latin UI paths inside Arabic text are wrapped in U+2066…U+2069 (LTR isolates) so they read left to right.
+    slug: "ram-local-models",
+    category: "guide",
+    published: "2026-11-09",
+    inLanguage: ["ar"],
+    image: {
+      ar: "/resources/ram-local-models/og-ar.png",
+      en: "/resources/ram-local-models/og-en.png",
+    },
+    file: {
+      path: "/resources/ram-local-models/resource_guide.pdf",
+      downloadName: "local-ai-models-by-ram-guide-ar.pdf",
+      type: "application/pdf",
+      pages: 3,
+      bytes: 213336,
+    },
+    preparedBy: "GAOBA AI (@a_gaoba.ai)",
+    shortLink: { code: "local-models", locale: "ar" },
+    text: {
+      ar: {
+        title: "نماذج AI المناسبة لرام جهازك",
+        description:
+          "دليل مختصر بالعربية يساعدك تختار نموذج ذكاء اصطناعي تشغّله على جهازك حسب حجم الرام: 8 أو 16 أو 32 أو ⁦64 GB⁩، مع حجم كل نموذج وأمر تشغيله في Ollama ورابطه.",
+        ogTagline: "اختر النموذج حسب رام جهازك",
+        ogChips: ["8 · 16 · 32 · 64 GB", "Ollama", "LM Studio"],
+        intro: [
+          "تقدر تشغّل نموذج ذكاء اصطناعي على لابتوبك بدون إنترنت وبدون اشتراك، لكن النموذج لازم يناسب رام جهازك. هذا الدليل يرتّب النماذج حسب الرام: 8 و16 و32 و⁦64 GB⁩.",
+          "لكل نموذج: حجمه، وأمر تشغيله في Ollama، ورابط صفحته الرسمية. وقبلها 3 قواعد تساعدك تختار صح، وطريقتان للتشغيل: سطر أوامر أو واجهة سهلة.",
+        ],
+        note: "القاعدة الذهبية: اختر نموذجًا حجمه أقل من رام جهازك بفارق واضح، لأن نظام التشغيل والبرامج المفتوحة تحتاج جزءًا من الرام.",
+        benefits: [
+          "تعرف أي نموذج يناسب جهازك: 8 أو 16 أو 32 أو ⁦64 GB⁩.",
+          "11 نموذجًا مع حجم كل نموذج وأمر تشغيله ورابط صفحته.",
+          "طريقتان للتشغيل: Ollama بسطر الأوامر، وLM Studio بواجهة سهلة.",
+          "3 قواعد قبل التحميل حتى لا يثقل الجهاز.",
+          "كيف تعرف رام جهازك على Windows وMac.",
+          "ملاحظة واضحة عن النماذج الأكبر من اللابتوب، مثل Kimi K3.",
+        ],
+        setup: {
+          title: "كيف تعرف رام جهازك؟",
+          text: "قبل ما تختار، اعرف كم رام في جهازك:",
+          tools: [
+            { name: "Windows", text: "افتح ⁦Task Manager > Performance > Memory⁩." },
+            { name: "Mac", text: "من قائمة ⁦Apple > About This Mac > Memory⁩." },
+          ],
+        },
+        rules: [
+          {
+            title: "الحجم المكتوب = حجم التحميل المضغوط (4-bit) في Ollama",
+            text: "النموذج يحتاج تقريبًا نفس الحجم في الذاكرة، وأكثر قليلًا مع المحادثات الطويلة.",
+          },
+          {
+            title: "خلّي مكان للجهاز",
+            text: "نظام التشغيل والبرامج المفتوحة تأخذ جزءًا من الرام، فاختر نموذجًا حجمه أقل من الرام بفارق واضح.",
+          },
+          {
+            title: "كرت الشاشة (GPU) يسرّع",
+            text: "بدون GPU يشتغل النموذج على المعالج لكن أبطأ. وفي أجهزة Mac بشرائح Apple، الرام مشتركة مع كرت الشاشة.",
+          },
+        ],
+        toolsTitle: "طريقتان للتشغيل",
+        toolsLede: "اختر طريقة واحدة: سطر أوامر أو واجهة سهلة. البرنامجان يعملان على Windows وMac.",
+        tools: [
+          {
+            name: "Ollama",
+            points: [
+              "سطر أوامر: حمّله ثم اكتب الأمر المكتوب بجانب النموذج، مثل ⁦ollama run qwen3:4b⁩.",
+              "كل أوامر التشغيل في هذه الصفحة لـ Ollama، ومعها زر نسخ.",
+            ],
+            link: { label: "تحميل Ollama", url: "https://ollama.com/download" },
+          },
+          {
+            name: "LM Studio",
+            points: ["واجهة سهلة: حمّله وابحث عن اسم النموذج من داخل البرنامج."],
+            link: { label: "تحميل LM Studio", url: "https://lmstudio.ai/download" },
+          },
+        ],
+        tiers: [
+          {
+            ram: "8 GB",
+            title: "رام ⁦8 GB⁩: النماذج الصغيرة",
+            models: [
+              { name: "Qwen3 4B", size: "2.5 GB", command: "ollama run qwen3:4b", url: "https://ollama.com/library/qwen3" },
+              { name: "Gemma 3 4B", size: "3.4 GB", command: "ollama run gemma3:4b", url: "https://ollama.com/library/gemma3" },
+            ],
+            notes: ["أغلق البرامج الثقيلة أثناء التشغيل. النماذج فوق ⁦5 GB⁩ تكون ثقيلة على ⁦8 GB⁩."],
+          },
+          {
+            ram: "16 GB",
+            title: "رام ⁦16 GB⁩: النماذج المشهورة",
+            models: [
+              { name: "Llama 3.1 8B", size: "4.9 GB", command: "ollama run llama3.1:8b", url: "https://ollama.com/library/llama3.1" },
+              { name: "Qwen3 8B", size: "5.2 GB", command: "ollama run qwen3:8b", url: "https://ollama.com/library/qwen3" },
+              { name: "Gemma 3 12B", size: "8.2 GB", command: "ollama run gemma3:12b", url: "https://ollama.com/library/gemma3" },
+              { name: "Qwen3 14B", size: "9.3 GB", command: "ollama run qwen3:14b", url: "https://ollama.com/library/qwen3" },
+              { name: "GPT-OSS 20B", size: "14 GB", command: "ollama run gpt-oss:20b", url: "https://ollama.com/library/gpt-oss" },
+            ],
+            notes: ["GPT-OSS 20B على ⁦16 GB⁩ ضيّق: يشتغل، لكن الجهاز لا يبقى له مكان كثير."],
+          },
+          {
+            ram: "32 GB",
+            title: "رام ⁦32 GB⁩: النماذج الكبيرة",
+            models: [
+              { name: "Gemma 3 27B", size: "17 GB", command: "ollama run gemma3:27b", url: "https://ollama.com/library/gemma3" },
+              { name: "Qwen3 30B", size: "19 GB", command: "ollama run qwen3:30b", url: "https://ollama.com/library/qwen3" },
+              { name: "Qwen3 32B", size: "20 GB", command: "ollama run qwen3:32b", url: "https://ollama.com/library/qwen3" },
+            ],
+          },
+          {
+            ram: "64 GB",
+            title: "رام ⁦64 GB⁩: الوحوش",
+            models: [
+              { name: "Llama 3.3 70B", size: "43 GB", command: "ollama run llama3.3:70b", url: "https://ollama.com/library/llama3.3" },
+            ],
+            notes: [
+              "النماذج من هذا الحجم تحتاج صبرًا: السرعة تعتمد كثيرًا على كرت الشاشة.",
+              "GPT-OSS 120B حجمه ⁦65 GB⁩، أكبر من رام ⁦64 GB⁩، فلا يناسب هذا الجهاز.",
+            ],
+          },
+        ],
+        footnotes: [
+          {
+            title: "وKimi K3؟",
+            text: "واحد من إصداراته المضغوطة (Unsloth 1-bit) يحتاج حوالي ⁦610 GB⁩ من الذاكرة (RAM + VRAM مجتمعة)، يعني ليس للابتوب.",
+            link: { label: "المصدر: Unsloth", url: "https://unsloth.ai/docs/models/kimi-k3" },
+          },
+          {
+            title: "مصادر الأحجام",
+            text: "مكتبة Ollama (صفحات tags لكل نموذج)، تاريخ المراجعة: 9 نوفمبر 2026. الأحجام تتغير مع التحديثات، فراجع صفحة النموذج قبل التحميل.",
+          },
+        ],
+        requirements: [
+          "جهاز Windows أو Mac، وكلما زادت الرام زادت النماذج المتاحة.",
+          "Ollama أو LM Studio.",
+          "مساحة تخزين تكفي حجم النموذج الذي ستحمّله.",
+        ],
+        fileLanguage: "العربية",
+        imageAlt: "غلاف دليل «نماذج AI المناسبة لرام جهازك» من GAOBA AI",
+      },
+      en: {
+        title: "AI Models That Fit Your RAM",
+        description:
+          "A short guide (in Arabic) to choosing an AI model you can run on your own computer by RAM size: 8, 16, 32 or 64 GB, with each model's size, its Ollama run command and its link.",
+        ogTagline: "Pick a local model by your RAM (in Arabic)",
+        ogChips: ["8 · 16 · 32 · 64 GB", "Ollama", "LM Studio"],
+        intro: [
+          "You can run an AI model on your laptop with no internet and no subscription, but the model has to fit your RAM. This guide sorts models by RAM: 8, 16, 32 and 64 GB.",
+          "For each model: its size, its Ollama run command and its official page. Before that, 3 rules to help you choose well, and two ways to run models: a command line or an easy app.",
+        ],
+        note: "The golden rule: pick a model clearly smaller than your RAM, because the operating system and open apps need part of it too.",
+        benefits: [
+          "Know which model fits your computer: 8, 16, 32 or 64 GB.",
+          "11 models, each with its size, run command and page.",
+          "Two ways to run them: Ollama on the command line, or LM Studio with an easy interface.",
+          "3 rules before downloading, so your computer doesn't slow to a crawl.",
+          "How to check your RAM on Windows and Mac.",
+          "A clear note on models too big for a laptop, such as Kimi K3.",
+        ],
+        setup: {
+          title: "How much RAM do you have?",
+          text: "Before you choose, check how much RAM your computer has:",
+          tools: [
+            { name: "Windows", text: "Open Task Manager > Performance > Memory." },
+            { name: "Mac", text: "From the Apple menu > About This Mac > Memory." },
+          ],
+        },
+        rules: [
+          {
+            title: "The listed size = the compressed (4-bit) download in Ollama",
+            text: "The model needs about the same amount of memory, and a bit more in long conversations.",
+          },
+          {
+            title: "Leave room for your computer",
+            text: "The operating system and open apps take part of the RAM, so pick a model clearly smaller than your RAM.",
+          },
+          {
+            title: "A graphics card (GPU) speeds things up",
+            text: "Without a GPU the model runs on the processor, just slower. On Macs with Apple chips, the RAM is shared with the graphics.",
+          },
+        ],
+        toolsTitle: "Two ways to run them",
+        toolsLede: "Pick one: a command line or an easy app. Both run on Windows and Mac.",
+        tools: [
+          {
+            name: "Ollama",
+            points: [
+              "Command line: install it, then type the command listed next to the model, e.g. ollama run qwen3:4b.",
+              "Every run command on this page is for Ollama and has a copy button.",
+            ],
+            link: { label: "Download Ollama", url: "https://ollama.com/download" },
+          },
+          {
+            name: "LM Studio",
+            points: ["Easy interface: install it and search for the model's name inside the app."],
+            link: { label: "Download LM Studio", url: "https://lmstudio.ai/download" },
+          },
+        ],
+        tiers: [
+          {
+            ram: "8 GB",
+            title: "8 GB RAM: small models",
+            models: [
+              { name: "Qwen3 4B", size: "2.5 GB", command: "ollama run qwen3:4b", url: "https://ollama.com/library/qwen3" },
+              { name: "Gemma 3 4B", size: "3.4 GB", command: "ollama run gemma3:4b", url: "https://ollama.com/library/gemma3" },
+            ],
+            notes: ["Close heavy apps while it runs. Models over 5 GB are heavy on 8 GB."],
+          },
+          {
+            ram: "16 GB",
+            title: "16 GB RAM: the popular models",
+            models: [
+              { name: "Llama 3.1 8B", size: "4.9 GB", command: "ollama run llama3.1:8b", url: "https://ollama.com/library/llama3.1" },
+              { name: "Qwen3 8B", size: "5.2 GB", command: "ollama run qwen3:8b", url: "https://ollama.com/library/qwen3" },
+              { name: "Gemma 3 12B", size: "8.2 GB", command: "ollama run gemma3:12b", url: "https://ollama.com/library/gemma3" },
+              { name: "Qwen3 14B", size: "9.3 GB", command: "ollama run qwen3:14b", url: "https://ollama.com/library/qwen3" },
+              { name: "GPT-OSS 20B", size: "14 GB", command: "ollama run gpt-oss:20b", url: "https://ollama.com/library/gpt-oss" },
+            ],
+            notes: ["GPT-OSS 20B on 16 GB is tight: it runs, but leaves your computer little room."],
+          },
+          {
+            ram: "32 GB",
+            title: "32 GB RAM: large models",
+            models: [
+              { name: "Gemma 3 27B", size: "17 GB", command: "ollama run gemma3:27b", url: "https://ollama.com/library/gemma3" },
+              { name: "Qwen3 30B", size: "19 GB", command: "ollama run qwen3:30b", url: "https://ollama.com/library/qwen3" },
+              { name: "Qwen3 32B", size: "20 GB", command: "ollama run qwen3:32b", url: "https://ollama.com/library/qwen3" },
+            ],
+          },
+          {
+            ram: "64 GB",
+            title: "64 GB RAM: the heavyweights",
+            models: [
+              { name: "Llama 3.3 70B", size: "43 GB", command: "ollama run llama3.3:70b", url: "https://ollama.com/library/llama3.3" },
+            ],
+            notes: [
+              "Models this size take patience: speed depends a lot on the graphics card.",
+              "GPT-OSS 120B is 65 GB, more than 64 GB of RAM, so it doesn't fit this machine.",
+            ],
+          },
+        ],
+        footnotes: [
+          {
+            title: "What about Kimi K3?",
+            text: "One of its compressed versions (Unsloth 1-bit) needs about 610 GB of memory (RAM + VRAM combined), so it's not for a laptop.",
+            link: { label: "Source: Unsloth", url: "https://unsloth.ai/docs/models/kimi-k3" },
+          },
+          {
+            title: "Where the sizes come from",
+            text: "The Ollama library (each model's tags page), reviewed on 9 November 2026. Sizes change with updates, so check the model's page before downloading.",
+          },
+        ],
+        requirements: [
+          "A Windows or Mac computer; the more RAM, the more models you can run.",
+          "Ollama or LM Studio.",
+          "Enough storage for the model you download.",
+        ],
+        fileLanguage: "Arabic",
+        imageAlt: "Cover of the “AI Models That Fit Your RAM” guide by GAOBA AI",
+      },
+    },
+  },
   {
     // GAOBA AI's own guide (no third-party project, so no `source`). The idea comes from GAOBA AI's reel about Pando.
     // public/resources/pando-openai/resource_guide.pdf is GAOBA_REEL/resources/resource_guide.pdf, unmodified

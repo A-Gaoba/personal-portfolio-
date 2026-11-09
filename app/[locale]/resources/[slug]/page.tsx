@@ -254,8 +254,8 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
 
               {txt.tools && (
                 <section aria-labelledby="tools-title">
-                  <h2 id="tools-title" className="title mb-3">{s.toolsTitle}</h2>
-                  <p className="lede mb-6">{s.toolsLede}</p>
+                  <h2 id="tools-title" className="title mb-3">{txt.toolsTitle ?? s.toolsTitle}</h2>
+                  <p className="lede mb-6">{txt.toolsLede ?? s.toolsLede}</p>
                   <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {txt.tools.map((tool, i) => (
                       <li key={tool.name} className={i % 2 ? "card-paper p-5 sm:p-6" : "card-ink p-5 sm:p-6"}>
@@ -268,9 +268,82 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
                             </li>
                           ))}
                         </ul>
+                        {tool.link && (
+                          <a href={tool.link.url} target="_blank" rel="noopener noreferrer" className={`btn btn-sm mt-5 ${i % 2 ? "btn-ink" : "btn-brand"}`}>
+                            <Download className="h-4 w-4" aria-hidden="true" />
+                            {tool.link.label}
+                            <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                          </a>
+                        )}
                       </li>
                     ))}
                   </ul>
+                </section>
+              )}
+
+              {txt.tiers && (
+                <section aria-labelledby="tiers-title">
+                  <h2 id="tiers-title" className="title mb-6">{s.tiersTitle}</h2>
+                  <ol className="space-y-5">
+                    {txt.tiers.map((tier, i) => (
+                      <li key={tier.ram} className="card-paper p-5 sm:p-7">
+                        <div className="flex items-center gap-4">
+                          <span
+                            aria-hidden="true"
+                            dir="ltr"
+                            className={`grid h-11 min-w-[4.5rem] flex-shrink-0 place-items-center rounded-xl px-3 text-base font-bold ${i % 2 ? "bg-brand text-on-brand" : "bg-inverse text-on-inverse"}`}
+                          >
+                            {tier.ram}
+                          </span>
+                          <h3 className="min-w-0 text-xl font-bold text-fg sm:text-2xl">{tier.title}</h3>
+                        </div>
+                        <ul className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
+                          {tier.models.map((m) => (
+                            <li key={m.command} className="rounded-xl border border-line bg-surface p-4">
+                              <div className="flex flex-wrap items-center justify-between gap-2">
+                                <h4 dir="ltr" className="text-lg font-bold text-fg">{m.name}</h4>
+                                <span className="chip text-xs">
+                                  {s.modelSize}:&nbsp;<bdi className="font-semibold text-fg">{m.size}</bdi>
+                                </span>
+                              </div>
+                              <PromptBlock text={m.command} {...promptProps} label={s.runCommand} compact />
+                              <a href={m.url} target="_blank" rel="noopener noreferrer" className="link mt-3 inline-flex items-center gap-1 text-sm">
+                                {s.modelPage}
+                                <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                        {tier.notes && (
+                          <ul className="mt-5 space-y-2">
+                            {tier.notes.map((n) => (
+                              <li key={n} className="flex gap-2 leading-relaxed text-fg-2">
+                                <Info className="mt-1 h-4 w-4 flex-shrink-0 text-brand-text" aria-hidden="true" />
+                                <span>{n}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              )}
+
+              {txt.footnotes && (
+                <section className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  {txt.footnotes.map((f) => (
+                    <div key={f.title} className="card-paper p-5 sm:p-6">
+                      <h2 className="text-xl font-bold text-fg">{f.title}</h2>
+                      <p className="mt-3 leading-relaxed text-fg-2">{f.text}</p>
+                      {f.link && (
+                        <a href={f.link.url} target="_blank" rel="noopener noreferrer" className="link mt-3 inline-flex items-center gap-1 text-sm">
+                          {f.link.label}
+                          <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
+                        </a>
+                      )}
+                    </div>
+                  ))}
                 </section>
               )}
 
@@ -353,11 +426,11 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
                 </section>
               )}
 
-              {txt.rules && (
+              {(txt.rules || txt.tiers) && (
                 <section aria-labelledby="getpdf-title" className="card-ink flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
                   <div className="min-w-0">
                     <h2 id="getpdf-title" className="text-xl font-bold text-on-inverse sm:text-2xl">{s.downloadTitle}</h2>
-                    <p className="mt-2 leading-relaxed text-on-inverse/75">{s.downloadText}</p>
+                    <p className="mt-2 leading-relaxed text-on-inverse/75">{txt.tiers ? s.guideDownloadText : s.downloadText}</p>
                   </div>
                   <a href={r.file.path} download={r.file.downloadName} className="btn btn-brand flex-shrink-0">
                     <Download className="h-5 w-5" aria-hidden="true" />
