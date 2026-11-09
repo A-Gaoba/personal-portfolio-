@@ -515,6 +515,11 @@ const en = {
     copied: "Copied",
     downloadTitle: "Keep the guide with you",
     downloadText: "Every rule and prompt on this page, in one PDF to keep on your phone or computer.",
+    tiersTitle: "Models by RAM",
+    modelSize: "Size",
+    modelPage: "Model page",
+    runCommand: "Run command",
+    guideDownloadText: "Everything on this page, in one PDF to keep on your phone or computer.",
   },
 
   notFound: {

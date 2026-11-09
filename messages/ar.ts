@@ -908,6 +908,11 @@ const ar: Messages = {
     copied: "تم النسخ",
     downloadTitle: "احتفظ بالدليل معك",
     downloadText: "كل القواعد والأوامر في هذه الصفحة، في ملف PDF واحد تحفظه على جوالك أو جهازك.",
+    tiersTitle: "النماذج حسب الرام",
+    modelSize: "الحجم",
+    modelPage: "صفحة النموذج",
+    runCommand: "أمر التشغيل",
+    guideDownloadText: "كل ما في هذه الصفحة، في ملف PDF واحد تحفظه على جوالك أو جهازك.",
   },
 
   notFound: {
