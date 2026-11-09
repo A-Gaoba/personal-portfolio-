@@ -505,6 +505,16 @@ const en = {
     extrasTitle: "Extra files",
     downloadZip: "Download ZIP",
     zipContains: "Contains",
+    benefitsTitle: "What you get",
+    rulesTitle: "The rules",
+    rule: "Rule {n}",
+    toolsTitle: "Claude Code and Cursor",
+    toolsLede: "Where each tool fits into the rules.",
+    promptLabel: "Copy & paste",
+    copy: "Copy",
+    copied: "Copied",
+    downloadTitle: "Keep the guide with you",
+    downloadText: "Every rule and prompt on this page, in one PDF to keep on your phone or computer.",
   },
 
   notFound: {

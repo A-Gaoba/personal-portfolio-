@@ -32,11 +32,15 @@ export default function ResourceCard({ resource: r, locale, t }: { resource: Res
           </Link>
         </h2>
         <p className="leading-relaxed text-fg-2">{txt.description}</p>
-        <p className="text-sm text-fg-muted">
-          {s.sourceTitle}: <span dir="ltr" className="font-semibold text-fg-2">{r.source.name}</span> {s.by}{" "}
-          <span className="font-semibold text-fg-2">{r.source.author}</span>
-          {r.source.license && <> · {fill(s.license, { license: r.source.license })}</>}
-        </p>
+        {r.source ? (
+          <p className="text-sm text-fg-muted">
+            {s.sourceTitle}: <span dir="ltr" className="font-semibold text-fg-2">{r.source.name}</span> {s.by}{" "}
+            <span className="font-semibold text-fg-2">{r.source.author}</span>
+            {r.source.license && <> · {fill(s.license, { license: r.source.license })}</>}
+          </p>
+        ) : (
+          <p className="text-sm text-fg-muted">{fill(s.preparedBy, { name: r.preparedBy })}</p>
+        )}
         <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row">
           <Link href={href} className="btn btn-ink btn-sm">
             {s.viewDetails}

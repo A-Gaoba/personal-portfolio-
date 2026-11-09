@@ -898,6 +898,16 @@ const ar: Messages = {
     extrasTitle: "ملفات إضافية",
     downloadZip: "تحميل ZIP",
     zipContains: "يحتوي على",
+    benefitsTitle: "ماذا ستستفيد",
+    rulesTitle: "القواعد",
+    rule: "القاعدة {n}",
+    toolsTitle: "Claude Code وCursor",
+    toolsLede: "أين تستخدم كل أداة في هذه القواعد.",
+    promptLabel: "انسخ والصق",
+    copy: "نسخ",
+    copied: "تم النسخ",
+    downloadTitle: "احتفظ بالدليل معك",
+    downloadText: "كل القواعد والأوامر في هذه الصفحة، في ملف PDF واحد تحفظه على جوالك أو جهازك.",
   },
 
   notFound: {

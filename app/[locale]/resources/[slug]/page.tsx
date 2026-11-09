@@ -2,10 +2,11 @@ import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { ArrowLeft, Download, ExternalLink, FileText, Github, Info } from "lucide-react"
+import { ArrowLeft, Check, Download, ExternalLink, FileText, Github, Info, Square } from "lucide-react"
 import JsonLd from "@/app/components/JsonLd"
+import PromptBlock from "@/app/components/PromptBlock"
 import ScrollProgress from "@/app/components/ScrollProgress"
-import { getResource, resources } from "@/content/resources"
+import { type GuideStep, getResource, resources } from "@/content/resources"
 import { SITE_URL, absoluteUrl } from "@/lib/site"
 import { isLocale, localeMeta, localizePath, otherLocales } from "@/lib/i18n/config"
 import { getDictionary } from "@/lib/i18n/dictionaries"
@@ -71,13 +72,17 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
     datePublished: r.published,
     creator: { "@type": "Organization", name: "GAOBA AI" },
     publisher: { "@id": `${SITE_URL}/#person` },
-    isBasedOn: {
-      "@type": "SoftwareSourceCode",
-      name: r.source.name,
-      codeRepository: r.source.url,
-      author: { "@type": "Person", name: r.source.author },
-      ...(r.source.license === "MIT" ? { license: "https://opensource.org/license/mit" } : {}),
-    },
+    ...(r.source
+      ? {
+          isBasedOn: {
+            "@type": "SoftwareSourceCode",
+            name: r.source.name,
+            codeRepository: r.source.url,
+            author: { "@type": "Person", name: r.source.author },
+            ...(r.source.license === "MIT" ? { license: "https://opensource.org/license/mit" } : {}),
+          },
+        }
+      : {}),
     encoding: {
       "@type": "MediaObject",
       contentUrl: absoluteUrl(r.file.path),
@@ -93,6 +98,22 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
     [s.language, txt.fileLanguage],
     [s.published, formatDate(r.published, locale)],
   ]
+
+  const promptProps = { label: s.promptLabel, copy: s.copy, copied: s.copied }
+  // Tool name + note, e.g. "Claude Code: turn on Plan Mode". Names are Latin, kept LTR inside Arabic text.
+  const toolLines = (tools: GuideStep["tools"]) =>
+    tools && (
+      <ul className="mt-4 space-y-2">
+        {tools.map((x) => (
+          <li key={x.name} className="flex gap-2 leading-relaxed text-fg-2">
+            <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand" />
+            <span>
+              <bdi className="font-bold text-fg">{x.name}</bdi>: {x.text}
+            </span>
+          </li>
+        ))}
+      </ul>
+    )
 
   return (
     <>
@@ -142,7 +163,11 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Source / credit — always visible, before the content */}
+          {/* Source / credit — always visible, before the content (GAOBA AI's own guides show their note instead) */}
+          {!r.source && txt.note && (
+            <p className="card-ink mt-14 p-6 text-lg font-semibold leading-relaxed sm:p-8 sm:text-xl">{txt.note}</p>
+          )}
+          {r.source && (
           <section aria-labelledby="source-title" className="card-ink mt-14 p-6 sm:p-8">
             <p id="source-title" className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-on-inverse/60">
               {s.sourceTitle}
@@ -164,6 +189,7 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
               {r.source.url}
             </p>
           </section>
+          )}
 
           <div className="mt-14 grid grid-cols-1 gap-12 lg:grid-cols-[1.4fr_0.6fr] lg:gap-14">
             <div className="min-w-0 space-y-12">
@@ -172,6 +198,104 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
                   <p key={i}>{p}</p>
                 ))}
               </div>
+
+              {txt.benefits && (
+                <section aria-labelledby="benefits-title">
+                  <h2 id="benefits-title" className="title mb-6">{s.benefitsTitle}</h2>
+                  <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    {txt.benefits.map((b) => (
+                      <li key={b} className="card-paper flex gap-3 p-4">
+                        <Check className="mt-1 h-5 w-5 flex-shrink-0 text-brand-text" aria-hidden="true" />
+                        <span className="leading-relaxed text-fg-2">{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {txt.setup && (
+                <section aria-labelledby="setup-title" className="card-paper p-5 sm:p-7">
+                  <h2 id="setup-title" className="text-xl font-bold text-fg sm:text-2xl">{txt.setup.title}</h2>
+                  <p className="mt-3 leading-relaxed text-fg-2">{txt.setup.text}</p>
+                  {txt.setup.prompt && <PromptBlock text={txt.setup.prompt} {...promptProps} />}
+                </section>
+              )}
+
+              {txt.rules && (
+                <section aria-labelledby="rules-title">
+                  <h2 id="rules-title" className="title mb-6">
+                    {s.rulesTitle} <span className="mark">{txt.rules.length}</span>
+                  </h2>
+                  <ol className="space-y-5">
+                    {txt.rules.map((rule, i) => (
+                      <li key={rule.title} className="card-paper p-5 sm:p-7">
+                        <div className="flex items-start gap-4">
+                          <span
+                            aria-hidden="true"
+                            className={`grid h-11 w-11 flex-shrink-0 place-items-center rounded-xl text-lg font-bold ${i % 2 ? "bg-brand text-on-brand" : "bg-inverse text-on-inverse"}`}
+                          >
+                            {i + 1}
+                          </span>
+                          <div className="min-w-0">
+                            <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-fg-muted">
+                              {fill(s.rule, { n: i + 1 })}
+                            </p>
+                            <h3 className="mt-1 text-xl font-bold text-fg sm:text-2xl">{rule.title}</h3>
+                          </div>
+                        </div>
+                        <p className="mt-4 leading-relaxed text-fg-2">{rule.text}</p>
+                        {toolLines(rule.tools)}
+                        {rule.prompt && <PromptBlock text={rule.prompt} {...promptProps} />}
+                      </li>
+                    ))}
+                  </ol>
+                </section>
+              )}
+
+              {txt.tools && (
+                <section aria-labelledby="tools-title">
+                  <h2 id="tools-title" className="title mb-3">{s.toolsTitle}</h2>
+                  <p className="lede mb-6">{s.toolsLede}</p>
+                  <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {txt.tools.map((tool, i) => (
+                      <li key={tool.name} className={i % 2 ? "card-paper p-5 sm:p-6" : "card-ink p-5 sm:p-6"}>
+                        <h3 dir="ltr" className={`text-start text-xl font-bold ${i % 2 ? "text-fg" : "text-on-inverse"}`}>{tool.name}</h3>
+                        <ul className="mt-4 space-y-3">
+                          {tool.points.map((pt) => (
+                            <li key={pt} className={`flex gap-2 leading-relaxed ${i % 2 ? "text-fg-2" : "text-on-inverse/80"}`}>
+                              <span aria-hidden="true" className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand" />
+                              <span>{pt}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
+              {txt.rulesFile && (
+                <section aria-labelledby="rulesfile-title" className="card-paper p-5 sm:p-7">
+                  <h2 id="rulesfile-title" className="text-xl font-bold text-fg sm:text-2xl">{txt.rulesFile.title}</h2>
+                  <p className="mt-3 leading-relaxed text-fg-2">{txt.rulesFile.text}</p>
+                  {toolLines(txt.rulesFile.tools)}
+                  {txt.rulesFile.prompt && <PromptBlock text={txt.rulesFile.prompt} {...promptProps} />}
+                </section>
+              )}
+
+              {txt.checklist && (
+                <section aria-labelledby="checklist-title" className="card-paper p-5 sm:p-7">
+                  <h2 id="checklist-title" className="text-xl font-bold text-fg sm:text-2xl">{txt.checklist.title}</h2>
+                  <ul className="mt-5 space-y-3">
+                    {txt.checklist.items.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-lg leading-relaxed text-fg-2">
+                        <Square className="mt-1.5 h-4 w-4 flex-shrink-0 text-brand-text" aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
 
               {txt.contents && (
                 <section aria-labelledby="contents-title">
@@ -226,6 +350,19 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
                       <li key={q}>{q}</li>
                     ))}
                   </ul>
+                </section>
+              )}
+
+              {txt.rules && (
+                <section aria-labelledby="getpdf-title" className="card-ink flex flex-col gap-5 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+                  <div className="min-w-0">
+                    <h2 id="getpdf-title" className="text-xl font-bold text-on-inverse sm:text-2xl">{s.downloadTitle}</h2>
+                    <p className="mt-2 leading-relaxed text-on-inverse/75">{s.downloadText}</p>
+                  </div>
+                  <a href={r.file.path} download={r.file.downloadName} className="btn btn-brand flex-shrink-0">
+                    <Download className="h-5 w-5" aria-hidden="true" />
+                    {s.download}
+                  </a>
                 </section>
               )}
             </div>
