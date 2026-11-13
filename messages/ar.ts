@@ -879,6 +879,7 @@ const ar: Messages = {
     viewPdf: "فتح ملف PDF",
     download: "تحميل PDF",
     viewSource: "المشروع الأصلي على GitHub",
+    referencesTitle: "المراجع الرسمية",
     back: "كل الموارد",
     sourceTitle: "المشروع الأصلي",
     by: "من تطوير",

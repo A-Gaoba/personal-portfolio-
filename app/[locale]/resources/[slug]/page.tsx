@@ -5,8 +5,9 @@ import { notFound } from "next/navigation"
 import { ArrowLeft, Check, Download, ExternalLink, FileText, Github, Info, Square } from "lucide-react"
 import JsonLd from "@/app/components/JsonLd"
 import PromptBlock from "@/app/components/PromptBlock"
+import ReelResourceDetails from "@/app/components/ReelResourceDetails"
 import ScrollProgress from "@/app/components/ScrollProgress"
-import { type GuideStep, getResource, resources } from "@/content/resources"
+import { type GuideStep, getResource, isReelResource, resources } from "@/content/resources"
 import { SITE_URL, absoluteUrl } from "@/lib/site"
 import { isLocale, localeMeta, localizePath, otherLocales } from "@/lib/i18n/config"
 import { getDictionary } from "@/lib/i18n/dictionaries"
@@ -58,6 +59,7 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
   const s = t.resources
   const txt = r.text[locale]
   const url = absoluteUrl(localizePath(locale, resourcePath(r)))
+  if (isReelResource(r)) return <ReelResourceDetails resource={r} locale={locale} />
 
   const jsonLd = {
     "@context": "https://schema.org",

@@ -29,7 +29,7 @@ export type ResourceText = {
   contentsNote?: string
   /** "What you need". */
   requirements?: string[]
-  /** Language the file itself is written in, as shown to the reader. */
+  /** Language of the file or media, as shown to the reader. */
   fileLanguage: string
   imageAlt: string
   /** Optional: short labels on the cover image under the tagline (first one is highlighted). */
@@ -63,16 +63,17 @@ export type GuideStep = {
   prompt?: string
 }
 
-export type Resource = {
+type ResourceBase = {
   slug: string
   category: ResourceCategory
   /** ISO date the resource was published on this site. */
   published: string
-  /** Language(s) of the downloadable file (BCP 47). */
+  /** Language(s) of the resource (BCP 47). */
   inLanguage: string[]
   /** Card + Open Graph image per site language, 1200×630, generated from `ogTagline` (public/…). */
   image: Record<Locale, string>
-  file: { path: string; downloadName: string; type: "application/pdf"; pages: number; bytes: number }
+  /** Original reel cover, shown on the details page. */
+  thumbnail?: string
   /** Optional extra downloads shown on the details page (e.g. a zip with scripts the guide refers to). */
   extras?: { path: string; downloadName: string; type: "application/zip"; bytes: number; files: string[]; text: Record<Locale, { title: string; description: string }> }[]
   /** Who made the original work the resource is about (shown on every card and page). Omitted for GAOBA AI's own guides. */
@@ -84,9 +85,144 @@ export type Resource = {
   text: Record<Locale, ResourceText>
 }
 
+export type Resource = ResourceBase & (
+  | { file: { path: string; downloadName: string; type: "application/pdf"; pages: number; bytes: number }; thumbnail?: never }
+  | { thumbnail: string; file?: never }
+)
+
+export type ReelResource = Extract<Resource, { thumbnail: string }>
+
+export const isReelResource = (resource: Resource): resource is ReelResource => "thumbnail" in resource
+
 const SKILLS_REPO = "https://github.com/Jakeschincariol/instagram-agent-skill"
 
 export const resources: Resource[] = [
+  {
+    slug: "claude-connectors",
+    category: "guide",
+    published: "2026-11-13",
+    inLanguage: ["ar"],
+    image: {
+      ar: "/resources/claude-connectors/og-ar.png",
+      en: "/resources/claude-connectors/og-en.png",
+    },
+    thumbnail: "/resources/claude-connectors/thumbnail.png",
+    preparedBy: "GAOBA AI (@a_gaoba.ai)",
+    text: {
+      ar: {
+        title: "موصّلات Claude: خمس أدوات تنهي النسخ واللصق",
+        description:
+          "ريل تعليمي يشرح كيف تمنح موصّلات Claude وصولًا مباشرًا إلى أدوات وخدمات خارجية، مع خمسة أمثلة للبحث والبيانات والمتصفح والتطبيقات.",
+        fileLanguage: "العربية",
+        imageAlt: "الصورة المصغرة لريل موصّلات Claude وخمس أدوات تنهي النسخ واللصق",
+        ogTagline: "أدوات تعمل مباشرة من محادثة Claude",
+        ogChips: ["موصّلات Claude", "5 أدوات", "MCP"],
+        intro: [
+          "يوضح هذا الريل كيف يتيح الموصّل لـClaude استدعاء أداة أو خدمة خارجية مباشرة، بدلًا من نقل النصوص يدويًا بين التطبيقات.",
+          "يعرض خمسة أمثلة: بحث الويب عبر Perplexity، واستخراج محتوى الصفحات عبر Firecrawl، والاستعلام عن بيانات PostHog، والتحكم بالمتصفح عبر Playwright، وربط التطبيقات عبر Composio.",
+        ],
+        note: "واجهات الأدوات في الريل مرسومة للتوضيح فقط؛ لا تتضمن تسجيلًا حقيقيًا أو بيانات فعلية.",
+        benefits: [
+          "بحث ويب بإجابات تتضمن مصادر عبر Perplexity.",
+          "استخراج محتوى صفحات الويب بصيغة Markdown عبر Firecrawl.",
+          "طرح أسئلة نصية على بيانات PostHog.",
+          "التفاعل مع صفحات الويب والتحكم بمتصفح عبر Playwright MCP.",
+          "ربط Claude بتطبيقات مثل Gmail وSlack وNotion عبر Composio.",
+        ],
+        footnotes: [
+          {
+            title: "موصّلات Claude الرسمية",
+            text: "دليل Anthropic لإعداد الموصّلات المخصصة باستخدام remote MCP.",
+            link: {
+              label: "دليل Anthropic",
+              url: "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+            },
+          },
+          {
+            title: "Perplexity",
+            text: "توثيق خادم MCP للبحث على الويب.",
+            link: { label: "توثيق Perplexity", url: "https://docs.perplexity.ai/guides/mcp-server" },
+          },
+          {
+            title: "Firecrawl",
+            text: "خدمات البحث في الويب واستخراج محتوى الصفحات.",
+            link: { label: "موقع Firecrawl", url: "https://www.firecrawl.dev/" },
+          },
+          {
+            title: "PostHog",
+            text: "توثيق التكامل مع Model Context Protocol للاستعلام عن البيانات.",
+            link: { label: "توثيق PostHog", url: "https://posthog.com/docs/model-context-protocol" },
+          },
+          {
+            title: "Playwright MCP",
+            text: "مشروع Microsoft مفتوح المصدر لأتمتة المتصفح عبر MCP.",
+            link: { label: "مستودع Playwright MCP", url: "https://github.com/microsoft/playwright-mcp" },
+          },
+          {
+            title: "Composio",
+            text: "منصة لربط المساعدات بتطبيقات وخدمات خارجية.",
+            link: { label: "موقع Composio", url: "https://composio.dev/" },
+          },
+        ],
+      },
+      en: {
+        title: "Claude Connectors: Five Tools That End Copy-Paste",
+        description:
+          "An educational reel explaining how Claude connectors provide direct access to outside tools and services, with five examples spanning web search, analytics, browsers, and apps.",
+        fileLanguage: "Arabic",
+        imageAlt: "Thumbnail for a reel about Claude connectors and five tools that end copy-paste",
+        ogTagline: "Tools that work directly from a Claude chat",
+        ogChips: ["Claude connectors", "5 tools", "MCP"],
+        intro: [
+          "This reel explains how a connector lets Claude call an outside tool or service directly, instead of moving text between apps by hand.",
+          "It covers five examples: web search with Perplexity, page extraction with Firecrawl, querying PostHog data, browser control with Playwright, and app connections through Composio.",
+        ],
+        note: "The tool interfaces shown in the reel are illustrative drawings, not real recordings or live data.",
+        benefits: [
+          "Web research with sourced answers through Perplexity.",
+          "Extract web-page content as Markdown with Firecrawl.",
+          "Ask questions about PostHog data in plain language.",
+          "Interact with web pages and control a browser through Playwright MCP.",
+          "Connect Claude to apps such as Gmail, Slack, and Notion through Composio.",
+        ],
+        footnotes: [
+          {
+            title: "Official Claude connectors",
+            text: "Anthropic's guide to setting up custom connectors with remote MCP.",
+            link: {
+              label: "Anthropic guide",
+              url: "https://support.claude.com/en/articles/11175166-get-started-with-custom-connectors-using-remote-mcp",
+            },
+          },
+          {
+            title: "Perplexity",
+            text: "MCP server documentation for web search.",
+            link: { label: "Perplexity docs", url: "https://docs.perplexity.ai/guides/mcp-server" },
+          },
+          {
+            title: "Firecrawl",
+            text: "Web search and page extraction services.",
+            link: { label: "Firecrawl website", url: "https://www.firecrawl.dev/" },
+          },
+          {
+            title: "PostHog",
+            text: "Model Context Protocol integration docs for querying data.",
+            link: { label: "PostHog docs", url: "https://posthog.com/docs/model-context-protocol" },
+          },
+          {
+            title: "Playwright MCP",
+            text: "Microsoft's open-source project for browser automation through MCP.",
+            link: { label: "Playwright MCP repository", url: "https://github.com/microsoft/playwright-mcp" },
+          },
+          {
+            title: "Composio",
+            text: "A platform for connecting assistants to external apps and services.",
+            link: { label: "Composio website", url: "https://composio.dev/" },
+          },
+        ],
+      },
+    },
+  },
   {
     // The prompts and PDF are copied from Reel 008's approved resource files.
     slug: "chatgpt-study-prompts",

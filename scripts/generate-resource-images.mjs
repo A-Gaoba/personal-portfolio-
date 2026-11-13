@@ -27,8 +27,8 @@ if (!CHROME) throw new Error("Chrome not found; set CHROME_PATH")
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
 const labels = {
-  en: { dir: "ltr", kicker: "GAOBA AI · RESOURCES", type: { guide: "Guide", template: "Template", tool: "Tool", checklist: "Checklist" }, source: (s) => `Original project by ${s.author}${s.license ? ` · ${s.license} license` : ""}`, own: "By GAOBA AI · @a_gaoba.ai", pages: (n) => `PDF · ${n} pages` },
-  ar: { dir: "rtl", kicker: "GAOBA AI · الموارد", type: { guide: "دليل", template: "قالب", tool: "أداة", checklist: "قائمة تحقق" }, source: (s) => `المشروع الأصلي: ${s.author}${s.license ? ` · رخصة ${s.license}` : ""}`, own: "من إعداد GAOBA AI · @a_gaoba.ai", pages: (n) => `${n} صفحات · PDF` },
+  en: { dir: "ltr", kicker: "GAOBA AI · RESOURCES", type: { guide: "Guide", template: "Template", tool: "Tool", checklist: "Checklist", reel: "Reel" }, reelMedia: "Reel · Arabic", source: (s) => `Original project by ${s.author}${s.license ? ` · ${s.license} license` : ""}`, own: "By GAOBA AI · @a_gaoba.ai", pages: (n) => `PDF · ${n} pages` },
+  ar: { dir: "rtl", kicker: "GAOBA AI · الموارد", type: { guide: "دليل", template: "قالب", tool: "أداة", checklist: "قائمة تحقق", reel: "ريل" }, reelMedia: "ريل · العربية", source: (s) => `المشروع الأصلي: ${s.author}${s.license ? ` · رخصة ${s.license}` : ""}`, own: "من إعداد GAOBA AI · @a_gaoba.ai", pages: (n) => `${n} صفحات · PDF` },
 }
 
 const html = (r, locale) => {
@@ -61,9 +61,9 @@ h1{font-size:${titleSize}px;font-weight:700;line-height:${arabicTitle ? 1.25 : 1
 .foot{display:flex;justify-content:space-between;align-items:flex-end;font-size:24px;color:#4A463F}
 .mono{font-family:${rtl ? '"Readex Pro"' : '"Martian Mono"'},monospace;font-size:${rtl ? 24 : 21}px;color:#6B655B}
 </style></head><body>
-<div class="top"><div class="k"><div class="ag">AG</div><div class="kicker">${esc(L.kicker)}</div></div><div class="chip">${esc(L.type[r.category])}</div></div>
+<div class="top"><div class="k"><div class="ag">AG</div><div class="kicker">${esc(L.kicker)}</div></div><div class="chip">${esc(L.type[r.thumbnail ? "reel" : r.category])}</div></div>
 <div><h1>${esc(t.title)}</h1><div class="bar"></div>${chips ? `<div class="pills">${chips}</div>` : `<div class="tag">${esc(t.ogTagline)}</div>`}</div>
-<div class="foot"><div>${esc(r.source ? L.source(r.source) : L.own)}</div><div class="mono">${esc(L.pages(r.file.pages))}</div></div>
+<div class="foot"><div>${esc(r.source ? L.source(r.source) : L.own)}</div><div class="mono">${esc(r.thumbnail ? L.reelMedia : L.pages(r.file.pages))}</div></div>
 </body></html>`
 }
 

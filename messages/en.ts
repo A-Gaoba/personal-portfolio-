@@ -486,6 +486,7 @@ const en = {
     viewPdf: "Open PDF",
     download: "Download PDF",
     viewSource: "Original project on GitHub",
+    referencesTitle: "Official references",
     back: "All resources",
     sourceTitle: "Original project",
     by: "by",

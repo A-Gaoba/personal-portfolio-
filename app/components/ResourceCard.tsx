@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight, Download } from "lucide-react"
-import type { Resource } from "@/content/resources"
+import { isReelResource, type Resource } from "@/content/resources"
 import type { Messages } from "@/messages/en"
 import { type Locale, localizePath } from "@/lib/i18n/config"
 import { fill, resourcePath } from "@/lib/resources"
@@ -12,6 +12,7 @@ export default function ResourceCard({ resource: r, locale, t }: { resource: Res
   const s = t.resources
   const txt = r.text[locale]
   const href = localizePath(locale, resourcePath(r))
+  const isReel = isReelResource(r)
 
   return (
     <article className="card-paper card-lift flex flex-col overflow-hidden">
@@ -22,7 +23,7 @@ export default function ResourceCard({ resource: r, locale, t }: { resource: Res
         <div className="flex flex-wrap items-center gap-2">
           <span className="chip bg-surface text-xs">{s.categories[r.category]}</span>
           <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-fg-muted">
-            PDF · {txt.fileLanguage}
+            {isReel ? (locale === "ar" ? "فيديو" : "VIDEO") : "PDF"} · {txt.fileLanguage}
           </span>
         </div>
         <h2 className="text-xl font-bold leading-snug text-fg sm:text-2xl">
@@ -46,10 +47,12 @@ export default function ResourceCard({ resource: r, locale, t }: { resource: Res
             {s.viewDetails}
             <ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" aria-hidden="true" />
           </Link>
-          <a href={r.file.path} download={r.file.downloadName} className="btn btn-line btn-sm">
-            <Download className="h-4 w-4" aria-hidden="true" />
-            {s.download}
-          </a>
+          {!isReel && (
+            <a href={r.file.path} download={r.file.downloadName} className="btn btn-line btn-sm">
+              <Download className="h-4 w-4" aria-hidden="true" />
+              {s.download}
+            </a>
+          )}
         </div>
       </div>
     </article>
