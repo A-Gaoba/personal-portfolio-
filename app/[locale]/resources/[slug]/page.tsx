@@ -245,7 +245,7 @@ export default async function ResourceDetailsPage({ params }: PageProps) {
                         </div>
                         <p className="mt-4 leading-relaxed text-fg-2">{rule.text}</p>
                         {toolLines(rule.tools)}
-                        {rule.prompt && <PromptBlock text={rule.prompt} {...promptProps} />}
+                        {rule.prompt && <PromptBlock text={rule.prompt} dir={txt.promptDirection} {...promptProps} />}
                       </li>
                     ))}
                   </ol>

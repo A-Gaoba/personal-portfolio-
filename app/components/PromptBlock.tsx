@@ -11,12 +11,14 @@ export default function PromptBlock({
   label,
   copy,
   copied,
+  dir,
   compact = false,
 }: {
   text: string
   label: string
   copy: string
   copied: string
+  dir?: "ltr" | "rtl"
   compact?: boolean
 }) {
   const [done, setDone] = useState(false)
@@ -59,7 +61,7 @@ export default function PromptBlock({
         {done ? <Check className="h-4 w-4 text-brand-text" aria-hidden="true" /> : <Copy className="h-4 w-4" aria-hidden="true" />}
         <span aria-live="polite">{done ? copied : copy}</span>
       </button>
-      <p className="select-all whitespace-pre-line break-words leading-relaxed text-fg">
+      <p dir={dir} className="select-all whitespace-pre-line break-words leading-relaxed text-fg">
         {/* Display only: file names like .env / .gitignore stay LTR inside Arabic text; the copied text is unchanged. */}
         {text.split(/((?<=^|\s)[./][A-Za-z](?:[\w./-]*\w)?)/).map((part, i) =>
           i % 2 ? (

@@ -22,6 +22,8 @@ export type ResourceText = {
   ogTagline: string
   /** Longer introduction on the details page. */
   intro: string[]
+  /** Direction for copyable prompts, which may differ from the page language. */
+  promptDirection?: "ltr" | "rtl"
   /** "What's inside": label + one-line explanation. */
   contents?: { label: string; text: string }[]
   contentsNote?: string
@@ -85,6 +87,252 @@ export type Resource = {
 const SKILLS_REPO = "https://github.com/Jakeschincariol/instagram-agent-skill"
 
 export const resources: Resource[] = [
+  {
+    // The prompts and PDF are copied from Reel 008's approved resource files.
+    slug: "chatgpt-study-prompts",
+    category: "guide",
+    published: "2026-11-13",
+    inLanguage: ["ar", "en"],
+    image: {
+      ar: "/resources/chatgpt-study-prompts/og-ar.png",
+      en: "/resources/chatgpt-study-prompts/og-en.png",
+    },
+    file: {
+      path: "/resources/chatgpt-study-prompts/resource_guide.pdf",
+      downloadName: "gaoba-15-chatgpt-study-prompts.pdf",
+      type: "application/pdf",
+      pages: 4,
+      bytes: 184540,
+    },
+    preparedBy: "GAOBA AI (@a_gaoba.ai)",
+    shortLink: { code: "study-prompts", locale: "ar" },
+    text: {
+      ar: {
+        title: "15 برومبت لملخصات دراسية مصوّرة مع ChatGPT",
+        description:
+          "15 برومبتًا جاهزًا لـChatGPT لتحويل موضوع درسك إلى صورة دراسية بـ15 أسلوبًا بصريًا. استبدل [TOPIC] بموضوعك، وراجع المعلومات قبل اعتمادها.",
+        fileLanguage: "العربية والإنجليزية",
+        imageAlt: "غلاف دليل 15 برومبت لملخصات دراسية مصوّرة مع ChatGPT",
+        ogTagline: "حوّل موضوع الدرس إلى ملخص بصري",
+        ogChips: ["15 برومبت", "15 أسلوبًا", "ChatGPT"],
+        intro: [
+          "اختر موضوع درسك واستبدل [TOPIC] في أي برومبت لتحصل على صورة دراسية بأحد 15 أسلوبًا بصريًا، من الخريطة الذهنية إلى دفتر كورنيل.",
+          "البرومبتات أصلها بالإنجليزية. راجع المعلومات التي تظهر في الصورة قبل اعتمادها؛ قد يخطئ الذكاء الاصطناعي.",
+        ],
+        promptDirection: "ltr",
+        note: "ميزة توليد الصور يجب أن تكون متاحة في حساب ChatGPT. الصور تساعد على الفهم والترتيب، لكنها قد تحتوي على معلومات غير دقيقة؛ راجعها قبل استخدامها.",
+        requirements: ["حساب ChatGPT تتوفر فيه ميزة توليد الصور."],
+        setup: {
+          title: "طريقة الاستخدام",
+          text: "افتح ChatGPT، واختر برومبتًا، ثم استبدل [TOPIC] بموضوع درسك. إذا أردت نصًا عربيًا داخل الصورة، أضف: «اكتب العناوين بالعربية الفصحى وبأقل عدد من الكلمات».",
+        },
+        rules: [
+          {
+            title: "خريطة ذهنية · ⁦/mindmap⁩",
+            text: "خريطة مرسومة يدويًا على ورق عاجي، بفكرة مركزية وخمسة فروع ملونة ومتوازنة.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a hand-sketched mind map on ivory paper, one central concept, 5 balanced colorful branches with short keyword labels, small academic icons, hand-drawn arrows, realistic marker texture. Clean readable layout, short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "ملاحظات بخط اليد · ⁦/handwritten⁩",
+            text: "صفحة دفتر أنيقة بتجليد حلزوني، وعناوين بالحبر الأسود وتظليل ملون ورسمين بسيطين.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a premium handwritten notebook page with spiral binding, neat black ink headings, colored highlighter strokes on key terms, two simple hand-drawn diagrams, natural pen texture. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "بطاقات مراجعة · ⁦/flashcard⁩",
+            text: "ثلاث بطاقات مراجعة فعلية مرتبة قطريًا على مكتب خشبي، بألوان كريمية وبرتقالية وكحلية.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: three physical revision flashcards arranged diagonally on a wooden desk, showing a question on the front of one and the answer on the back of another, cream cards with orange and navy accents. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "ملصق ملخص · ⁦/summary⁩",
+            text: "ملصق دراسي من صفحة واحدة يضم عنوانًا ورسمًا وأربع خانات قصيرة للحقائق.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a one-page study summary poster with clear editorial hierarchy, a title area, one diagram panel and four short fact blocks, ivory and navy palette. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "خطوات مرئية · ⁦/steps⁩",
+            text: "دليل مرسوم من ست خطوات داخل لوحات مرقمة وموصولة بأسهم، مع أيقونة صغيرة لكل خطوة.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a six-step visual guide as an illustrated flow, numbered rounded panels 1 to 6 connected by arrows, one tiny icon per step, harmonious palette. Short step labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "ورقة تحليل · ⁦/analysis⁩",
+            text: "ورقة تحليل أكاديمية برسمين بيانيين بسيطين، وأدلة بارزة وأسهم للمقارنة، دون أرقام مختلقة.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: an academic analysis sheet with two clean simple charts, highlighted key evidence, comparison arrows and short annotation areas. Use no invented numbers, short labels only, no logos, no watermarks.",
+          },
+          {
+            title: "اختبار قصير · ⁦/quiz⁩",
+            text: "اختبار اختيار من متعدد على الورق، بخمسة أسئلة قصيرة وأربع دوائر للإجابات لكل سؤال.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a multiple-choice revision quiz on paper, five numbered questions with four answer circles each, small hand-drawn illustrations. Keep the questions very short, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "ملاحظات لاصقة · ⁦/stickynotes⁩",
+            text: "صورة علوية لملاحظات لاصقة شفافة ملونة على مكتب من خشب الجوز، بكلمات ورسوم صغيرة.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: an overhead photograph of colorful translucent sticky notes on a dark walnut desk, each with a short keyword and a tiny marker drawing, believable paper shadows. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "مقارنة بعمودين · ⁦/compare⁩",
+            text: "ورقة مقارنة بعمودين تفصل بين المفهومين A وB، بأيقونات متقابلة وألوان خوخية وزرقاء.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a two-column visual comparison sheet, concept A on the left versus concept B on the right, a central divider, paired icons, restrained peach and blue palette. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "لوحة تعلّم بصري · ⁦/visual-learning⁩",
+            text: "لوحة تعليمية برسم مركزي كبير وأربعة رسوم مساندة وأسهم تعليمية، بأسلوب طيني ثلاثي الأبعاد.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a visual learning board with one large central illustration and four smaller supporting diagrams, educational arrows, generous spacing, soft 3D clay-style look. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "شرح على السبورة · ⁦/explain⁩",
+            text: "شرح على سبورة بعناصر مرسومة وأسهم وتعليقات ملونة تعرض الفكرة بالترتيب.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a whiteboard explanation with simple illustrated objects, directional arrows and colored-marker annotations that explain the idea in order. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "ورقة مراجعة سريعة · ⁦/revision⁩",
+            text: "ورقة مراجعة سريعة تجمع شرائط تظليل وخانات حقائق ورسومًا مصغرة.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a quick-review one-page sheet with highlight strips, summary fact tiles and mini diagrams, clear editorial hierarchy. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "ملاحظات كورنيل · ⁦/cornell⁩",
+            text: "صفحة ملاحظات كورنيل بعمود للتلميحات ومساحة للملاحظات وخانة ملخص في الأسفل.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: an authentic Cornell-notes page with a cue column on the left, a main notes area and a summary box at the bottom, neat handwriting, small diagram. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "شبكة بن تو · ⁦/bento⁩",
+            text: "شبكة دراسة من خانات مستديرة بأحجام مختلفة، تضم كل منها حقيقة أو رسمًا مصغرًا.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a bento-grid study layout of rounded tiles of different sizes, each with one fact or one mini illustration, soft shadows, cohesive palette. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "دفتر قصاصات · ⁦/scrapbook⁩",
+            text: "صفحة مراجعة بأسلوب دفتر القصاصات، بأوراق وشريط واشي وطوابع ورسوم صغيرة.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a scrapbook-style revision page with taped paper scraps, washi tape, stamps, small cut-out illustrations and handwritten keywords, warm paper textures. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+        ],
+      },
+      en: {
+        title: "15 Prompts for Visual Study Summaries with ChatGPT",
+        description:
+          "15 ready-to-copy ChatGPT prompts for turning a lesson topic into a study image in 15 visual styles. Replace [TOPIC] with your subject and review the information before using it.",
+        fileLanguage: "Arabic and English",
+        imageAlt: "Cover of the 15 ChatGPT prompts for visual study summaries",
+        ogTagline: "Turn a lesson topic into a visual summary",
+        ogChips: ["15 prompts", "15 styles", "ChatGPT"],
+        intro: [
+          "Choose a lesson topic and replace [TOPIC] in any prompt to create a study image in one of 15 visual styles, from a mind map to Cornell notes.",
+          "The prompts are in English. Review information shown in the generated image before using it; AI can make mistakes.",
+        ],
+        promptDirection: "ltr",
+        note: "ChatGPT image generation must be available in your account. Images can help with understanding and organization, but may contain inaccurate information; review them before relying on them.",
+        requirements: ["A ChatGPT account with image generation available."],
+        setup: {
+          title: "How to use",
+          text: "Open ChatGPT, choose a prompt, and replace [TOPIC] with your lesson subject. To request Arabic text in the image, add: “Write the headings in Modern Standard Arabic using as few words as possible.”",
+        },
+        rules: [
+          {
+            title: "Mind map · /mindmap",
+            text: "A hand-sketched mind map on ivory paper, with one central concept and five balanced colorful branches.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a hand-sketched mind map on ivory paper, one central concept, 5 balanced colorful branches with short keyword labels, small academic icons, hand-drawn arrows, realistic marker texture. Clean readable layout, short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Handwritten notes · /handwritten",
+            text: "A premium spiral-bound notebook page with neat black headings, colored highlighting and two simple diagrams.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a premium handwritten notebook page with spiral binding, neat black ink headings, colored highlighter strokes on key terms, two simple hand-drawn diagrams, natural pen texture. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Flashcards · /flashcard",
+            text: "Three physical revision cards arranged diagonally on a wooden desk, with cream, orange and navy accents.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: three physical revision flashcards arranged diagonally on a wooden desk, showing a question on the front of one and the answer on the back of another, cream cards with orange and navy accents. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Study summary poster · /summary",
+            text: "A one-page study poster with a title, one diagram panel and four short fact blocks.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a one-page study summary poster with clear editorial hierarchy, a title area, one diagram panel and four short fact blocks, ivory and navy palette. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Visual steps · /steps",
+            text: "An illustrated six-step flow with numbered panels, connecting arrows and one small icon per step.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a six-step visual guide as an illustrated flow, numbered rounded panels 1 to 6 connected by arrows, one tiny icon per step, harmonious palette. Short step labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Analysis sheet · /analysis",
+            text: "An academic analysis sheet with two simple charts, highlighted evidence and comparison arrows; no invented numbers.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: an academic analysis sheet with two clean simple charts, highlighted key evidence, comparison arrows and short annotation areas. Use no invented numbers, short labels only, no logos, no watermarks.",
+          },
+          {
+            title: "Revision quiz · /quiz",
+            text: "A paper multiple-choice quiz with five short numbered questions and four answer circles per question.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a multiple-choice revision quiz on paper, five numbered questions with four answer circles each, small hand-drawn illustrations. Keep the questions very short, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Sticky notes · /stickynotes",
+            text: "An overhead photo of colorful translucent sticky notes on a dark walnut desk, with short keywords and tiny drawings.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: an overhead photograph of colorful translucent sticky notes on a dark walnut desk, each with a short keyword and a tiny marker drawing, believable paper shadows. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Two-column comparison · /compare",
+            text: "A visual comparison of concept A and concept B, separated by a divider with paired icons.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a two-column visual comparison sheet, concept A on the left versus concept B on the right, a central divider, paired icons, restrained peach and blue palette. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Visual learning board · /visual-learning",
+            text: "A large central illustration supported by four smaller diagrams, educational arrows and a soft 3D clay-style look.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a visual learning board with one large central illustration and four smaller supporting diagrams, educational arrows, generous spacing, soft 3D clay-style look. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Whiteboard explanation · /explain",
+            text: "A whiteboard explanation using simple illustrated objects, directional arrows and colored annotations.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a whiteboard explanation with simple illustrated objects, directional arrows and colored-marker annotations that explain the idea in order. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Quick revision sheet · /revision",
+            text: "A one-page quick review with highlight strips, fact tiles, mini diagrams and clear visual hierarchy.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a quick-review one-page sheet with highlight strips, summary fact tiles and mini diagrams, clear editorial hierarchy. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Cornell notes · /cornell",
+            text: "A Cornell-notes page with a cue column, a main notes area, a summary box and a small diagram.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: an authentic Cornell-notes page with a cue column on the left, a main notes area and a summary box at the bottom, neat handwriting, small diagram. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Bento grid · /bento",
+            text: "A grid of rounded tiles in different sizes, each holding one fact or one mini illustration.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a bento-grid study layout of rounded tiles of different sizes, each with one fact or one mini illustration, soft shadows, cohesive palette. Short labels only, no logos, no watermarks, no fabricated facts.",
+          },
+          {
+            title: "Scrapbook · /scrapbook",
+            text: "A revision page with taped paper scraps, washi tape, stamps, cut-out illustrations and warm paper textures.",
+            prompt:
+              "Create a 2:3 portrait study image about [TOPIC]: a scrapbook-style revision page with taped paper scraps, washi tape, stamps, small cut-out illustrations and handwritten keywords, warm paper textures. Short text only, no logos, no watermarks, no fabricated facts.",
+          },
+        ],
+      },
+    },
+  },
   {
     // GAOBA AI's own guide for the ram-local-models reel (no third-party project, so no `source`).
     // public/resources/ram-local-models/resource_guide.pdf is GAOBA_REEL/resources/resource_guide.pdf, unmodified
