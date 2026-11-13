@@ -20,7 +20,7 @@ export default function LanguageToggle() {
       {locales.map((l) => {
         const active = l === locale
         return (
-          <Link
+          <Link prefetch={false}
             key={l}
             href={localizePath(l, pathname)}
             hrefLang={l}

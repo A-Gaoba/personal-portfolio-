@@ -9,24 +9,39 @@ import { useI18n } from "@/components/i18n/I18nProvider"
 const stack = ["React", "Next.js", "TypeScript", "Node.js", "Tailwind"]
 
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] as const },
+  style: { animation: `hero-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s both` },
 })
 
-export default function Hero() {
+function RoleRotator({ roles }: { roles: string[] }) {
   const reduce = useReducedMotion()
-  const { t } = useI18n()
-  const h = t.hero
-  const roles = h.roles
   const [roleIndex, setRoleIndex] = useState(0)
 
-  // One gentle word swap every 2.6s (replaces the per-letter typing loop, which re-rendered every 100ms).
   useEffect(() => {
     if (reduce) return
     const id = window.setInterval(() => setRoleIndex((i) => (i + 1) % roles.length), 2600)
     return () => window.clearInterval(id)
   }, [reduce, roles.length])
+
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.span
+        key={roles[roleIndex]}
+        className="whitespace-nowrap rounded-md bg-inverse px-2.5 py-1 font-semibold text-on-inverse"
+        initial={{ y: 14, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        exit={{ y: -14, opacity: 0 }}
+        transition={{ duration: 0.28 }}
+      >
+        {roles[roleIndex]}
+      </motion.span>
+    </AnimatePresence>
+  )
+}
+
+export default function Hero() {
+  const { t } = useI18n()
+  const h = t.hero
+  const roles = h.roles
 
   // Phase 0a (2026-11-07): links from content/profile.ts. LinkedIn hidden until the right URL is confirmed (A3).
   const socialLinks = [
@@ -44,53 +59,45 @@ export default function Hero() {
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
           {/* Copy */}
           <div>
-            <motion.p className="kicker" {...fadeUp(0)}>
+            <p className="kicker" {...fadeUp(0)}>
               {h.kicker}
-            </motion.p>
+            </p>
 
-            <motion.h1 className="display mt-5" {...fadeUp(0.08)}>
-              {h.greeting} <span className="mark">{h.name}</span>
-            </motion.h1>
+            <h1 className="display mt-5" {...fadeUp(0.08)}>
+              {h.greeting}{" "}
+              {/* Match the final desktop wrap before either language's web font arrives. */}
+              <br className="hidden lg:block" />
+              <span className="mark">{h.name}</span>
+            </h1>
 
-            <motion.div
+            <div
               className="mt-5 flex h-9 items-center gap-3 overflow-hidden font-mono text-sm text-fg-muted sm:text-base"
               {...fadeUp(0.16)}
             >
               <span aria-hidden="true" className="rtl:font-sans">{h.roleLabel}</span>
               <span className="relative inline-flex h-full min-w-0 items-center">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.span
-                    key={roles[roleIndex]}
-                    className="whitespace-nowrap rounded-md bg-inverse px-2.5 py-1 font-semibold text-on-inverse"
-                    initial={{ y: 14, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -14, opacity: 0 }}
-                    transition={{ duration: 0.28 }}
-                  >
-                    {roles[roleIndex]}
-                  </motion.span>
-                </AnimatePresence>
+                <RoleRotator roles={roles} />
               </span>
               <span className="sr-only">{roles.join(", ")}</span>
-            </motion.div>
+            </div>
 
-            <motion.p className="lede mt-6 max-w-xl" {...fadeUp(0.24)}>
+            <p className="lede mt-6 max-w-xl" {...fadeUp(0.24)}>
               {h.introBefore}
               <strong className="font-semibold text-fg">React</strong>
               {h.introAnd}
               <strong className="font-semibold text-fg">Next.js</strong>
               {h.introAfter}
-            </motion.p>
+            </p>
 
-            <motion.ul className="mt-6 flex flex-wrap gap-2" aria-label={h.stackLabel} {...fadeUp(0.3)}>
+            <ul className="mt-6 flex flex-wrap gap-2" aria-label={h.stackLabel} {...fadeUp(0.3)}>
               {stack.map((tech) => (
                 <li key={tech} className="tag text-xs">
                   {tech}
                 </li>
               ))}
-            </motion.ul>
+            </ul>
 
-            <motion.div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" {...fadeUp(0.36)}>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" {...fadeUp(0.36)}>
               <a href="#projects" className="btn btn-brand group">
                 {h.ctaWork}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:-scale-x-100 rtl:group-hover:-translate-x-0.5" />
@@ -98,9 +105,9 @@ export default function Hero() {
               <a href="#contact" className="btn btn-line">
                 {h.ctaContact}
               </a>
-            </motion.div>
+            </div>
 
-            <motion.div className="mt-8 flex items-center gap-4" {...fadeUp(0.42)}>
+            <div className="mt-8 flex items-center gap-4" {...fadeUp(0.42)}>
               <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-fg-muted">{h.connect}</span>
               <span className="h-px w-8 bg-line" aria-hidden="true" />
               <div className="flex gap-2">
@@ -117,15 +124,13 @@ export default function Hero() {
                   </a>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Code card (ink, like the prompt blocks in GAOBA reels) */}
-          <motion.div
+          <div
             className="relative isolate mx-auto w-full max-w-md lg:max-w-none"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            {...fadeUp(0.2)}
           >
             {/* Code stays left-to-right in every language. */}
             <div className="card-ink overflow-hidden shadow-lift" dir="ltr">
@@ -158,7 +163,7 @@ export default function Hero() {
               </pre>
             </div>
             <div aria-hidden="true" className="absolute -bottom-3 inset-x-6 -z-10 h-full rounded-card bg-surface-2" />
-          </motion.div>
+          </div>
         </div>
 
         <a

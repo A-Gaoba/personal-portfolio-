@@ -58,7 +58,7 @@ const Navbar = () => {
     >
       <div className="container-page">
         <div className="flex h-16 items-center justify-between gap-4">
-          <Link href={href("/")} className="flex-shrink-0 rounded-full" aria-label={t.nav.homeLabel}>
+          <Link prefetch={false} href={href("/")} className="flex-shrink-0 rounded-full" aria-label={t.nav.homeLabel}>
             <Logo />
           </Link>
 
@@ -67,7 +67,7 @@ const Navbar = () => {
             {navLinks.map((link) => {
               const active = isActive(link.href)
               return (
-                <Link
+                <Link prefetch={false}
                   key={link.key}
                   href={href(link.href)}
                   aria-current={active ? "page" : undefined}
@@ -85,7 +85,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <LanguageToggle />
             <ThemeToggle />
-            <Link href={href("/contact")} className="btn btn-ink btn-sm hidden xl:inline-flex">
+            <Link prefetch={false} href={href("/contact")} className="btn btn-ink btn-sm hidden xl:inline-flex">
               {t.nav.cta}
               <ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" />
             </Link>
@@ -113,7 +113,7 @@ const Navbar = () => {
           {navLinks.map((link) => {
             const active = isActive(link.href)
             return (
-              <Link
+              <Link prefetch={false}
                 key={link.key}
                 href={href(link.href)}
                 aria-current={active ? "page" : undefined}

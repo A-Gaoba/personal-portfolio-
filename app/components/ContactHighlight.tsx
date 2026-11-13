@@ -1,16 +1,14 @@
 "use client"
 
-import React, { useRef } from "react"
+import React from "react"
 import Link from "next/link"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { Calendar, Mail, Send, ArrowRight } from "lucide-react"
 import ContactForm from "@/components/ContactForm"
 import { profile } from "@/content/profile"
 import { useI18n } from "@/components/i18n/I18nProvider"
 
 const ContactHighlight: React.FC = () => {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
   const { t, href } = useI18n()
   const s = t.home.contact
   // Phase 0a (2026-11-07): the cards pointed to abdulrahman@example.com and two placeholder Calendly links
@@ -50,10 +48,10 @@ const ContactHighlight: React.FC = () => {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, transform: "translateY(30px)" },
     visible: {
       opacity: 1,
-      y: 0,
+      transform: "translateY(0px)",
       transition: {
         duration: 0.6,
         ease: [0.25, 0.46, 0.45, 0.94] as const,
@@ -70,19 +68,20 @@ const ContactHighlight: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Section Header */}
         <motion.div
-          ref={ref}
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          initial={{ opacity: 0, transform: "translateY(30px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true, margin: "-100px" }}
         >
           <p className="kicker mb-5">{s.kicker}</p>
 
           <motion.h2
             className="title mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, transform: "translateY(20px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             {s.title}
             <br />
@@ -91,9 +90,10 @@ const ContactHighlight: React.FC = () => {
 
           <motion.p
             className="lede mx-auto max-w-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, transform: "translateY(20px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true, margin: "-100px" }}
           >
             {s.lede}
           </motion.p>
@@ -105,7 +105,8 @@ const ContactHighlight: React.FC = () => {
             className="space-y-8"
             variants={containerVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
           >
             <motion.div variants={itemVariants}>
               <h3 className="text-2xl md:text-3xl font-bold text-dev-text mb-6">{s.methodsTitle}</h3>
@@ -121,9 +122,9 @@ const ContactHighlight: React.FC = () => {
                   href={method.link}
                   target={method.link.startsWith("http") ? "_blank" : "_self"}
                   rel={method.link.startsWith("http") ? "noopener noreferrer" : ""}
-                  className="card-paper card-lift block p-5 sm:p-6"
+                  className="card-paper block p-5 transition-[box-shadow,border-color] duration-300 hover:border-fg/25 hover:shadow-lift sm:p-6"
                   variants={itemVariants}
-                  whileHover={{ y: -4 }}
+                  whileHover={{ transform: "translateY(-4px)" }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <div className="flex items-center">
@@ -148,7 +149,8 @@ const ContactHighlight: React.FC = () => {
             className="card-paper p-6 sm:p-8"
             variants={itemVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
           >
             <h3 className="text-2xl font-bold text-dev-text mb-6">{s.formTitle}</h3>
 
@@ -159,7 +161,7 @@ const ContactHighlight: React.FC = () => {
             <div className="mt-6 text-center">
               <p className="text-sm text-dev-text-muted">
                 {s.formFootBefore}{" "}
-                <Link href={href("/contact")} className="text-brand-text hover:text-brand-text font-semibold underline">
+                <Link prefetch={false} href={href("/contact")} className="text-brand-text hover:text-brand-text font-semibold underline">
                   {s.formFootLink}
                 </Link>{" "}
                 {s.formFootAfter}
@@ -171,12 +173,13 @@ const ContactHighlight: React.FC = () => {
         {/* CTA Section */}
         <motion.div
           className="text-center mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          initial={{ opacity: 0, transform: "translateY(30px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           transition={{ duration: 0.8, delay: 0.8 }}
+          viewport={{ once: true, margin: "-100px" }}
         >
-          <motion.div whileHover={{ y: -2 }} >
-            <Link
+          <motion.div whileHover={{ transform: "translateY(-2px)" }} >
+            <Link prefetch={false}
               href={href("/contact")}
               className="btn btn-brand"
             >

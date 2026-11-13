@@ -51,9 +51,9 @@ export async function generateMetadata({ params }: LayoutProps): Promise<Metadat
     icons: {
       icon: [
         { url: "/portfolio-icon.svg", type: "image/svg+xml" },
-        { url: "/myimage.jpeg", type: "image/jpeg" },
+        { url: "/avatar-icon.png", type: "image/png", sizes: "32x32" },
       ],
-      apple: "/myimage.jpeg",
+      apple: "/apple-touch-icon.png",
       shortcut: "/portfolio-icon.svg",
     },
     keywords: t.meta.keywords,

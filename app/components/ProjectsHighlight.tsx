@@ -69,10 +69,10 @@ export default function ProjectsHighlight() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, transform: "translateY(30px)" },
     visible: {
       opacity: 1,
-      y: 0,
+      transform: "translateY(0px)",
       transition: {
         duration: 0.8,
         ease: [0.25, 0.46, 0.45, 0.94] as const,
@@ -93,8 +93,8 @@ export default function ProjectsHighlight() {
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translateY(30px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
         >
@@ -102,8 +102,8 @@ export default function ProjectsHighlight() {
 
           <motion.h2
             className="title mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(20px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -114,8 +114,8 @@ export default function ProjectsHighlight() {
 
           <motion.p
             className="lede mx-auto max-w-2xl"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(20px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -136,7 +136,7 @@ export default function ProjectsHighlight() {
               key={project.id}
               className={`group relative ${project.featured ? "lg:col-span-2" : ""}`}
               variants={itemVariants}
-              whileHover={{ y: -4 }}
+              whileHover={{ transform: "translateY(-4px)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="bg-dark-bg-secondary/90 rounded-card shadow-dev-xl border border-dark-border overflow-hidden group-hover:shadow-dev-lg transition-all duration-500">
@@ -146,6 +146,7 @@ export default function ProjectsHighlight() {
                     src={project.image || "/placeholder.svg"}
                     alt={`${project.title} - ${project.subtitle}`}
                     fill
+                    sizes={project.featured ? "(min-width: 1280px) 1216px, 100vw" : "(min-width: 1280px) 592px, (min-width: 1024px) 50vw, 100vw"}
                     className="object-cover transition-transform duration-700"
                   />
 
@@ -243,13 +244,13 @@ export default function ProjectsHighlight() {
         {/* View All Projects CTA */}
         <motion.div
           className="text-center"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translateY(30px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div whileHover={{ y: -2 }} >
-            <Link
+          <motion.div whileHover={{ transform: "translateY(-2px)" }} >
+            <Link prefetch={false}
               href={href("/projects")}
               className="btn btn-brand"
             >

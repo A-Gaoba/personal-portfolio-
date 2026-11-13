@@ -1,0 +1,3962 @@
+{
+  "date": "2026-11-12",
+  "method": "Chrome DevTools Protocol; production next start; cold browser cache; mobile 390x844 DPR2, CPU4x, 1.6 Mbps, 150ms latency, 15s observation; desktop 1440x900 DPR1, CPU1x, 10 Mbps, 40ms latency, 7s observation. Single samples, not Lighthouse scores or field data. Blocking is sum(max(0,longtask.duration-50)) across observation, not Lighthouse TBT.",
+  "before": [
+    {
+      "route": "/ar",
+      "device": "mobile",
+      "lcp": 4364,
+      "cls": 0,
+      "blocking": 1906,
+      "lcpElement": "P.lede mt-6 max-w-xl",
+      "fcp": 2544,
+      "domReady": 843.3000000119209,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/myimage.jpeg",
+          "loaded": true
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 2275707,
+      "jsBytes": 213476,
+      "requests": 34,
+      "scroll": {
+        "frames": 59,
+        "over50ms": 6,
+        "maxFrameMs": 183.40000000000146
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar",
+          "type": "Document",
+          "status": 200,
+          "bytes": 32893,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/ba4160b0de33e1d6.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 17988,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f9b74caba6f59240.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7819,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-62ee1564676c8c70.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4416,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9af2cfd98281495c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9302,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e4cc3ce85cbe8e71.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6107,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/cd8ece00d848cf5f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9037,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1ae466954398f779.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 32423,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6b24ec09930b806f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9208,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2bd1334004b07f9b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 39142,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1704,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=tqoh3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1157,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=mubjs",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17633,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=2mwi6",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1713,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=mubjs",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 10515,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=2mwi6",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources",
+      "device": "mobile",
+      "lcp": 2580,
+      "cls": 0,
+      "blocking": 400,
+      "lcpElement": "IMG.object-cover",
+      "fcp": 1312,
+      "domReady": 835.0999999940395,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/resources/ram-local-models/og-ar.png",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/resources/instagram-agent-skills/og-ar.png",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 1531665,
+      "jsBytes": 223965,
+      "requests": 51,
+      "scroll": {
+        "frames": 120,
+        "over50ms": 0,
+        "maxFrameMs": 33.29999999999927
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources",
+          "type": "Document",
+          "status": 200,
+          "bytes": 27935,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/ba4160b0de33e1d6.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 17988,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f9b74caba6f59240.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7819,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-62ee1564676c8c70.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4416,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9af2cfd98281495c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9302,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1ae466954398f779.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 32423,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3de71e419765975f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9026,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/resources/ram-local-models/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 53725,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 58660,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/resources/instagram-agent-skills/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 54896,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2bd1334004b07f9b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 39142,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 786,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 788,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1899,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=i0xnr",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1157,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=q5pbu",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17686,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=116yw",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=hf0yk",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=wtl7n",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 7292,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/77a45536a6d2cdb5.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1463,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1921,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=hf0yk",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=wtl7n",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 6684,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1797,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1ks69",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3260,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=q5pbu",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 10549,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=116yw",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=1ks69",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3005,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1704,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=1gqdk",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e4cc3ce85cbe8e71.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6107,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/cd8ece00d848cf5f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9037,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6b24ec09930b806f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9208,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources/ai-agent-rules",
+      "device": "mobile",
+      "lcp": 1956,
+      "cls": 0,
+      "blocking": 409,
+      "lcpElement": "IMG.object-cover",
+      "fcp": 1640,
+      "domReady": 868.0999999940395,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 1426376,
+      "jsBytes": 223965,
+      "requests": 46,
+      "scroll": {
+        "frames": 121,
+        "over50ms": 0,
+        "maxFrameMs": 16.899999999999636
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules",
+          "type": "Document",
+          "status": 200,
+          "bytes": 36892,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/ba4160b0de33e1d6.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 17988,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 58660,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f9b74caba6f59240.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7819,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-62ee1564676c8c70.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4416,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/77a45536a6d2cdb5.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1463,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9af2cfd98281495c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9302,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1ae466954398f779.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 32423,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3de71e419765975f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9026,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2bd1334004b07f9b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 39142,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 786,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 787,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1797,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1uiy1",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1157,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1nfdh",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1o547",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1ault",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3260,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1899,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=1kdf9",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=iyvgd",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 7292,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1899,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1nfdh",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 10564,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1o547",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1kdf9",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=iyvgd",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 6630,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1704,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=1wct6",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e4cc3ce85cbe8e71.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6107,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/cd8ece00d848cf5f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9037,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6b24ec09930b806f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9208,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        }
+      ]
+    },
+    {
+      "route": "/ar",
+      "device": "desktop",
+      "lcp": 1444,
+      "cls": 0.016879911819021237,
+      "blocking": 108,
+      "lcpElement": "PRE.overflow-x-auto p-5 font-mono text-[12.5px] leading-[1.9] text-on-inverse/75 sm:p-6 sm:text-[13px]",
+      "fcp": 364,
+      "domReady": 183.19999998807907,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/myimage.jpeg",
+          "loaded": true
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 2372095,
+      "jsBytes": 281062,
+      "requests": 66,
+      "scroll": {
+        "frames": 120,
+        "over50ms": 0,
+        "maxFrameMs": 33.400000000000546
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar",
+          "type": "Document",
+          "status": 200,
+          "bytes": 32893,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/ba4160b0de33e1d6.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 17988,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f9b74caba6f59240.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7819,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1ae466954398f779.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 32423,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-62ee1564676c8c70.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4416,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9af2cfd98281495c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9302,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e4cc3ce85cbe8e71.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6107,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/cd8ece00d848cf5f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9037,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Image",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6b24ec09930b806f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9208,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2bd1334004b07f9b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 39142,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=eqsin",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 770,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1719,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=tqoh3",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1157,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=mubjs",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17633,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=53n0v",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=piihs",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1160,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1704,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=2mwi6",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1713,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=mubjs",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 10515,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en?_rsc=2mwi6",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1797,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1fg0f",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/18f54488e92d1c35.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 13039,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=ohtnr",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3260,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1663,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=qqbge",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=doou2",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 791,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1662,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=1lgff",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=ms6q9",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1138,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3de71e419765975f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9026,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fd1b39408c26cbcd.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8488,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1751,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=1bf5o",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=1yf8u",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1171,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1d1f5b555dee92b6.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3066,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=7uv4w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1768,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=le1vg",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=1obrg",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2274,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/86ef06375e8cdf35.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2505,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/114bce3957c92640.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8065,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2919abfac9643713.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 20284,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/4a1e3e006f6755ca.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3113,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources",
+      "device": "desktop",
+      "lcp": 312,
+      "cls": 0,
+      "blocking": 0,
+      "lcpElement": "H1.display mb-6",
+      "fcp": 312,
+      "domReady": 207.19999998807907,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/resources/ram-local-models/og-ar.png",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/resources/instagram-agent-skills/og-ar.png",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 1621256,
+      "jsBytes": 282525,
+      "requests": 82,
+      "scroll": {
+        "frames": 122,
+        "over50ms": 0,
+        "maxFrameMs": 17
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources",
+          "type": "Document",
+          "status": 200,
+          "bytes": 27935,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/ba4160b0de33e1d6.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 17988,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f9b74caba6f59240.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7819,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1ae466954398f779.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 32423,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-62ee1564676c8c70.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4416,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9af2cfd98281495c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9302,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3de71e419765975f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9026,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/resources/ram-local-models/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 53725,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 58660,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/resources/instagram-agent-skills/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 54896,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2bd1334004b07f9b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 39142,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 786,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 788,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/instagram-agent-skills?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 798,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 770,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=yoxgf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/instagram-agent-skills?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1859,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/instagram-agent-skills?_rsc=i0xnr",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1157,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/instagram-agent-skills?_rsc=q5pbu",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17686,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/instagram-agent-skills?_rsc=116yw",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/instagram-agent-skills?_rsc=hf0yk",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/instagram-agent-skills?_rsc=wtl7n",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 5401,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/77a45536a6d2cdb5.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1463,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1899,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=hf0yk",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=wtl7n",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 7292,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1921,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=hf0yk",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ram-local-models?_rsc=wtl7n",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 6684,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1719,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=1ytqf",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=1rerl",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1160,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1797,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=q5pbu",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 10549,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1ks69",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3260,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/18f54488e92d1c35.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 13039,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=116yw",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources?_rsc=1ks69",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3005,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1663,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=zn3yd",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=8jebs",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 791,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1662,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=1fq29",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=stf1u",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1138,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1751,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=1p6ii",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fd1b39408c26cbcd.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8488,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=im80w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1171,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1768,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1d1f5b555dee92b6.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3066,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=c411l",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/cd8ece00d848cf5f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9037,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=1v82h",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2274,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/86ef06375e8cdf35.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2505,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=19r8k",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1704,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/114bce3957c92640.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8065,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=1gqdk",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2919abfac9643713.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 20284,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/4a1e3e006f6755ca.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3113,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e4cc3ce85cbe8e71.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6107,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6b24ec09930b806f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9208,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources/ai-agent-rules",
+      "device": "desktop",
+      "lcp": 368,
+      "cls": 0,
+      "blocking": 24,
+      "lcpElement": "IMG.object-cover",
+      "fcp": 368,
+      "domReady": 209.69999998807907,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 1507239,
+      "jsBytes": 282525,
+      "requests": 73,
+      "scroll": {
+        "frames": 122,
+        "over50ms": 0,
+        "maxFrameMs": 16.899999999999636
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules",
+          "type": "Document",
+          "status": 200,
+          "bytes": 36892,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/resources/pando-openai/og-ar.png",
+          "type": "Image",
+          "status": 200,
+          "bytes": 58660,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/ba4160b0de33e1d6.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 17988,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f9b74caba6f59240.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7819,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-62ee1564676c8c70.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4416,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1ae466954398f779.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 32423,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/77a45536a6d2cdb5.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1463,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9af2cfd98281495c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9302,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3de71e419765975f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9026,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2bd1334004b07f9b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 39142,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/myimage.jpeg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 946919,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 786,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 787,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 771,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 772,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 770,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 762,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1797,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1uiy1",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1157,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1nfdh",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1o547",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1ault",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3260,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1719,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=hk68w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/contact?_rsc=19p6p",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1160,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1899,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=1kdf9",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules?_rsc=iyvgd",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 7292,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1899,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1nfdh",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 10564,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/18f54488e92d1c35.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 13039,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1o547",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=1kdf9",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/en/resources/ai-agent-rules?_rsc=iyvgd",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 6630,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1663,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=xvl5w",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/services?_rsc=16l38",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 791,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=1s8w7",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=k8jpu",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1138,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/skills?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1662,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1751,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fd1b39408c26cbcd.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8488,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=7wrje",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/1d1f5b555dee92b6.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3066,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/cd8ece00d848cf5f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9037,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar/projects?_rsc=c2trj",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1171,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1768,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=1er5b",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 670,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/about?_rsc=q3t2i",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 2274,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/86ef06375e8cdf35.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 2505,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1704,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar?_rsc=1wct6",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 973,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2919abfac9643713.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 20284,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/114bce3957c92640.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8065,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/4a1e3e006f6755ca.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 3113,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e4cc3ce85cbe8e71.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6107,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6b24ec09930b806f.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9208,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        }
+      ]
+    }
+  ],
+  "after": [
+    {
+      "route": "/ar",
+      "device": "mobile",
+      "lcp": 2520,
+      "cls": 0,
+      "blocking": 1202,
+      "lcpElement": "P.lede mt-6 max-w-xl",
+      "fcp": 2520,
+      "domReady": 894.1999999880791,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fmyimage.jpeg&w=640&q=75",
+          "loaded": true
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 369455,
+      "jsBytes": 210204,
+      "requests": 24,
+      "scroll": {
+        "frames": 71,
+        "over50ms": 6,
+        "maxFrameMs": 183.3000000000011
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar",
+          "type": "Document",
+          "status": 200,
+          "bytes": 33346,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/c546e7015735d315.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 18072,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9b71407672c625c7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1192,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e24de12a9a1f1683.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8964,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-889c687deeba46c4.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4434,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/35247e5140b02e3d.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9290,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2fd9546894014f96.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 30926,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6409ad8e620b0e12.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 11349,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/916a61b1c98f778b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9240,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/777b3012cfaad432.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 38787,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fmyimage.jpeg&w=640&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 26513,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources",
+      "device": "mobile",
+      "lcp": 1788,
+      "cls": 0,
+      "blocking": 197,
+      "lcpElement": "IMG.object-cover",
+      "fcp": 1388,
+      "domReady": 809.3000000119209,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Fram-local-models%2Fog-ar.png&w=828&q=75",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=828&q=75",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Finstagram-agent-skills%2Fog-ar.png&w=828&q=75",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 316769,
+      "jsBytes": 148897,
+      "requests": 23,
+      "scroll": {
+        "frames": 120,
+        "over50ms": 0,
+        "maxFrameMs": 33.19999999999891
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources",
+          "type": "Document",
+          "status": 200,
+          "bytes": 28431,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/c546e7015735d315.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 18072,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9b71407672c625c7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1192,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e24de12a9a1f1683.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8964,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-889c687deeba46c4.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4434,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2fd9546894014f96.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 30926,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/44a98cec4797d42c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6169,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/35247e5140b02e3d.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9290,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=828&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 14171,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Fram-local-models%2Fog-ar.png&w=828&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 12953,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Finstagram-agent-skills%2Fog-ar.png&w=828&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 12925,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources/ai-agent-rules",
+      "device": "mobile",
+      "lcp": 1768,
+      "cls": 0,
+      "blocking": 215,
+      "lcpElement": "IMG.object-cover",
+      "fcp": 1768,
+      "domReady": 892.5,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=828&q=75",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 331782,
+      "jsBytes": 155909,
+      "requests": 28,
+      "scroll": {
+        "frames": 121,
+        "over50ms": 0,
+        "maxFrameMs": 33.29999999999927
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules",
+          "type": "Document",
+          "status": 200,
+          "bytes": 37002,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/c546e7015735d315.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 18072,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=828&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 14171,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9b71407672c625c7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1192,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e24de12a9a1f1683.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8964,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-889c687deeba46c4.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4434,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f2861438a0abb2d7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7012,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/35247e5140b02e3d.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9290,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2fd9546894014f96.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 30926,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 770,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1809,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1uiy1",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1155,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1nfdh",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17663,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1o547",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 668,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1ault",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3243,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/44a98cec4797d42c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6169,
+          "cacheControl": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "route": "/ar",
+      "device": "desktop",
+      "lcp": 408,
+      "cls": 0.09133397487261037,
+      "blocking": 121,
+      "lcpElement": "PRE.overflow-x-auto p-5 font-mono text-[12.5px] leading-[1.9] text-on-inverse/75 sm:p-6 sm:text-[13px]",
+      "fcp": 408,
+      "domReady": 196.90000000596046,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fmyimage.jpeg&w=384&q=75",
+          "loaded": true
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        },
+        {
+          "src": "",
+          "loaded": false
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 356055,
+      "jsBytes": 210204,
+      "requests": 24,
+      "scroll": {
+        "frames": 122,
+        "over50ms": 0,
+        "maxFrameMs": 17.300000000000182
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar",
+          "type": "Document",
+          "status": 200,
+          "bytes": 33346,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/c546e7015735d315.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 18072,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9b71407672c625c7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1192,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e24de12a9a1f1683.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8964,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-889c687deeba46c4.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4434,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2fd9546894014f96.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 30926,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/35247e5140b02e3d.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9290,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/6409ad8e620b0e12.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 11349,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/916a61b1c98f778b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9240,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fmyimage.jpeg&w=384&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 13113,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/424824ec483ed770.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8100,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/777b3012cfaad432.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 38787,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources",
+      "device": "desktop",
+      "lcp": 288,
+      "cls": 0,
+      "blocking": 6,
+      "lcpElement": "H1.display mb-6",
+      "fcp": 288,
+      "domReady": 172.40000000596046,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Fram-local-models%2Fog-ar.png&w=640&q=75",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=640&q=75",
+          "loaded": true
+        },
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Finstagram-agent-skills%2Fog-ar.png&w=640&q=75",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 307557,
+      "jsBytes": 148897,
+      "requests": 23,
+      "scroll": {
+        "frames": 122,
+        "over50ms": 0,
+        "maxFrameMs": 17.200000000000728
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources",
+          "type": "Document",
+          "status": 200,
+          "bytes": 28431,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/c546e7015735d315.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 18072,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9b71407672c625c7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1192,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e24de12a9a1f1683.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8964,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-889c687deeba46c4.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4434,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/35247e5140b02e3d.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9290,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2fd9546894014f96.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 30926,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/44a98cec4797d42c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6169,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Fram-local-models%2Fog-ar.png&w=640&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 9810,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=640&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 10791,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Finstagram-agent-skills%2Fog-ar.png&w=640&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 10236,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        }
+      ]
+    },
+    {
+      "route": "/ar/resources/ai-agent-rules",
+      "device": "desktop",
+      "lcp": 392,
+      "cls": 0,
+      "blocking": 37,
+      "lcpElement": "IMG.object-cover",
+      "fcp": 392,
+      "domReady": 204.89999997615814,
+      "lang": "ar",
+      "dir": "rtl",
+      "overflow": false,
+      "images": [
+        {
+          "src": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=640&q=75",
+          "loaded": true
+        }
+      ],
+      "fonts": "loaded",
+      "bytes": 328402,
+      "jsBytes": 155909,
+      "requests": 28,
+      "scroll": {
+        "frames": 122,
+        "over50ms": 0,
+        "maxFrameMs": 17
+      },
+      "errors": [],
+      "network": [
+        {
+          "url": "http://localhost:3100/ar/resources/ai-agent-rules",
+          "type": "Document",
+          "status": 200,
+          "bytes": 37002,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/c546e7015735d315.css",
+          "type": "Stylesheet",
+          "status": 200,
+          "bytes": 18072,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/image?url=%2Fresources%2Fpando-openai%2Fog-ar.png&w=640&q=75",
+          "type": "Image",
+          "status": 200,
+          "bytes": 10791,
+          "cacheControl": "public, max-age=14400, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9b71407672c625c7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1192,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/manifest.webmanifest",
+          "type": "Manifest",
+          "status": 200,
+          "bytes": 954
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/ee9d8ff0751135e3-s.p.9278acd4.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23844,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/52acd2ded95ac6cd-s.p.2c6830da.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 23064,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/media/890431f0a0104557-s.p.2aa14085.woff2",
+          "type": "Font",
+          "status": 200,
+          "bytes": 31692,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/e24de12a9a1f1683.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 8964,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/9a9879c4ea0eb884.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7664,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/fec5ea6183d0e55b.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 629,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/turbopack-889c687deeba46c4.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 4434,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/3b60e5197848a126.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7830,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/2fd9546894014f96.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 30926,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8fa530969acfa861.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 1261,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/35247e5140b02e3d.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 9290,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/f2861438a0abb2d7.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 7012,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/8476d8e6b90432a2.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 70538,
+          "cacheControl": "public, max-age=31536000, immutable"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1pkz8",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 770,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_vercel/insights/script.js",
+          "type": "Script",
+          "status": 404,
+          "bytes": 0,
+          "cacheControl": "private, no-cache, no-store, max-age=0, must-revalidate"
+        },
+        {
+          "url": "http://localhost:3100/portfolio-icon.svg",
+          "type": "Other",
+          "status": 200,
+          "bytes": 883,
+          "cacheControl": "public, max-age=0"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=uoox0",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1809,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1uiy1",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 1155,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1nfdh",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 17663,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1o547",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 668,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/ar/resources?_rsc=1ault",
+          "type": "Fetch",
+          "status": 200,
+          "bytes": 3243,
+          "cacheControl": "s-maxage=31536000"
+        },
+        {
+          "url": "http://localhost:3100/_next/static/chunks/44a98cec4797d42c.js",
+          "type": "Script",
+          "status": 200,
+          "bytes": 6169,
+          "cacheControl": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}

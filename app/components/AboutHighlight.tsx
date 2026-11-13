@@ -49,10 +49,10 @@ export default function AboutHighlight() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, transform: "translateY(30px)" },
     visible: {
       opacity: 1,
-      y: 0,
+      transform: "translateY(0px)",
       transition: {
         duration: 0.6,
         ease: [0.25, 0.46, 0.45, 0.94] as const,
@@ -73,8 +73,8 @@ export default function AboutHighlight() {
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translateY(30px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
         >
@@ -82,8 +82,8 @@ export default function AboutHighlight() {
 
           <motion.h2
             className="title mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(20px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -135,8 +135,8 @@ export default function AboutHighlight() {
             </div>
 
             {/* CTA Button */}
-            <motion.div whileHover={{ y: -2 }} >
-              <Link
+            <motion.div whileHover={{ transform: "translateY(-2px)" }} >
+              <Link prefetch={false}
                 href={href("/about")}
                 className="btn btn-ink group"
               >
@@ -159,9 +159,9 @@ export default function AboutHighlight() {
           {stats.map((stat, index) => (
             <motion.div
               key={index}
-              className="text-center bg-dark-bg-secondary/80 p-6 rounded-card shadow-dev-md border border-dark-border/50 hover:shadow-dev-lg transition-all duration-300"
+              className="text-center bg-dark-bg-secondary/80 p-6 rounded-card shadow-dev-md border border-dark-border/50 hover:shadow-dev-lg transition-[box-shadow,border-color] duration-300"
               variants={itemVariants}
-              whileHover={{ y: -4 }}
+              whileHover={{ transform: "translateY(-4px)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="flex items-center justify-center w-12 h-12 bg-brand hover:bg-brand/90 rounded-xl mb-4 text-on-brand mx-auto">

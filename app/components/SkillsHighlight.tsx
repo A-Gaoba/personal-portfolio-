@@ -54,10 +54,10 @@ export default function SkillsHighlight() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, transform: "translateY(30px)" },
     visible: {
       opacity: 1,
-      y: 0,
+      transform: "translateY(0px)",
       transition: {
         duration: 0.6,
         ease: [0.25, 0.46, 0.45, 0.94] as const,
@@ -78,8 +78,8 @@ export default function SkillsHighlight() {
         {/* Section Header */}
         <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translateY(30px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true, amount: 0.3 }}
         >
@@ -87,8 +87,8 @@ export default function SkillsHighlight() {
 
           <motion.h2
             className="title mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, transform: "translateY(20px)" }}
+            whileInView={{ opacity: 1, transform: "translateY(0px)" }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true, amount: 0.3 }}
           >
@@ -110,9 +110,9 @@ export default function SkillsHighlight() {
             {coreSkills.map((skill, index) => (
               <motion.div
                 key={skill.name}
-                className="text-center bg-dark-bg-secondary/90 p-6 rounded-card shadow-dev-md border border-dark-border hover:shadow-dev-lg transition-all duration-300"
+                className="text-center bg-dark-bg-secondary/90 p-6 rounded-card shadow-dev-md border border-dark-border hover:shadow-dev-lg transition-[box-shadow,border-color] duration-300"
                 variants={itemVariants}
-                whileHover={{ y: -4 }}
+                whileHover={{ transform: "translateY(-4px)" }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <div className="text-4xl mb-4">{skill.icon}</div>
@@ -167,9 +167,9 @@ export default function SkillsHighlight() {
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              className="bg-dark-bg-secondary/90 p-6 rounded-card shadow-dev-md border border-dark-border hover:shadow-dev-lg hover:border-syntax-blue transition-all duration-300"
+              className="bg-dark-bg-secondary/90 p-6 rounded-card shadow-dev-md border border-dark-border hover:shadow-dev-lg hover:border-syntax-blue transition-[box-shadow,border-color] duration-300"
               variants={itemVariants}
-              whileHover={{ y: -4 }}
+              whileHover={{ transform: "translateY(-4px)" }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div
@@ -193,8 +193,8 @@ export default function SkillsHighlight() {
         {/* CTA Section */}
         <motion.div
           className="text-center ink-band rounded-card p-8 md:p-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, transform: "translateY(30px)" }}
+          whileInView={{ opacity: 1, transform: "translateY(0px)" }}
           transition={{ duration: 0.8, delay: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}
         >
@@ -208,8 +208,8 @@ export default function SkillsHighlight() {
             {s.ctaText}
           </p>
 
-          <motion.div whileHover={{ y: -2 }} >
-            <Link
+          <motion.div whileHover={{ transform: "translateY(-2px)" }} >
+            <Link prefetch={false}
               href={href("/skills")}
               className="btn btn-brand"
             >

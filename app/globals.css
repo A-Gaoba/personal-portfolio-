@@ -371,6 +371,28 @@ html {
   }
 }
 
+.scroll-progress {
+  transform: scaleX(0);
+}
+
+@keyframes scroll-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: scroll-progress auto linear;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes hero-enter {
+  /* Keep the primary text paintable immediately, including before hydration. */
+  from { transform: translateY(16px); }
+  to { transform: translateY(0); }
+}
+
 @media print {
   .no-print {
     display: none !important;

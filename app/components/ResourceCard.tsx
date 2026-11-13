@@ -15,7 +15,7 @@ export default function ResourceCard({ resource: r, locale, t }: { resource: Res
 
   return (
     <article className="card-paper card-lift flex flex-col overflow-hidden">
-      <Link href={href} tabIndex={-1} aria-hidden="true" className="relative block aspect-[1200/630] border-b border-line bg-surface-2">
+      <Link prefetch={false} href={href} tabIndex={-1} aria-hidden="true" className="relative block aspect-[1200/630] border-b border-line bg-surface-2">
         <Image src={r.image[locale]} alt="" fill sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" className="object-cover" />
       </Link>
       <div className="flex flex-1 flex-col gap-4 p-5 sm:p-6">
@@ -26,7 +26,7 @@ export default function ResourceCard({ resource: r, locale, t }: { resource: Res
           </span>
         </div>
         <h2 className="text-xl font-bold leading-snug text-fg sm:text-2xl">
-          <Link href={href} className="hover:text-brand-text focus-visible:text-brand-text">
+          <Link prefetch={false} href={href} className="hover:text-brand-text focus-visible:text-brand-text">
             {/* bdi: a Latin title that starts with a number ("13 …") keeps its order on Arabic pages. */}
             <bdi>{txt.title}</bdi>
           </Link>
@@ -42,7 +42,7 @@ export default function ResourceCard({ resource: r, locale, t }: { resource: Res
           <p className="text-sm text-fg-muted">{fill(s.preparedBy, { name: r.preparedBy })}</p>
         )}
         <div className="mt-auto flex flex-col gap-3 pt-2 sm:flex-row">
-          <Link href={href} className="btn btn-ink btn-sm">
+          <Link prefetch={false} href={href} className="btn btn-ink btn-sm">
             {s.viewDetails}
             <ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" aria-hidden="true" />
           </Link>

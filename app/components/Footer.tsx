@@ -46,7 +46,7 @@ const Footer = ({ locale, t }: { locale: Locale; t: Messages }) => {
               {f.titleBefore}<span className="text-brand">{f.titleAccent}</span>{f.titleAfter}
             </p>
           </div>
-          <Link href={href("/contact")} className="btn btn-brand self-start md:self-auto">
+          <Link prefetch={false} href={href("/contact")} className="btn btn-brand self-start md:self-auto">
             {f.cta}
             <ArrowUpRight className="h-4 w-4 rtl:-scale-x-100" />
           </Link>
@@ -54,7 +54,7 @@ const Footer = ({ locale, t }: { locale: Locale; t: Messages }) => {
 
         <div className="grid gap-10 pt-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr]">
           <div className="space-y-4">
-            <Link href={href("/")} className="inline-block rounded-full" aria-label={t.nav.homeLabel}>
+            <Link prefetch={false} href={href("/")} className="inline-block rounded-full" aria-label={t.nav.homeLabel}>
               <Logo inverted />
             </Link>
             <p className="max-w-sm leading-relaxed text-on-inverse/70">
@@ -83,7 +83,7 @@ const Footer = ({ locale, t }: { locale: Locale; t: Messages }) => {
             <ul className="mt-4 space-y-3">
               {quickLinks.map((l) => (
                 <li key={l.href}>
-                  <Link href={href(l.href)} className="text-on-inverse/80 transition-colors hover:text-on-inverse">
+                  <Link prefetch={false} href={href(l.href)} className="text-on-inverse/80 transition-colors hover:text-on-inverse">
                     {l.label}
                   </Link>
                 </li>
